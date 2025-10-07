@@ -1,0 +1,18 @@
+# Virtual environment
+.venv/
+
+# DuckDB DB file
+data/buildcpg.duckdb
+
+# Logs
+logs/
+
+# dbt compiled/target
+dbt/target/
+dbt/dbt_packages/
+
+# Notebook checkpoints
+**/.ipynb_checkpoints/
+
+# OS / system files
+.DS_Store
