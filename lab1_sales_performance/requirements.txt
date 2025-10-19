@@ -1,0 +1,7 @@
+pandas
+duckdb
+ydata-profiling
+streamlit
+dbt-core
+dbt-duckdb
+pyyaml

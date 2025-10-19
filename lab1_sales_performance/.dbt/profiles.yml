@@ -1,0 +1,7 @@
+lab1_duckdb:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "/Users/narensham/Documents/Projects/Cursor/buildcpg-labs/lab1_sales_performance/data/lab1_sales_performance.duckdb"
+      threads: 1

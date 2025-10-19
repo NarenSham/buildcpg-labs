@@ -1,0 +1,1 @@
+CREATE OR REPLACE TABLE raw.sales_data AS SELECT * FROM read_csv_auto('data/raw/sales_data.csv', ignore_errors=true, encoding='UTF8', sep=',');

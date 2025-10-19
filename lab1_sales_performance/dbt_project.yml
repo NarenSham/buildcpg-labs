@@ -1,0 +1,19 @@
+name: 'lab1_sales_performance'
+version: '1.0'
+profile: 'lab1_duckdb'
+model-paths: ["dbt/models"]
+target-path: "target"
+config-version: 2
+macro-paths: ["macros"]
+clean-targets:
+  - "target"
+  - "dbt_modules"
+
+
+
+
+on-run-start:
+  - "{{ load_raw_data() }}"
+
+
+

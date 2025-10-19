@@ -1,0 +1,24 @@
+# Lab 1 orchestration
+.PHONY: all ingest bronze silver gold profile dbt
+
+all: ingest bronze silver gold profile
+
+ingest:
+    @echo "Step 1: Ingest raw data"
+    python scripts/ingest_raw.py
+
+bronze:
+    @echo "Step 2: Build bronze layer"
+    dbt run --models bronze_orders
+
+silver:
+    @echo "Step 3: Build silver layer"
+    dbt run --models silver_orders
+
+gold:
+    @echo "Step 4: Build gold layer"
+    dbt run --models gold_orders_summary
+
+profile:
+    @echo "Step 5: Generate profiling report"
+    python scripts/profile_data.py

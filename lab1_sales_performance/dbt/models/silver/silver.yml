@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: silver_orders
+    description: "Enriched data with derived columns"
+    columns:
+      - name: total_price
+        tests:
+          - not_null

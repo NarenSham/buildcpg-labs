@@ -1,0 +1,5 @@
+version: 2
+
+models:
+  - name: gold_orders_summary
+    description: "Aggregated sales metrics per product"
