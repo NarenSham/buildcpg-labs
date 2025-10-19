@@ -1,7 +1,15 @@
--- Aggregate sales by product
-select
-    product_id,
-    sum(quantity) as total_quantity,
-    sum(total_price) as total_revenue
-from {{ ref('silver_orders') }}
-group by product_id
+{{ config(
+    materialized='table',
+    schema='gold'
+) }}
+
+-- Aggregate sales by product line
+SELECT
+    product_line,
+    COUNT(DISTINCT order_id) as total_orders,
+    SUM(quantity_ordered) as total_quantity,
+    SUM(total_price) as total_revenue,
+    ROUND(AVG(total_price), 2) as avg_order_value
+FROM {{ ref('silver_orders') }}
+GROUP BY product_line
+ORDER BY total_revenue DESC

@@ -3,5 +3,6 @@ lab1_duckdb:
   outputs:
     dev:
       type: duckdb
-      path: "/Users/narensham/Documents/Projects/Cursor/buildcpg-labs/lab1_sales_performance/data/lab1_sales_performance.duckdb"
+      path: "data/lab1_sales_performance.duckdb"
+      schema: "raw"
       threads: 1

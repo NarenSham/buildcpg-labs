@@ -3,5 +3,7 @@ version: 2
 sources:
   - name: raw
     schema: raw
+    description: "Raw data from CSV"
     tables:
       - name: sales_data
+        description: "Raw sales data loaded from CSV"

@@ -2,4 +2,19 @@ version: 2
 
 models:
   - name: gold_orders_summary
-    description: "Aggregated sales metrics per product"
+    description: "Gold layer - aggregated sales metrics per product line"
+    materialized: table
+    columns:
+      - name: product_line
+        description: "Product line"
+        tests:
+          - unique
+          - not_null
+      - name: total_orders
+        description: "Number of orders for this product line"
+      - name: total_quantity
+        description: "Total quantity ordered"
+      - name: total_revenue
+        description: "Total revenue"
+      - name: avg_order_value
+        description: "Average order value"

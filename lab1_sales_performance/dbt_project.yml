@@ -9,11 +9,6 @@ clean-targets:
   - "target"
   - "dbt_modules"
 
-
-
-
 on-run-start:
   - "{{ load_raw_data() }}"
-
-
 

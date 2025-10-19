@@ -2,8 +2,19 @@ version: 2
 
 models:
   - name: silver_orders
-    description: "Enriched data with derived columns"
+    description: "Silver layer - enriched data with derived columns"
+    materialized: view
     columns:
+      - name: order_id
+        description: "Unique order identifier"
+        tests:
+          - unique
+          - not_null
       - name: total_price
+        description: "Calculated total price (quantity * price)"
         tests:
           - not_null
+      - name: product_line
+        description: "Product line"
+      - name: customer_name
+        description: "Customer name"

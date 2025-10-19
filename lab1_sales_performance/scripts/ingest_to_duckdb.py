@@ -15,6 +15,6 @@ df = pd.read_csv('../data/raw/sales_data.csv')
 logging.info(f"Loaded {len(df)} rows from raw data")
 
 # Connect to DuckDB and write bronze table
-con = duckdb.connect('../data/processed/lab1.duckdb')
+con = duckdb.connect('data/lab1_sales_performance.duckdb')
 con.execute("CREATE TABLE IF NOT EXISTS bronze_sales AS SELECT * FROM df")
 logging.info(f"Bronze table created with {len(df)} rows")

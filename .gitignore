@@ -1,18 +1,14 @@
-# Virtual environment
+# Python
+__pycache__/
+*.pyc
 .venv/
+venv/
+.env
+*.db
 
-# DuckDB DB file
-data/buildcpg.duckdb
-
-# Logs
-logs/
-
-# dbt compiled/target
+# dbt
 dbt/target/
-dbt/dbt_packages/
+dbt/logs/
 
-# Notebook checkpoints
-**/.ipynb_checkpoints/
-
-# OS / system files
+# Mac
 .DS_Store

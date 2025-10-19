@@ -1,0 +1,6 @@
+order_id,sku_id,order_date,region,sales,promo_flag,discount,stock_on_hand
+1,SKU_A,2025-09-01,North,100,0,0,50
+2,SKU_A,2025-09-02,North,120,1,10,40
+3,SKU_B,2025-09-01,South,80,0,0,70
+4,SKU_B,2025-09-03,South,90,1,5,60
+5,SKU_C,2025-09-02,West,60,0,0,20

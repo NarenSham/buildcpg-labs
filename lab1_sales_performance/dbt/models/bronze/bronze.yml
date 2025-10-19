@@ -2,9 +2,25 @@ version: 2
 
 models:
   - name: bronze_orders
-    description: "Cleaned raw sales data"
+    description: "Bronze layer - cleaned raw sales data with standardized column names"
+    materialized: table
     columns:
       - name: order_id
+        description: "Unique order identifier"
         tests:
           - unique
           - not_null
+      - name: quantity_ordered
+        description: "Quantity ordered"
+      - name: price_each
+        description: "Price per unit"
+      - name: sales
+        description: "Total sales amount"
+      - name: order_date
+        description: "Date the order was placed"
+      - name: status
+        description: "Order status"
+      - name: customer_name
+        description: "Customer name"
+      - name: product_line
+        description: "Product line"
