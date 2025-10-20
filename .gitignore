@@ -1,7 +1,8 @@
 # Virtual environments
+.venv/
 */venv/
-*/.venv/
 venv/
+*/.venv/
 
 # Python
 __pycache__/
@@ -11,8 +12,9 @@ __pycache__/
 *.egg-info/
 
 # Data
-*/data/*.duckdb
+*.duckdb
 *.csv.bak
+data/
 
 # Environment files
 .env
@@ -27,10 +29,12 @@ __pycache__/
 .DS_Store
 
 # dbt
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+dbt/profiles.yml
 */dbt/target/
 */dbt/logs/
-*/dbt/dbt_packages/
-*/dbt/profiles.yml
 
 # State files
 .csv_state.json
