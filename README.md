@@ -1,5 +1,3 @@
-# BuildCPG Labs
-
 A modern, scalable data engineering platform for managing multiple independent labs using dbt, DuckDB, and Python.
 
 [![Docs](https://img.shields.io/badge/docs-mkdocs-blue.svg)](https://buildcpg-labs.github.io)
@@ -8,11 +6,10 @@ A modern, scalable data engineering platform for managing multiple independent l
 
 ## Quick Links
 
-- **📚 [Full Documentation](https://buildcpg-labs.github.io)** - Complete setup and usage guide
-- **🚀 [Quick Start](docs/getting-started/quick-start.md)** - Get running in 10 minutes
-- **🏗️ [Architecture](docs/architecture/overview.md)** - Understand the design
-- **❓ [FAQ](docs/faq.md)** - Common questions answered
-- **🔧 [Troubleshooting](docs/troubleshooting.md)** - Fix common issues
+- ** [Quick Start](docs/getting-started/quick-start.md)** - Get running in 10 minutes
+- ** [Architecture](docs/architecture/overview.md)** - Understand the design
+- ** [FAQ](docs/faq.md)** - Common questions answered
+- ** [Troubleshooting](docs/troubleshooting.md)** - Fix common issues
 
 ## What This Is
 
