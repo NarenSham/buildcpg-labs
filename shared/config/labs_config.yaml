@@ -1,0 +1,19 @@
+# Central registry of all labs in the project
+# Add a new lab entry when creating lab2, lab3, etc.
+
+labs:
+  lab1_sales_performance:
+    path: lab1_sales_performance
+    db_path: lab1_sales_performance/data/lab1_sales_performance.duckdb
+    dbt_path: lab1_sales_performance/dbt
+    raw_data_path: lab1_sales_performance/data/raw
+    maintainer: narensham
+    status: active
+    description: "Sales performance analysis and KPIs"
+    created_date: 2025-01-01
+
+# When you create lab2:
+# lab2_forecast_model:
+#   path: ./lab2_forecast_model
+#   db_path: ./lab2_forecast_model/data/databases/lab2_forecast_model.duckdb
+#   ...

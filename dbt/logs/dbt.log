@@ -1,0 +1,906 @@
+[0m23:18:56.281615 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10de0fd90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10de407d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10de40f50>]}
+
+
+============================== 23:18:56.291253 | 2eef3b6a-0c5b-4ecd-a65b-3ffcd78e1fe7 ==============================
+[0m23:18:56.291253 [info ] [MainThread]: Running with dbt=1.10.13
+[0m23:18:56.292694 [debug] [MainThread]: running dbt with arguments {'use_colors': 'True', 'target_path': 'None', 'static_parser': 'True', 'use_experimental_parser': 'False', 'invocation_command': 'dbt init buildcpg', 'indirect_selection': 'eager', 'warn_error': 'None', 'send_anonymous_usage_stats': 'True', 'empty': 'None', 'debug': 'False', 'profiles_dir': '/Users/narensham/.dbt', 'no_print': 'None', 'log_format': 'default', 'quiet': 'False', 'printer_width': '80', 'version_check': 'True', 'partial_parse': 'True', 'log_path': 'logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'cache_selected_only': 'False', 'write_json': 'True', 'introspect': 'True', 'fail_fast': 'False', 'log_cache_events': 'False'}
+[0m23:18:56.318835 [info ] [MainThread]: Creating dbt configuration folder at /Users/narensham/.dbt
+[0m23:18:56.320962 [debug] [MainThread]: Starter project path: /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/.venv/lib/python3.11/site-packages/dbt/include/starter_project
+[0m23:18:56.328350 [info ] [MainThread]: 
+Your new dbt project "buildcpg" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m23:18:56.329010 [info ] [MainThread]: Setting up your profile.
+[0m23:19:27.958482 [info ] [MainThread]: Profile buildcpg written to /Users/narensham/.dbt/profiles.yml using target's sample configuration. Once updated, you'll be able to start developing with dbt.
+[0m23:19:28.270711 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 32.092033, "process_in_blocks": "0", "process_kernel_time": 0.315971, "process_mem_max_rss": "117735424", "process_out_blocks": "0", "process_user_time": 1.76254}
+[0m23:19:28.271393 [debug] [MainThread]: Command `dbt init` succeeded at 23:19:28.271258 after 32.09 seconds
+[0m23:19:28.271877 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dd80990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10db09310>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1098e7110>]}
+[0m23:19:28.272368 [debug] [MainThread]: Flushing usage events
+[0m23:19:28.767094 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m23:22:10.859229 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1052f18d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1052f3710>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1052726d0>]}
+
+
+============================== 23:22:10.864148 | d8e13beb-a73a-48ad-baf7-b6dd2b3b62f8 ==============================
+[0m23:22:10.864148 [info ] [MainThread]: Running with dbt=1.10.13
+[0m23:22:10.864899 [debug] [MainThread]: running dbt with arguments {'quiet': 'False', 'introspect': 'True', 'no_print': 'None', 'write_json': 'True', 'warn_error': 'None', 'fail_fast': 'False', 'invocation_command': 'dbt debug', 'log_cache_events': 'False', 'profiles_dir': '/Users/narensham/.dbt', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'indirect_selection': 'eager', 'empty': 'None', 'log_format': 'default', 'use_experimental_parser': 'False', 'printer_width': '80', 'send_anonymous_usage_stats': 'True', 'partial_parse': 'True', 'debug': 'False', 'log_path': 'logs', 'cache_selected_only': 'False', 'version_check': 'True', 'use_colors': 'True', 'static_parser': 'True'}
+[0m23:22:10.880193 [info ] [MainThread]: dbt version: 1.10.13
+[0m23:22:10.880749 [info ] [MainThread]: python version: 3.11.9
+[0m23:22:10.881201 [info ] [MainThread]: python path: /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/.venv/bin/python3
+[0m23:22:10.881626 [info ] [MainThread]: os info: macOS-11.2.3-x86_64-i386-64bit
+[0m23:22:11.044786 [info ] [MainThread]: Using profiles dir at /Users/narensham/.dbt
+[0m23:22:11.045339 [info ] [MainThread]: Using profiles.yml file at /Users/narensham/.dbt/profiles.yml
+[0m23:22:11.045747 [info ] [MainThread]: Using dbt_project.yml file at /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/dbt_project.yml
+[0m23:22:11.047083 [info ] [MainThread]: adapter type: duckdb
+[0m23:22:11.047429 [info ] [MainThread]: adapter version: 1.9.6
+[0m23:22:11.047781 [info ] [MainThread]: Configuration:
+[0m23:22:11.048154 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m23:22:11.048481 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m23:22:11.048809 [info ] [MainThread]: Required dependencies:
+[0m23:22:11.049194 [debug] [MainThread]: Executing "git --help"
+[0m23:22:11.055947 [debug] [MainThread]: STDOUT: "b"usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--super-prefix=<path>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone             Clone a repository into a new directory\n   init              Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add               Add file contents to the index\n   mv                Move or rename a file, a directory, or a symlink\n   restore           Restore working tree files\n   rm                Remove files from the working tree and from the index\n   sparse-checkout   Initialize and modify the sparse-checkout\n\nexamine the history and state (see also: git help revisions)\n   bisect            Use binary search to find the commit that introduced a bug\n   diff              Show changes between commits, commit and working tree, etc\n   grep              Print lines matching a pattern\n   log               Show commit logs\n   show              Show various types of objects\n   status            Show the working tree status\n\ngrow, mark and tweak your common history\n   branch            List, create, or delete branches\n   commit            Record changes to the repository\n   merge             Join two or more development histories together\n   rebase            Reapply commits on top of another base tip\n   reset             Reset current HEAD to the specified state\n   switch            Switch branches\n   tag               Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch             Download objects and refs from another repository\n   pull              Fetch from and integrate with another repository or a local branch\n   push              Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m23:22:11.057855 [debug] [MainThread]: STDERR: "b''"
+[0m23:22:11.058501 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m23:22:11.058932 [info ] [MainThread]: Connection:
+[0m23:22:11.059394 [info ] [MainThread]:   database: buildcpg
+[0m23:22:11.059826 [info ] [MainThread]:   schema: main
+[0m23:22:11.060203 [info ] [MainThread]:   path: data/buildcpg.duckdb
+[0m23:22:11.060566 [info ] [MainThread]:   config_options: None
+[0m23:22:11.060900 [info ] [MainThread]:   extensions: None
+[0m23:22:11.061411 [info ] [MainThread]:   settings: {}
+[0m23:22:11.062015 [info ] [MainThread]:   external_root: .
+[0m23:22:11.062593 [info ] [MainThread]:   use_credential_provider: None
+[0m23:22:11.062990 [info ] [MainThread]:   attach: None
+[0m23:22:11.063326 [info ] [MainThread]:   filesystems: None
+[0m23:22:11.063660 [info ] [MainThread]:   remote: None
+[0m23:22:11.063993 [info ] [MainThread]:   plugins: None
+[0m23:22:11.064372 [info ] [MainThread]:   disable_transactions: False
+[0m23:22:11.065029 [info ] [MainThread]: Registered adapter: duckdb=1.9.6
+[0m23:22:11.550733 [debug] [MainThread]: Acquiring new duckdb connection 'debug'
+[0m23:22:11.597634 [debug] [MainThread]: Using duckdb connection "debug"
+[0m23:22:11.598141 [debug] [MainThread]: On debug: select 1 as id
+[0m23:22:11.598536 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m23:22:11.606606 [debug] [MainThread]: DuckDB adapter: Error running SQL: select 1 as id
+[0m23:22:11.607500 [debug] [MainThread]: DuckDB adapter: Rolling back transaction.
+[0m23:22:11.608084 [info ] [MainThread]:   Connection test: [[31mERROR[0m]
+
+[0m23:22:11.608671 [info ] [MainThread]: [31m2 checks failed:[0m
+[0m23:22:11.609124 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/dbt_project.yml> not found
+
+[0m23:22:11.609656 [info ] [MainThread]: dbt was unable to connect to the specified database.
+The database returned the following error:
+
+  >Runtime Error
+  IO Error: Cannot open file "/Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/data/buildcpg.duckdb": No such file or directory
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m23:22:11.611288 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.8468333, "process_in_blocks": "0", "process_kernel_time": 0.386431, "process_mem_max_rss": "125677568", "process_out_blocks": "0", "process_user_time": 1.957674}
+[0m23:22:11.611972 [debug] [MainThread]: Command `dbt debug` failed at 23:22:11.611816 after 0.85 seconds
+[0m23:22:11.612488 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m23:22:11.613028 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1052a5810>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1054b22d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x100ecb050>]}
+[0m23:22:11.613641 [debug] [MainThread]: Flushing usage events
+[0m23:22:11.881155 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:07:37.045044 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1053c7d90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105484450>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105484b10>]}
+
+
+============================== 22:07:37.049741 | 070a0b64-8791-4b0a-a637-63c329131adb ==============================
+[0m22:07:37.049741 [info ] [MainThread]: Running with dbt=1.10.13
+[0m22:07:37.050516 [debug] [MainThread]: running dbt with arguments {'write_json': 'True', 'indirect_selection': 'eager', 'introspect': 'True', 'fail_fast': 'False', 'use_experimental_parser': 'False', 'target_path': 'None', 'empty': 'None', 'printer_width': '80', 'quiet': 'False', 'partial_parse': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'no_print': 'None', 'version_check': 'True', 'cache_selected_only': 'False', 'log_format': 'default', 'invocation_command': 'dbt deps --profiles-dir dbt', 'log_path': '/Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/logs', 'log_cache_events': 'False', 'debug': 'False', 'use_colors': 'True', 'profiles_dir': 'dbt', 'send_anonymous_usage_stats': 'True', 'warn_error': 'None', 'static_parser': 'True'}
+[0m22:07:37.061280 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `source-paths` config has been renamed to `model-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m22:07:37.062052 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '070a0b64-8791-4b0a-a637-63c329131adb', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105484c90>]}
+[0m22:07:37.062685 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `data-paths` config has been renamed to `seed-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m22:07:37.063237 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '070a0b64-8791-4b0a-a637-63c329131adb', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105492a90>]}
+[0m22:07:37.261008 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '070a0b64-8791-4b0a-a637-63c329131adb', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105530c50>]}
+[0m22:07:37.283802 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m22:07:37.284693 [info ] [MainThread]: Warning: No packages were found in packages.yml
+[0m22:07:37.285458 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- ConfigSourcePathDeprecation: 1 occurrence
+- ConfigDataPathDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m22:07:37.286989 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_success": true, "command_wall_clock_time": 0.3287848, "process_in_blocks": "0", "process_kernel_time": 0.271932, "process_mem_max_rss": "107192320", "process_out_blocks": "0", "process_user_time": 1.796583}
+[0m22:07:37.287653 [debug] [MainThread]: Command `dbt deps` succeeded at 22:07:37.287504 after 0.33 seconds
+[0m22:07:37.288169 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1054847d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1054516d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10105ef90>]}
+[0m22:07:37.288686 [debug] [MainThread]: Flushing usage events
+[0m22:07:38.239686 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:12:18.658092 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e961250>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1114b8ad0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1114b9190>]}
+
+
+============================== 22:12:18.663354 | fab0b4d2-ba22-4a52-8537-f789ef4c3fed ==============================
+[0m22:12:18.663354 [info ] [MainThread]: Running with dbt=1.10.13
+[0m22:12:18.664140 [debug] [MainThread]: running dbt with arguments {'cache_selected_only': 'False', 'no_print': 'None', 'warn_error': 'None', 'introspect': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'send_anonymous_usage_stats': 'True', 'use_colors': 'True', 'log_format': 'default', 'target_path': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'log_path': '/Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/logs', 'printer_width': '80', 'empty': 'None', 'write_json': 'True', 'invocation_command': 'dbt docs generate', 'fail_fast': 'False', 'version_check': 'True', 'static_parser': 'True', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'debug': 'False', 'profiles_dir': '/Users/narensham/.dbt'}
+[0m22:12:18.847040 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `source-paths` config has been renamed to `model-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m22:12:18.847644 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'fab0b4d2-ba22-4a52-8537-f789ef4c3fed', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111503cd0>]}
+[0m22:12:18.848378 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `data-paths` config has been renamed to `seed-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m22:12:18.848826 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'fab0b4d2-ba22-4a52-8537-f789ef4c3fed', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1115012d0>]}
+[0m22:12:19.029156 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'fab0b4d2-ba22-4a52-8537-f789ef4c3fed', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x114732a10>]}
+[0m22:12:19.119830 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'fab0b4d2-ba22-4a52-8537-f789ef4c3fed', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e96e4d0>]}
+[0m22:12:19.121564 [info ] [MainThread]: Registered adapter: duckdb=1.9.6
+[0m22:12:19.305164 [debug] [MainThread]: checksum: 9f0c81e2574b4ff463f3d16d080df83c6982fc0372c9feeacae0504ac9ea3ffe, vars: {}, profile: , target: , version: 1.10.13
+[0m22:12:19.306160 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m22:12:19.306651 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'fab0b4d2-ba22-4a52-8537-f789ef4c3fed', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110716cd0>]}
+[0m22:12:20.559278 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'fab0b4d2-ba22-4a52-8537-f789ef4c3fed', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1147b1410>]}
+[0m22:12:20.578407 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'fab0b4d2-ba22-4a52-8537-f789ef4c3fed', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x114c95650>]}
+[0m22:12:20.579038 [info ] [MainThread]: Found 3 models, 444 macros
+[0m22:12:20.579483 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'fab0b4d2-ba22-4a52-8537-f789ef4c3fed', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x114c83dd0>]}
+[0m22:12:20.581626 [info ] [MainThread]: 
+[0m22:12:20.582108 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m22:12:20.582519 [info ] [MainThread]: 
+[0m22:12:20.583093 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m22:12:20.589003 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_buildcpg_main'
+[0m22:12:20.650917 [debug] [ThreadPool]: Using duckdb connection "list_buildcpg_main"
+[0m22:12:20.651418 [debug] [ThreadPool]: On list_buildcpg_main: BEGIN
+[0m22:12:20.651903 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:12:20.659792 [debug] [ThreadPool]: DuckDB adapter: Error running SQL: BEGIN
+[0m22:12:20.660428 [debug] [ThreadPool]: DuckDB adapter: Rolling back transaction.
+[0m22:12:20.661315 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m22:12:20.661712 [debug] [MainThread]: Connection 'list_buildcpg_main' was properly closed.
+[0m22:12:20.662288 [error] [MainThread]: Encountered an error:
+Runtime Error
+  IO Error: Cannot open file "/Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/data/buildcpg.duckdb": No such file or directory
+[0m22:12:20.663229 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- ConfigSourcePathDeprecation: 1 occurrence
+- ConfigDataPathDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m22:12:20.664690 [debug] [MainThread]: Resource report: {"command_name": "generate", "command_success": false, "command_wall_clock_time": 2.0998452, "process_in_blocks": "0", "process_kernel_time": 0.423913, "process_mem_max_rss": "136855552", "process_out_blocks": "0", "process_user_time": 3.460811}
+[0m22:12:20.665546 [debug] [MainThread]: Command `dbt docs generate` failed at 22:12:20.665359 after 2.10 seconds
+[0m22:12:20.666135 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1114b8d90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x114cb4490>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x111417850>]}
+[0m22:12:20.666934 [debug] [MainThread]: Flushing usage events
+[0m22:12:20.832156 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:12:47.140426 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ee7f490>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ee7fc90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ee99190>]}
+
+
+============================== 22:12:47.145232 | e422b190-e3fb-4a76-953b-332480078927 ==============================
+[0m22:12:47.145232 [info ] [MainThread]: Running with dbt=1.10.13
+[0m22:12:47.145969 [debug] [MainThread]: running dbt with arguments {'use_experimental_parser': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'profiles_dir': '/Users/narensham/.dbt', 'warn_error': 'None', 'introspect': 'True', 'partial_parse': 'True', 'debug': 'False', 'empty': 'None', 'log_cache_events': 'False', 'log_path': '/Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/logs', 'write_json': 'True', 'log_format': 'default', 'use_colors': 'True', 'target_path': 'None', 'fail_fast': 'False', 'static_parser': 'True', 'printer_width': '80', 'quiet': 'False', 'version_check': 'True', 'invocation_command': 'dbt docs generate', 'no_print': 'None', 'indirect_selection': 'eager', 'cache_selected_only': 'False', 'send_anonymous_usage_stats': 'True'}
+[0m22:12:47.306697 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `source-paths` config has been renamed to `model-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m22:12:47.307342 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'e422b190-e3fb-4a76-953b-332480078927', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ee7eb50>]}
+[0m22:12:47.307897 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `data-paths` config has been renamed to `seed-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m22:12:47.308397 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'e422b190-e3fb-4a76-953b-332480078927', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ee7f6d0>]}
+[0m22:12:47.475101 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'e422b190-e3fb-4a76-953b-332480078927', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ee84750>]}
+[0m22:12:47.564724 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'e422b190-e3fb-4a76-953b-332480078927', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10c34d9d0>]}
+[0m22:12:47.566454 [info ] [MainThread]: Registered adapter: duckdb=1.9.6
+[0m22:12:47.743378 [debug] [MainThread]: checksum: 9f0c81e2574b4ff463f3d16d080df83c6982fc0372c9feeacae0504ac9ea3ffe, vars: {}, profile: , target: , version: 1.10.13
+[0m22:12:47.841501 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m22:12:47.841932 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m22:12:47.870065 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'e422b190-e3fb-4a76-953b-332480078927', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10e049910>]}
+[0m22:12:47.884150 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'e422b190-e3fb-4a76-953b-332480078927', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x112375090>]}
+[0m22:12:47.884683 [info ] [MainThread]: Found 3 models, 444 macros
+[0m22:12:47.885060 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'e422b190-e3fb-4a76-953b-332480078927', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1123c6110>]}
+[0m22:12:47.886760 [info ] [MainThread]: 
+[0m22:12:47.887186 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m22:12:47.887529 [info ] [MainThread]: 
+[0m22:12:47.888089 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m22:12:47.894504 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_buildcpg_main'
+[0m22:12:47.955255 [debug] [ThreadPool]: Using duckdb connection "list_buildcpg_main"
+[0m22:12:47.955744 [debug] [ThreadPool]: On list_buildcpg_main: BEGIN
+[0m22:12:47.956139 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:12:47.963091 [debug] [ThreadPool]: DuckDB adapter: Error running SQL: BEGIN
+[0m22:12:47.963539 [debug] [ThreadPool]: DuckDB adapter: Rolling back transaction.
+[0m22:12:47.964385 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m22:12:47.964756 [debug] [MainThread]: Connection 'list_buildcpg_main' was properly closed.
+[0m22:12:47.965311 [error] [MainThread]: Encountered an error:
+Runtime Error
+  IO Error: Cannot open file "/Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/data/buildcpg.duckdb": No such file or directory
+[0m22:12:47.966158 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- ConfigSourcePathDeprecation: 1 occurrence
+- ConfigDataPathDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m22:12:47.967539 [debug] [MainThread]: Resource report: {"command_name": "generate", "command_success": false, "command_wall_clock_time": 0.91510504, "process_in_blocks": "0", "process_kernel_time": 0.383511, "process_mem_max_rss": "134131712", "process_out_blocks": "0", "process_user_time": 2.309906}
+[0m22:12:47.968195 [debug] [MainThread]: Command `dbt docs generate` failed at 22:12:47.968063 after 0.92 seconds
+[0m22:12:47.968693 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ee986d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x112346350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10edf78d0>]}
+[0m22:12:47.969156 [debug] [MainThread]: Flushing usage events
+[0m22:12:48.104614 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:17:05.653915 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x112362810>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1123ef9d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1123eff90>]}
+
+
+============================== 22:17:05.658069 | 741d8c45-20c0-400a-968e-ec022e5dd26b ==============================
+[0m22:17:05.658069 [info ] [MainThread]: Running with dbt=1.10.13
+[0m22:17:05.658908 [debug] [MainThread]: running dbt with arguments {'no_print': 'None', 'fail_fast': 'False', 'invocation_command': 'dbt debug --profiles-dir .', 'static_parser': 'True', 'use_colors': 'True', 'target_path': 'None', 'version_check': 'True', 'log_format': 'default', 'cache_selected_only': 'False', 'write_json': 'True', 'log_cache_events': 'False', 'warn_error': 'None', 'send_anonymous_usage_stats': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'profiles_dir': '.', 'quiet': 'False', 'use_experimental_parser': 'False', 'partial_parse': 'True', 'introspect': 'True', 'log_path': '/Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/logs', 'empty': 'None', 'printer_width': '80', 'debug': 'False', 'indirect_selection': 'eager'}
+[0m22:17:05.671707 [info ] [MainThread]: dbt version: 1.10.13
+[0m22:17:05.672441 [info ] [MainThread]: python version: 3.11.9
+[0m22:17:05.673001 [info ] [MainThread]: python path: /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/.venv/bin/python3
+[0m22:17:05.673455 [info ] [MainThread]: os info: macOS-11.2.3-x86_64-i386-64bit
+[0m22:17:05.673922 [info ] [MainThread]: Using profiles dir at .
+[0m22:17:05.674365 [info ] [MainThread]: Using profiles.yml file at ./profiles.yml
+[0m22:17:05.674777 [info ] [MainThread]: Using dbt_project.yml file at /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/dbt_project.yml
+[0m22:17:05.682129 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `source-paths` config has been renamed to `model-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m22:17:05.682720 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '741d8c45-20c0-400a-968e-ec022e5dd26b', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1124a3b10>]}
+[0m22:17:05.683286 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `data-paths` config has been renamed to `seed-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m22:17:05.683750 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '741d8c45-20c0-400a-968e-ec022e5dd26b', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1124ae810>]}
+[0m22:17:05.832899 [info ] [MainThread]: Configuration:
+[0m22:17:05.833389 [info ] [MainThread]:   profiles.yml file [[31mERROR not found[0m]
+[0m22:17:05.833809 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m22:17:05.834332 [info ] [MainThread]: Required dependencies:
+[0m22:17:05.834786 [debug] [MainThread]: Executing "git --help"
+[0m22:17:05.840029 [debug] [MainThread]: STDOUT: "b"usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--super-prefix=<path>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone             Clone a repository into a new directory\n   init              Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add               Add file contents to the index\n   mv                Move or rename a file, a directory, or a symlink\n   restore           Restore working tree files\n   rm                Remove files from the working tree and from the index\n   sparse-checkout   Initialize and modify the sparse-checkout\n\nexamine the history and state (see also: git help revisions)\n   bisect            Use binary search to find the commit that introduced a bug\n   diff              Show changes between commits, commit and working tree, etc\n   grep              Print lines matching a pattern\n   log               Show commit logs\n   show              Show various types of objects\n   status            Show the working tree status\n\ngrow, mark and tweak your common history\n   branch            List, create, or delete branches\n   commit            Record changes to the repository\n   merge             Join two or more development histories together\n   rebase            Reapply commits on top of another base tip\n   reset             Reset current HEAD to the specified state\n   switch            Switch branches\n   tag               Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch             Download objects and refs from another repository\n   pull              Fetch from and integrate with another repository or a local branch\n   push              Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m22:17:05.840945 [debug] [MainThread]: STDERR: "b''"
+[0m22:17:05.841371 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m22:17:05.841778 [info ] [MainThread]: Connection test skipped since no profile was found
+[0m22:17:05.842411 [info ] [MainThread]: [31m1 check failed:[0m
+[0m22:17:05.843016 [info ] [MainThread]: dbt looked for a profiles.yml file in ./profiles.yml, but did
+not find one. For more information on configuring your profile, consult the
+documentation:
+
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m22:17:05.844757 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- ConfigSourcePathDeprecation: 1 occurrence
+- ConfigDataPathDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m22:17:05.846695 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.2800122, "process_in_blocks": "0", "process_kernel_time": 0.241887, "process_mem_max_rss": "106926080", "process_out_blocks": "0", "process_user_time": 1.778604}
+[0m22:17:05.847640 [debug] [MainThread]: Command `dbt debug` failed at 22:17:05.847491 after 0.28 seconds
+[0m22:17:05.848273 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1124080d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1123ef350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10dd13590>]}
+[0m22:17:05.848885 [debug] [MainThread]: Flushing usage events
+[0m22:17:06.048935 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:26:25.368092 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cc3fe10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cc81910>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cc8ffd0>]}
+
+
+============================== 22:26:25.373777 | 2e02cb14-6b9e-42aa-9fbb-81cc3824f1b7 ==============================
+[0m22:26:25.373777 [info ] [MainThread]: Running with dbt=1.10.13
+[0m22:26:25.374782 [debug] [MainThread]: running dbt with arguments {'send_anonymous_usage_stats': 'True', 'introspect': 'True', 'debug': 'False', 'use_experimental_parser': 'False', 'write_json': 'True', 'version_check': 'True', 'profiles_dir': '/Users/narensham/.dbt', 'partial_parse': 'True', 'invocation_command': 'dbt debug', 'log_format': 'default', 'use_colors': 'True', 'warn_error': 'None', 'static_parser': 'True', 'quiet': 'False', 'no_print': 'None', 'fail_fast': 'False', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'target_path': 'None', 'empty': 'None', 'log_path': '/Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/logs', 'cache_selected_only': 'False', 'log_cache_events': 'False', 'indirect_selection': 'eager'}
+[0m22:26:25.389814 [info ] [MainThread]: dbt version: 1.10.13
+[0m22:26:25.390434 [info ] [MainThread]: python version: 3.11.9
+[0m22:26:25.390934 [info ] [MainThread]: python path: /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/.venv/bin/python3
+[0m22:26:25.391395 [info ] [MainThread]: os info: macOS-11.2.3-x86_64-i386-64bit
+[0m22:26:25.560681 [info ] [MainThread]: Using profiles dir at /Users/narensham/.dbt
+[0m22:26:25.561195 [info ] [MainThread]: Using profiles.yml file at /Users/narensham/.dbt/profiles.yml
+[0m22:26:25.561547 [info ] [MainThread]: Using dbt_project.yml file at /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/dbt_project.yml
+[0m22:26:25.563022 [info ] [MainThread]: adapter type: duckdb
+[0m22:26:25.563375 [info ] [MainThread]: adapter version: 1.9.6
+[0m22:26:25.567810 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `source-paths` config has been renamed to `model-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m22:26:25.568430 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '2e02cb14-6b9e-42aa-9fbb-81cc3824f1b7', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cc820d0>]}
+[0m22:26:25.568953 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `data-paths` config has been renamed to `seed-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m22:26:25.569341 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '2e02cb14-6b9e-42aa-9fbb-81cc3824f1b7', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cd43890>]}
+[0m22:26:25.713312 [info ] [MainThread]: Configuration:
+[0m22:26:25.713798 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m22:26:25.714193 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m22:26:25.714561 [info ] [MainThread]: Required dependencies:
+[0m22:26:25.714983 [debug] [MainThread]: Executing "git --help"
+[0m22:26:25.720082 [debug] [MainThread]: STDOUT: "b"usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--super-prefix=<path>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone             Clone a repository into a new directory\n   init              Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add               Add file contents to the index\n   mv                Move or rename a file, a directory, or a symlink\n   restore           Restore working tree files\n   rm                Remove files from the working tree and from the index\n   sparse-checkout   Initialize and modify the sparse-checkout\n\nexamine the history and state (see also: git help revisions)\n   bisect            Use binary search to find the commit that introduced a bug\n   diff              Show changes between commits, commit and working tree, etc\n   grep              Print lines matching a pattern\n   log               Show commit logs\n   show              Show various types of objects\n   status            Show the working tree status\n\ngrow, mark and tweak your common history\n   branch            List, create, or delete branches\n   commit            Record changes to the repository\n   merge             Join two or more development histories together\n   rebase            Reapply commits on top of another base tip\n   reset             Reset current HEAD to the specified state\n   switch            Switch branches\n   tag               Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch             Download objects and refs from another repository\n   pull              Fetch from and integrate with another repository or a local branch\n   push              Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m22:26:25.721108 [debug] [MainThread]: STDERR: "b''"
+[0m22:26:25.721504 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m22:26:25.721964 [info ] [MainThread]: Connection:
+[0m22:26:25.722386 [info ] [MainThread]:   database: buildcpg
+[0m22:26:25.722803 [info ] [MainThread]:   schema: main
+[0m22:26:25.723154 [info ] [MainThread]:   path: data/buildcpg.duckdb
+[0m22:26:25.723509 [info ] [MainThread]:   config_options: None
+[0m22:26:25.723859 [info ] [MainThread]:   extensions: None
+[0m22:26:25.724207 [info ] [MainThread]:   settings: {}
+[0m22:26:25.724559 [info ] [MainThread]:   external_root: .
+[0m22:26:25.724902 [info ] [MainThread]:   use_credential_provider: None
+[0m22:26:25.725244 [info ] [MainThread]:   attach: None
+[0m22:26:25.725580 [info ] [MainThread]:   filesystems: None
+[0m22:26:25.725916 [info ] [MainThread]:   remote: None
+[0m22:26:25.726267 [info ] [MainThread]:   plugins: None
+[0m22:26:25.726604 [info ] [MainThread]:   disable_transactions: False
+[0m22:26:25.727234 [info ] [MainThread]: Registered adapter: duckdb=1.9.6
+[0m22:26:25.906261 [debug] [MainThread]: Acquiring new duckdb connection 'debug'
+[0m22:26:25.949646 [debug] [MainThread]: Using duckdb connection "debug"
+[0m22:26:25.950124 [debug] [MainThread]: On debug: select 1 as id
+[0m22:26:25.950497 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m22:26:25.957428 [debug] [MainThread]: DuckDB adapter: Error running SQL: select 1 as id
+[0m22:26:25.957872 [debug] [MainThread]: DuckDB adapter: Rolling back transaction.
+[0m22:26:25.958389 [info ] [MainThread]:   Connection test: [[31mERROR[0m]
+
+[0m22:26:25.958828 [info ] [MainThread]: [31m1 check failed:[0m
+[0m22:26:25.959226 [info ] [MainThread]: dbt was unable to connect to the specified database.
+The database returned the following error:
+
+  >Runtime Error
+  IO Error: Cannot open file "/Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/data/buildcpg.duckdb": No such file or directory
+
+Check your database credentials and try again. For more information, visit:
+https://docs.getdbt.com/docs/configure-your-profile
+
+
+[0m22:26:25.960066 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- ConfigSourcePathDeprecation: 1 occurrence
+- ConfigDataPathDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m22:26:25.962424 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 0.71444166, "process_in_blocks": "0", "process_kernel_time": 0.390267, "process_mem_max_rss": "128135168", "process_out_blocks": "0", "process_user_time": 2.176279}
+[0m22:26:25.963047 [debug] [MainThread]: Command `dbt debug` failed at 22:26:25.962906 after 0.72 seconds
+[0m22:26:25.963508 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m22:26:25.963991 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ccac550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ccac350>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ff5e390>]}
+[0m22:26:25.964535 [debug] [MainThread]: Flushing usage events
+[0m22:26:26.148763 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:32:52.906808 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1059d0ed0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105a5fe10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105a7d010>]}
+
+
+============================== 22:32:52.911988 | ab254930-d375-405e-8f34-ad5f08ed46ba ==============================
+[0m22:32:52.911988 [info ] [MainThread]: Running with dbt=1.10.13
+[0m22:32:52.912822 [debug] [MainThread]: running dbt with arguments {'partial_parse': 'True', 'printer_width': '80', 'warn_error': 'None', 'cache_selected_only': 'False', 'indirect_selection': 'eager', 'log_path': '/Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/logs', 'log_format': 'default', 'empty': 'None', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'quiet': 'False', 'no_print': 'None', 'profiles_dir': '/Users/narensham/.dbt', 'debug': 'False', 'introspect': 'True', 'version_check': 'True', 'use_colors': 'True', 'log_cache_events': 'False', 'send_anonymous_usage_stats': 'True', 'target_path': 'None', 'write_json': 'True', 'static_parser': 'True', 'fail_fast': 'False', 'invocation_command': 'dbt debug', 'use_experimental_parser': 'False'}
+[0m22:32:52.926488 [info ] [MainThread]: dbt version: 1.10.13
+[0m22:32:52.927273 [info ] [MainThread]: python version: 3.11.9
+[0m22:32:52.927916 [info ] [MainThread]: python path: /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/.venv/bin/python3
+[0m22:32:52.928505 [info ] [MainThread]: os info: macOS-11.2.3-x86_64-i386-64bit
+[0m22:32:53.086918 [info ] [MainThread]: Using profiles dir at /Users/narensham/.dbt
+[0m22:32:53.087435 [info ] [MainThread]: Using profiles.yml file at /Users/narensham/.dbt/profiles.yml
+[0m22:32:53.087795 [info ] [MainThread]: Using dbt_project.yml file at /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/dbt_project.yml
+[0m22:32:53.089290 [info ] [MainThread]: adapter type: duckdb
+[0m22:32:53.089651 [info ] [MainThread]: adapter version: 1.9.6
+[0m22:32:53.093756 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `source-paths` config has been renamed to `model-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m22:32:53.094348 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'ab254930-d375-405e-8f34-ad5f08ed46ba', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105b46390>]}
+[0m22:32:53.094890 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `data-paths` config has been renamed to `seed-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m22:32:53.095289 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'ab254930-d375-405e-8f34-ad5f08ed46ba', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105b56f10>]}
+[0m22:32:53.259106 [info ] [MainThread]: Configuration:
+[0m22:32:53.259696 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m22:32:53.260072 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m22:32:53.260417 [info ] [MainThread]: Required dependencies:
+[0m22:32:53.260837 [debug] [MainThread]: Executing "git --help"
+[0m22:32:53.266105 [debug] [MainThread]: STDOUT: "b"usage: git [--version] [--help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--bare]\n           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]\n           [--super-prefix=<path>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone             Clone a repository into a new directory\n   init              Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add               Add file contents to the index\n   mv                Move or rename a file, a directory, or a symlink\n   restore           Restore working tree files\n   rm                Remove files from the working tree and from the index\n   sparse-checkout   Initialize and modify the sparse-checkout\n\nexamine the history and state (see also: git help revisions)\n   bisect            Use binary search to find the commit that introduced a bug\n   diff              Show changes between commits, commit and working tree, etc\n   grep              Print lines matching a pattern\n   log               Show commit logs\n   show              Show various types of objects\n   status            Show the working tree status\n\ngrow, mark and tweak your common history\n   branch            List, create, or delete branches\n   commit            Record changes to the repository\n   merge             Join two or more development histories together\n   rebase            Reapply commits on top of another base tip\n   reset             Reset current HEAD to the specified state\n   switch            Switch branches\n   tag               Create, list, delete or verify a tag object signed with GPG\n\ncollaborate (see also: git help workflows)\n   fetch             Download objects and refs from another repository\n   pull              Fetch from and integrate with another repository or a local branch\n   push              Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m22:32:53.267059 [debug] [MainThread]: STDERR: "b''"
+[0m22:32:53.267506 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m22:32:53.268152 [info ] [MainThread]: Connection:
+[0m22:32:53.268687 [info ] [MainThread]:   database: buildcpg
+[0m22:32:53.269076 [info ] [MainThread]:   schema: main
+[0m22:32:53.269579 [info ] [MainThread]:   path: /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/data/buildcpg.duckdb
+[0m22:32:53.270162 [info ] [MainThread]:   config_options: None
+[0m22:32:53.270773 [info ] [MainThread]:   extensions: None
+[0m22:32:53.271220 [info ] [MainThread]:   settings: {}
+[0m22:32:53.271616 [info ] [MainThread]:   external_root: .
+[0m22:32:53.272027 [info ] [MainThread]:   use_credential_provider: None
+[0m22:32:53.272446 [info ] [MainThread]:   attach: None
+[0m22:32:53.273006 [info ] [MainThread]:   filesystems: None
+[0m22:32:53.273470 [info ] [MainThread]:   remote: None
+[0m22:32:53.273864 [info ] [MainThread]:   plugins: None
+[0m22:32:53.274245 [info ] [MainThread]:   disable_transactions: False
+[0m22:32:53.274999 [info ] [MainThread]: Registered adapter: duckdb=1.9.6
+[0m22:32:53.446076 [debug] [MainThread]: Acquiring new duckdb connection 'debug'
+[0m22:32:53.485140 [debug] [MainThread]: Using duckdb connection "debug"
+[0m22:32:53.485594 [debug] [MainThread]: On debug: select 1 as id
+[0m22:32:53.485958 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m22:32:53.499543 [debug] [MainThread]: SQL status: OK in 0.014 seconds
+[0m22:32:53.500509 [debug] [MainThread]: On debug: Close
+[0m22:32:53.500903 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m22:32:53.501271 [info ] [MainThread]: [32mAll checks passed![0m
+[0m22:32:53.502054 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- ConfigSourcePathDeprecation: 1 occurrence
+- ConfigDataPathDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m22:32:53.503323 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": true, "command_wall_clock_time": 0.6860891, "process_in_blocks": "0", "process_kernel_time": 0.361758, "process_mem_max_rss": "129691648", "process_out_blocks": "0", "process_user_time": 2.061918}
+[0m22:32:53.503833 [debug] [MainThread]: Command `dbt debug` succeeded at 22:32:53.503721 after 0.69 seconds
+[0m22:32:53.504198 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m22:32:53.504590 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x105a243d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1059c4f90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1059c4a50>]}
+[0m22:32:53.505036 [debug] [MainThread]: Flushing usage events
+[0m22:32:53.692076 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:33:57.662231 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10be86250>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bea0890>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10be8cc10>]}
+
+
+============================== 22:33:57.667475 | bfc1d65c-8206-49d3-9fda-55b71c86838a ==============================
+[0m22:33:57.667475 [info ] [MainThread]: Running with dbt=1.10.13
+[0m22:33:57.668254 [debug] [MainThread]: running dbt with arguments {'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'printer_width': '80', 'static_parser': 'True', 'warn_error': 'None', 'version_check': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'invocation_command': 'dbt run', 'use_colors': 'True', 'profiles_dir': '/Users/narensham/.dbt', 'debug': 'False', 'send_anonymous_usage_stats': 'True', 'indirect_selection': 'eager', 'introspect': 'True', 'target_path': 'None', 'empty': 'False', 'use_experimental_parser': 'False', 'write_json': 'True', 'log_path': '/Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/logs', 'no_print': 'None', 'fail_fast': 'False', 'quiet': 'False', 'cache_selected_only': 'False', 'log_format': 'default'}
+[0m22:33:57.845842 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `source-paths` config has been renamed to `model-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m22:33:57.846413 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'bfc1d65c-8206-49d3-9fda-55b71c86838a', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f029f50>]}
+[0m22:33:57.846918 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `data-paths` config has been renamed to `seed-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m22:33:57.847332 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': 'bfc1d65c-8206-49d3-9fda-55b71c86838a', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bec5910>]}
+[0m22:33:58.017023 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'bfc1d65c-8206-49d3-9fda-55b71c86838a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bee6e90>]}
+[0m22:33:58.106678 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'bfc1d65c-8206-49d3-9fda-55b71c86838a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10938a910>]}
+[0m22:33:58.108321 [info ] [MainThread]: Registered adapter: duckdb=1.9.6
+[0m22:33:58.282332 [debug] [MainThread]: checksum: 9f0c81e2574b4ff463f3d16d080df83c6982fc0372c9feeacae0504ac9ea3ffe, vars: {}, profile: , target: , version: 1.10.13
+[0m22:33:58.351334 [info ] [MainThread]: Unable to do partial parsing because profile has changed
+[0m22:33:58.351896 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': 'bfc1d65c-8206-49d3-9fda-55b71c86838a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b73f8d0>]}
+[0m22:33:59.519849 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'bfc1d65c-8206-49d3-9fda-55b71c86838a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f4a1d90>]}
+[0m22:33:59.575022 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/target/manifest.json
+[0m22:33:59.576985 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/target/semantic_manifest.json
+[0m22:33:59.589913 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'bfc1d65c-8206-49d3-9fda-55b71c86838a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f5b9e90>]}
+[0m22:33:59.590487 [info ] [MainThread]: Found 3 models, 444 macros
+[0m22:33:59.590864 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'bfc1d65c-8206-49d3-9fda-55b71c86838a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10b7c9b10>]}
+[0m22:33:59.592479 [info ] [MainThread]: 
+[0m22:33:59.592894 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m22:33:59.593230 [info ] [MainThread]: 
+[0m22:33:59.593709 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m22:33:59.599379 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_buildcpg'
+[0m22:33:59.655885 [debug] [ThreadPool]: Using duckdb connection "list_buildcpg"
+[0m22:33:59.656357 [debug] [ThreadPool]: On list_buildcpg: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "connection_name": "list_buildcpg"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where lower(catalog_name) = '"buildcpg"'
+    
+  
+  
+[0m22:33:59.656755 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:33:59.673315 [debug] [ThreadPool]: SQL status: OK in 0.016 seconds
+[0m22:33:59.674842 [debug] [ThreadPool]: On list_buildcpg: Close
+[0m22:33:59.675584 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_buildcpg, now create_buildcpg_main)
+[0m22:33:59.676134 [debug] [ThreadPool]: Creating schema "database: "buildcpg"
+schema: "main"
+"
+[0m22:33:59.683874 [debug] [ThreadPool]: Using duckdb connection "create_buildcpg_main"
+[0m22:33:59.684367 [debug] [ThreadPool]: On create_buildcpg_main: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "connection_name": "create_buildcpg_main"} */
+
+    
+        select type from duckdb_databases()
+        where lower(database_name)='buildcpg'
+        and type='sqlite'
+    
+  
+[0m22:33:59.684760 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m22:33:59.686104 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m22:33:59.687693 [debug] [ThreadPool]: Using duckdb connection "create_buildcpg_main"
+[0m22:33:59.688124 [debug] [ThreadPool]: On create_buildcpg_main: BEGIN
+[0m22:33:59.688784 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m22:33:59.689280 [debug] [ThreadPool]: Using duckdb connection "create_buildcpg_main"
+[0m22:33:59.689695 [debug] [ThreadPool]: On create_buildcpg_main: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "connection_name": "create_buildcpg_main"} */
+
+    
+    
+        create schema if not exists "buildcpg"."main"
+    
+[0m22:33:59.690421 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m22:33:59.691404 [debug] [ThreadPool]: On create_buildcpg_main: COMMIT
+[0m22:33:59.691810 [debug] [ThreadPool]: Using duckdb connection "create_buildcpg_main"
+[0m22:33:59.692187 [debug] [ThreadPool]: On create_buildcpg_main: COMMIT
+[0m22:33:59.692777 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m22:33:59.693178 [debug] [ThreadPool]: On create_buildcpg_main: Close
+[0m22:33:59.694618 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_buildcpg_main, now list_buildcpg_main)
+[0m22:33:59.701506 [debug] [ThreadPool]: Using duckdb connection "list_buildcpg_main"
+[0m22:33:59.702182 [debug] [ThreadPool]: On list_buildcpg_main: BEGIN
+[0m22:33:59.702699 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m22:33:59.703624 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m22:33:59.704116 [debug] [ThreadPool]: Using duckdb connection "list_buildcpg_main"
+[0m22:33:59.704583 [debug] [ThreadPool]: On list_buildcpg_main: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "connection_name": "list_buildcpg_main"} */
+select
+      'buildcpg' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where lower(table_schema) = 'main'
+    and lower(table_catalog) = 'buildcpg'
+  
+[0m22:33:59.723321 [debug] [ThreadPool]: SQL status: OK in 0.018 seconds
+[0m22:33:59.724860 [debug] [ThreadPool]: On list_buildcpg_main: ROLLBACK
+[0m22:33:59.725756 [debug] [ThreadPool]: Failed to rollback 'list_buildcpg_main'
+[0m22:33:59.726157 [debug] [ThreadPool]: On list_buildcpg_main: Close
+[0m22:33:59.726874 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'bfc1d65c-8206-49d3-9fda-55b71c86838a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10be05190>]}
+[0m22:33:59.727455 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:33:59.728051 [debug] [MainThread]: On master: BEGIN
+[0m22:33:59.728468 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m22:33:59.729369 [debug] [MainThread]: SQL status: OK in 0.001 seconds
+[0m22:33:59.729812 [debug] [MainThread]: On master: COMMIT
+[0m22:33:59.730224 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:33:59.730702 [debug] [MainThread]: On master: COMMIT
+[0m22:33:59.731526 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m22:33:59.732024 [debug] [MainThread]: On master: Close
+[0m22:33:59.736068 [debug] [Thread-1 (]: Began running node model.buildcpg.bronze_sales
+[0m22:33:59.736981 [info ] [Thread-1 (]: 1 of 3 START sql view model main.bronze_sales .................................. [RUN]
+[0m22:33:59.737634 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_buildcpg_main, now model.buildcpg.bronze_sales)
+[0m22:33:59.738167 [debug] [Thread-1 (]: Began compiling node model.buildcpg.bronze_sales
+[0m22:33:59.746901 [debug] [Thread-1 (]: Writing injected SQL for node "model.buildcpg.bronze_sales"
+[0m22:33:59.748121 [debug] [Thread-1 (]: Began executing node model.buildcpg.bronze_sales
+[0m22:33:59.787150 [debug] [Thread-1 (]: Writing runtime sql for node "model.buildcpg.bronze_sales"
+[0m22:33:59.788358 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.bronze_sales"
+[0m22:33:59.788840 [debug] [Thread-1 (]: On model.buildcpg.bronze_sales: BEGIN
+[0m22:33:59.789287 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m22:33:59.790143 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m22:33:59.790605 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.bronze_sales"
+[0m22:33:59.791096 [debug] [Thread-1 (]: On model.buildcpg.bronze_sales: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "node_id": "model.buildcpg.bronze_sales"} */
+
+  
+  create view "buildcpg"."main"."bronze_sales__dbt_tmp" as (
+    -- Bronze: read raw CSV with DuckDB's read_csv_auto
+SELECT * FROM read_csv_auto('/data/raw/sales_2025_09.csv')  -- dbt-duckdb supports read_csv_auto
+  );
+
+[0m22:33:59.792289 [debug] [Thread-1 (]: DuckDB adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "node_id": "model.buildcpg.bronze_sales"} */
+
+  
+  create view "buildcpg"."main"."bronze_sales__dbt_tmp" as (
+    -- Bronze: read raw CSV with DuckDB's read_csv_auto
+SELECT * FROM read_csv_auto('/data/raw/sales_2025_09.csv')  -- dbt-duckdb supports read_csv_auto
+  );
+
+[0m22:33:59.792772 [debug] [Thread-1 (]: DuckDB adapter: Rolling back transaction.
+[0m22:33:59.793333 [debug] [Thread-1 (]: On model.buildcpg.bronze_sales: ROLLBACK
+[0m22:33:59.799416 [debug] [Thread-1 (]: Failed to rollback 'model.buildcpg.bronze_sales'
+[0m22:33:59.800017 [debug] [Thread-1 (]: On model.buildcpg.bronze_sales: Close
+[0m22:33:59.802840 [debug] [Thread-1 (]: Runtime Error in model bronze_sales (models/staging/bronze_sales.sql)
+  IO Error: No files found that match the pattern "/data/raw/sales_2025_09.csv"
+[0m22:33:59.804780 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'bfc1d65c-8206-49d3-9fda-55b71c86838a', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10fb68050>]}
+[0m22:33:59.805535 [error] [Thread-1 (]: 1 of 3 ERROR creating sql view model main.bronze_sales ......................... [[31mERROR[0m in 0.07s]
+[0m22:33:59.806276 [debug] [Thread-1 (]: Finished running node model.buildcpg.bronze_sales
+[0m22:33:59.806919 [debug] [Thread-4 (]: Marking all children of 'model.buildcpg.bronze_sales' to be skipped because of status 'error'.  Reason: Runtime Error in model bronze_sales (models/staging/bronze_sales.sql)
+  IO Error: No files found that match the pattern "/data/raw/sales_2025_09.csv".
+[0m22:33:59.808274 [debug] [Thread-1 (]: Began running node model.buildcpg.stg_sales
+[0m22:33:59.808797 [info ] [Thread-1 (]: 2 of 3 SKIP relation main.stg_sales ............................................ [[33mSKIP[0m]
+[0m22:33:59.809388 [debug] [Thread-1 (]: Finished running node model.buildcpg.stg_sales
+[0m22:33:59.810147 [debug] [Thread-1 (]: Began running node model.buildcpg.sales_forecast_ready
+[0m22:33:59.810694 [info ] [Thread-1 (]: 3 of 3 SKIP relation main.sales_forecast_ready ................................. [[33mSKIP[0m]
+[0m22:33:59.811558 [debug] [Thread-1 (]: Finished running node model.buildcpg.sales_forecast_ready
+[0m22:33:59.812947 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:33:59.813385 [debug] [MainThread]: On master: BEGIN
+[0m22:33:59.813756 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m22:33:59.814644 [debug] [MainThread]: SQL status: OK in 0.001 seconds
+[0m22:33:59.815201 [debug] [MainThread]: On master: COMMIT
+[0m22:33:59.815819 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:33:59.816473 [debug] [MainThread]: On master: COMMIT
+[0m22:33:59.817402 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m22:33:59.817931 [debug] [MainThread]: On master: Close
+[0m22:33:59.818526 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m22:33:59.818927 [debug] [MainThread]: Connection 'model.buildcpg.bronze_sales' was properly closed.
+[0m22:33:59.819412 [info ] [MainThread]: 
+[0m22:33:59.819851 [info ] [MainThread]: Finished running 3 view models in 0 hours 0 minutes and 0.23 seconds (0.23s).
+[0m22:33:59.820744 [debug] [MainThread]: Command end result
+[0m22:33:59.843340 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/target/manifest.json
+[0m22:33:59.845591 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/target/semantic_manifest.json
+[0m22:33:59.852697 [debug] [MainThread]: Wrote artifact RunExecutionResult to /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/target/run_results.json
+[0m22:33:59.853113 [info ] [MainThread]: 
+[0m22:33:59.853649 [info ] [MainThread]: [31mCompleted with 1 error, 0 partial successes, and 0 warnings:[0m
+[0m22:33:59.854085 [info ] [MainThread]: 
+[0m22:33:59.854593 [error] [MainThread]: [31mFailure in model bronze_sales (models/staging/bronze_sales.sql)[0m
+[0m22:33:59.855418 [error] [MainThread]:   Runtime Error in model bronze_sales (models/staging/bronze_sales.sql)
+  IO Error: No files found that match the pattern "/data/raw/sales_2025_09.csv"
+[0m22:33:59.856136 [info ] [MainThread]: 
+[0m22:33:59.856629 [info ] [MainThread]:   compiled code at target/compiled/buildcpg/models/staging/bronze_sales.sql
+[0m22:33:59.857032 [info ] [MainThread]: 
+[0m22:33:59.857465 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=1 SKIP=2 NO-OP=0 TOTAL=3
+[0m22:33:59.858190 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- ConfigSourcePathDeprecation: 1 occurrence
+- ConfigDataPathDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m22:33:59.859645 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 2.2845078, "process_in_blocks": "0", "process_kernel_time": 0.42215, "process_mem_max_rss": "144809984", "process_out_blocks": "0", "process_user_time": 3.696244}
+[0m22:33:59.860241 [debug] [MainThread]: Command `dbt run` failed at 22:33:59.860113 after 2.29 seconds
+[0m22:33:59.860749 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10bea0d50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10f116510>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10792b550>]}
+[0m22:33:59.861351 [debug] [MainThread]: Flushing usage events
+[0m22:34:00.005517 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:35:48.239189 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cc24210>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ccb58d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ccc3510>]}
+
+
+============================== 22:35:48.243638 | 2ed04389-56d4-4d88-9cd1-99cd75591c90 ==============================
+[0m22:35:48.243638 [info ] [MainThread]: Running with dbt=1.10.13
+[0m22:35:48.244362 [debug] [MainThread]: running dbt with arguments {'static_parser': 'True', 'use_colors': 'True', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'version_check': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'send_anonymous_usage_stats': 'True', 'target_path': 'None', 'log_path': '/Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/logs', 'fail_fast': 'False', 'indirect_selection': 'eager', 'invocation_command': 'dbt run', 'quiet': 'False', 'log_format': 'default', 'empty': 'False', 'cache_selected_only': 'False', 'profiles_dir': '/Users/narensham/.dbt', 'log_cache_events': 'False', 'partial_parse': 'True', 'printer_width': '80', 'write_json': 'True', 'warn_error': 'None', 'introspect': 'True', 'debug': 'False'}
+[0m22:35:48.407467 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `source-paths` config has been renamed to `model-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m22:35:48.408081 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '2ed04389-56d4-4d88-9cd1-99cd75591c90', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cd158d0>]}
+[0m22:35:48.408585 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `data-paths` config has been renamed to `seed-paths`. Please update your
+`dbt_project.yml` configuration to reflect this change.
+[0m22:35:48.409047 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '2ed04389-56d4-4d88-9cd1-99cd75591c90', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10fe72290>]}
+[0m22:35:48.598508 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '2ed04389-56d4-4d88-9cd1-99cd75591c90', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10cd38d90>]}
+[0m22:35:48.688514 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '2ed04389-56d4-4d88-9cd1-99cd75591c90', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a1d6490>]}
+[0m22:35:48.690293 [info ] [MainThread]: Registered adapter: duckdb=1.9.6
+[0m22:35:48.863636 [debug] [MainThread]: checksum: 9f0c81e2574b4ff463f3d16d080df83c6982fc0372c9feeacae0504ac9ea3ffe, vars: {}, profile: , target: , version: 1.10.13
+[0m22:35:48.956888 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m22:35:48.957471 [debug] [MainThread]: Partial parsing: updated file: buildcpg://models/staging/bronze_sales.sql
+[0m22:35:49.273006 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '2ed04389-56d4-4d88-9cd1-99cd75591c90', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110379810>]}
+[0m22:35:49.406669 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/target/manifest.json
+[0m22:35:49.409054 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/target/semantic_manifest.json
+[0m22:35:49.424846 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '2ed04389-56d4-4d88-9cd1-99cd75591c90', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x110261410>]}
+[0m22:35:49.425496 [info ] [MainThread]: Found 3 models, 444 macros
+[0m22:35:49.425961 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '2ed04389-56d4-4d88-9cd1-99cd75591c90', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11053fcd0>]}
+[0m22:35:49.427932 [info ] [MainThread]: 
+[0m22:35:49.428401 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m22:35:49.428817 [info ] [MainThread]: 
+[0m22:35:49.429421 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m22:35:49.436412 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_buildcpg'
+[0m22:35:49.505091 [debug] [ThreadPool]: Using duckdb connection "list_buildcpg"
+[0m22:35:49.505605 [debug] [ThreadPool]: On list_buildcpg: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "connection_name": "list_buildcpg"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where lower(catalog_name) = '"buildcpg"'
+    
+  
+  
+[0m22:35:49.506023 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:35:49.522895 [debug] [ThreadPool]: SQL status: OK in 0.017 seconds
+[0m22:35:49.524439 [debug] [ThreadPool]: On list_buildcpg: Close
+[0m22:35:49.525203 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_buildcpg, now create_buildcpg_main)
+[0m22:35:49.525775 [debug] [ThreadPool]: Creating schema "database: "buildcpg"
+schema: "main"
+"
+[0m22:35:49.533251 [debug] [ThreadPool]: Using duckdb connection "create_buildcpg_main"
+[0m22:35:49.533676 [debug] [ThreadPool]: On create_buildcpg_main: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "connection_name": "create_buildcpg_main"} */
+
+    
+        select type from duckdb_databases()
+        where lower(database_name)='buildcpg'
+        and type='sqlite'
+    
+  
+[0m22:35:49.534063 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m22:35:49.535286 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m22:35:49.536907 [debug] [ThreadPool]: Using duckdb connection "create_buildcpg_main"
+[0m22:35:49.537337 [debug] [ThreadPool]: On create_buildcpg_main: BEGIN
+[0m22:35:49.537986 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m22:35:49.538395 [debug] [ThreadPool]: Using duckdb connection "create_buildcpg_main"
+[0m22:35:49.538791 [debug] [ThreadPool]: On create_buildcpg_main: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "connection_name": "create_buildcpg_main"} */
+
+    
+    
+        create schema if not exists "buildcpg"."main"
+    
+[0m22:35:49.539525 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m22:35:49.540486 [debug] [ThreadPool]: On create_buildcpg_main: COMMIT
+[0m22:35:49.540893 [debug] [ThreadPool]: Using duckdb connection "create_buildcpg_main"
+[0m22:35:49.541275 [debug] [ThreadPool]: On create_buildcpg_main: COMMIT
+[0m22:35:49.541873 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m22:35:49.542278 [debug] [ThreadPool]: On create_buildcpg_main: Close
+[0m22:35:49.543692 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly create_buildcpg_main, now list_buildcpg_main)
+[0m22:35:49.550061 [debug] [ThreadPool]: Using duckdb connection "list_buildcpg_main"
+[0m22:35:49.550475 [debug] [ThreadPool]: On list_buildcpg_main: BEGIN
+[0m22:35:49.550847 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m22:35:49.551647 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m22:35:49.552052 [debug] [ThreadPool]: Using duckdb connection "list_buildcpg_main"
+[0m22:35:49.552449 [debug] [ThreadPool]: On list_buildcpg_main: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "connection_name": "list_buildcpg_main"} */
+select
+      'buildcpg' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where lower(table_schema) = 'main'
+    and lower(table_catalog) = 'buildcpg'
+  
+[0m22:35:49.568994 [debug] [ThreadPool]: SQL status: OK in 0.016 seconds
+[0m22:35:49.570860 [debug] [ThreadPool]: On list_buildcpg_main: ROLLBACK
+[0m22:35:49.571656 [debug] [ThreadPool]: Failed to rollback 'list_buildcpg_main'
+[0m22:35:49.572010 [debug] [ThreadPool]: On list_buildcpg_main: Close
+[0m22:35:49.572650 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '2ed04389-56d4-4d88-9cd1-99cd75591c90', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1106cbd90>]}
+[0m22:35:49.573181 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:35:49.573557 [debug] [MainThread]: On master: BEGIN
+[0m22:35:49.573914 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m22:35:49.574667 [debug] [MainThread]: SQL status: OK in 0.001 seconds
+[0m22:35:49.575064 [debug] [MainThread]: On master: COMMIT
+[0m22:35:49.575485 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:35:49.575873 [debug] [MainThread]: On master: COMMIT
+[0m22:35:49.576470 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m22:35:49.576888 [debug] [MainThread]: On master: Close
+[0m22:35:49.578874 [debug] [Thread-1 (]: Began running node model.buildcpg.bronze_sales
+[0m22:35:49.579493 [info ] [Thread-1 (]: 1 of 3 START sql view model main.bronze_sales .................................. [RUN]
+[0m22:35:49.580032 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly list_buildcpg_main, now model.buildcpg.bronze_sales)
+[0m22:35:49.580490 [debug] [Thread-1 (]: Began compiling node model.buildcpg.bronze_sales
+[0m22:35:49.588276 [debug] [Thread-1 (]: Writing injected SQL for node "model.buildcpg.bronze_sales"
+[0m22:35:49.589234 [debug] [Thread-1 (]: Began executing node model.buildcpg.bronze_sales
+[0m22:35:49.625557 [debug] [Thread-1 (]: Writing runtime sql for node "model.buildcpg.bronze_sales"
+[0m22:35:49.626506 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.bronze_sales"
+[0m22:35:49.626999 [debug] [Thread-1 (]: On model.buildcpg.bronze_sales: BEGIN
+[0m22:35:49.627439 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m22:35:49.628292 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m22:35:49.628755 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.bronze_sales"
+[0m22:35:49.629214 [debug] [Thread-1 (]: On model.buildcpg.bronze_sales: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "node_id": "model.buildcpg.bronze_sales"} */
+
+  
+  create view "buildcpg"."main"."bronze_sales__dbt_tmp" as (
+    -- Bronze: read raw CSV with DuckDB's read_csv_auto
+SELECT * FROM read_csv_auto('../data/raw/sales_2025_09.csv')  -- dbt-duckdb supports read_csv_auto
+  );
+
+[0m22:35:49.636721 [debug] [Thread-1 (]: SQL status: OK in 0.007 seconds
+[0m22:35:49.643904 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.bronze_sales"
+[0m22:35:49.644418 [debug] [Thread-1 (]: On model.buildcpg.bronze_sales: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "node_id": "model.buildcpg.bronze_sales"} */
+alter view "buildcpg"."main"."bronze_sales__dbt_tmp" rename to "bronze_sales"
+[0m22:35:49.645296 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m22:35:49.656728 [debug] [Thread-1 (]: On model.buildcpg.bronze_sales: COMMIT
+[0m22:35:49.657245 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.bronze_sales"
+[0m22:35:49.657670 [debug] [Thread-1 (]: On model.buildcpg.bronze_sales: COMMIT
+[0m22:35:49.658889 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m22:35:49.664979 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.bronze_sales"
+[0m22:35:49.665446 [debug] [Thread-1 (]: On model.buildcpg.bronze_sales: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "node_id": "model.buildcpg.bronze_sales"} */
+
+      drop view if exists "buildcpg"."main"."bronze_sales__dbt_backup" cascade
+    
+[0m22:35:49.666158 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m22:35:49.668517 [debug] [Thread-1 (]: On model.buildcpg.bronze_sales: Close
+[0m22:35:49.670346 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '2ed04389-56d4-4d88-9cd1-99cd75591c90', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11086f490>]}
+[0m22:35:49.671060 [info ] [Thread-1 (]: 1 of 3 OK created sql view model main.bronze_sales ............................. [[32mOK[0m in 0.09s]
+[0m22:35:49.671765 [debug] [Thread-1 (]: Finished running node model.buildcpg.bronze_sales
+[0m22:35:49.672545 [debug] [Thread-1 (]: Began running node model.buildcpg.stg_sales
+[0m22:35:49.673094 [info ] [Thread-1 (]: 2 of 3 START sql view model main.stg_sales ..................................... [RUN]
+[0m22:35:49.673724 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.buildcpg.bronze_sales, now model.buildcpg.stg_sales)
+[0m22:35:49.674190 [debug] [Thread-1 (]: Began compiling node model.buildcpg.stg_sales
+[0m22:35:49.678904 [debug] [Thread-1 (]: Writing injected SQL for node "model.buildcpg.stg_sales"
+[0m22:35:49.679714 [debug] [Thread-1 (]: Began executing node model.buildcpg.stg_sales
+[0m22:35:49.683888 [debug] [Thread-1 (]: Writing runtime sql for node "model.buildcpg.stg_sales"
+[0m22:35:49.684784 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.stg_sales"
+[0m22:35:49.685287 [debug] [Thread-1 (]: On model.buildcpg.stg_sales: BEGIN
+[0m22:35:49.685808 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m22:35:49.686919 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m22:35:49.687414 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.stg_sales"
+[0m22:35:49.687886 [debug] [Thread-1 (]: On model.buildcpg.stg_sales: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "node_id": "model.buildcpg.stg_sales"} */
+
+  
+  create view "buildcpg"."main"."stg_sales__dbt_tmp" as (
+    SELECT
+  order_id::TEXT AS order_id,
+  sku_id,
+  CAST(order_date AS DATE) AS order_date,
+  region,
+  COALESCE(sales, 0) AS sales,
+  CASE WHEN promo_flag IN (1, '1', true) THEN 1 ELSE 0 END AS promo_flag,
+  discount,
+  stock_on_hand
+FROM "buildcpg"."main"."bronze_sales"
+WHERE order_date IS NOT NULL
+  );
+
+[0m22:35:49.693151 [debug] [Thread-1 (]: SQL status: OK in 0.005 seconds
+[0m22:35:49.696578 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.stg_sales"
+[0m22:35:49.697039 [debug] [Thread-1 (]: On model.buildcpg.stg_sales: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "node_id": "model.buildcpg.stg_sales"} */
+alter view "buildcpg"."main"."stg_sales__dbt_tmp" rename to "stg_sales"
+[0m22:35:49.697845 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m22:35:49.699378 [debug] [Thread-1 (]: On model.buildcpg.stg_sales: COMMIT
+[0m22:35:49.699837 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.stg_sales"
+[0m22:35:49.700317 [debug] [Thread-1 (]: On model.buildcpg.stg_sales: COMMIT
+[0m22:35:49.701402 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m22:35:49.704396 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.stg_sales"
+[0m22:35:49.704884 [debug] [Thread-1 (]: On model.buildcpg.stg_sales: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "node_id": "model.buildcpg.stg_sales"} */
+
+      drop view if exists "buildcpg"."main"."stg_sales__dbt_backup" cascade
+    
+[0m22:35:49.705676 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m22:35:49.707111 [debug] [Thread-1 (]: On model.buildcpg.stg_sales: Close
+[0m22:35:49.707745 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '2ed04389-56d4-4d88-9cd1-99cd75591c90', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1104a5bd0>]}
+[0m22:35:49.708441 [info ] [Thread-1 (]: 2 of 3 OK created sql view model main.stg_sales ................................ [[32mOK[0m in 0.03s]
+[0m22:35:49.709139 [debug] [Thread-1 (]: Finished running node model.buildcpg.stg_sales
+[0m22:35:49.709935 [debug] [Thread-1 (]: Began running node model.buildcpg.sales_forecast_ready
+[0m22:35:49.710585 [info ] [Thread-1 (]: 3 of 3 START sql view model main.sales_forecast_ready .......................... [RUN]
+[0m22:35:49.711130 [debug] [Thread-1 (]: Re-using an available connection from the pool (formerly model.buildcpg.stg_sales, now model.buildcpg.sales_forecast_ready)
+[0m22:35:49.711604 [debug] [Thread-1 (]: Began compiling node model.buildcpg.sales_forecast_ready
+[0m22:35:49.714570 [debug] [Thread-1 (]: Writing injected SQL for node "model.buildcpg.sales_forecast_ready"
+[0m22:35:49.715384 [debug] [Thread-1 (]: Began executing node model.buildcpg.sales_forecast_ready
+[0m22:35:49.720320 [debug] [Thread-1 (]: Writing runtime sql for node "model.buildcpg.sales_forecast_ready"
+[0m22:35:49.721408 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.sales_forecast_ready"
+[0m22:35:49.722032 [debug] [Thread-1 (]: On model.buildcpg.sales_forecast_ready: BEGIN
+[0m22:35:49.722489 [debug] [Thread-1 (]: Opening a new connection, currently in state closed
+[0m22:35:49.723346 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m22:35:49.723815 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.sales_forecast_ready"
+[0m22:35:49.724294 [debug] [Thread-1 (]: On model.buildcpg.sales_forecast_ready: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "node_id": "model.buildcpg.sales_forecast_ready"} */
+
+  
+  create view "buildcpg"."main"."sales_forecast_ready__dbt_tmp" as (
+    SELECT
+  sku_id,
+  region,
+  DATE_TRUNC('week', order_date) AS week,
+  SUM(sales) AS total_sales,
+  AVG(discount) AS avg_discount,
+  AVG(stock_on_hand) AS avg_stock
+FROM "buildcpg"."main"."stg_sales"
+GROUP BY 1,2,3
+  );
+
+[0m22:35:49.730036 [debug] [Thread-1 (]: SQL status: OK in 0.005 seconds
+[0m22:35:49.733650 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.sales_forecast_ready"
+[0m22:35:49.734189 [debug] [Thread-1 (]: On model.buildcpg.sales_forecast_ready: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "node_id": "model.buildcpg.sales_forecast_ready"} */
+alter view "buildcpg"."main"."sales_forecast_ready__dbt_tmp" rename to "sales_forecast_ready"
+[0m22:35:49.735060 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m22:35:49.736779 [debug] [Thread-1 (]: On model.buildcpg.sales_forecast_ready: COMMIT
+[0m22:35:49.737422 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.sales_forecast_ready"
+[0m22:35:49.737890 [debug] [Thread-1 (]: On model.buildcpg.sales_forecast_ready: COMMIT
+[0m22:35:49.739027 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m22:35:49.741843 [debug] [Thread-1 (]: Using duckdb connection "model.buildcpg.sales_forecast_ready"
+[0m22:35:49.742313 [debug] [Thread-1 (]: On model.buildcpg.sales_forecast_ready: /* {"app": "dbt", "dbt_version": "1.10.13", "profile_name": "buildcpg", "target_name": "dev", "node_id": "model.buildcpg.sales_forecast_ready"} */
+
+      drop view if exists "buildcpg"."main"."sales_forecast_ready__dbt_backup" cascade
+    
+[0m22:35:49.743124 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m22:35:49.744656 [debug] [Thread-1 (]: On model.buildcpg.sales_forecast_ready: Close
+[0m22:35:49.745306 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '2ed04389-56d4-4d88-9cd1-99cd75591c90', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x11088dbd0>]}
+[0m22:35:49.746030 [info ] [Thread-1 (]: 3 of 3 OK created sql view model main.sales_forecast_ready ..................... [[32mOK[0m in 0.03s]
+[0m22:35:49.746747 [debug] [Thread-1 (]: Finished running node model.buildcpg.sales_forecast_ready
+[0m22:35:49.747914 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:35:49.748330 [debug] [MainThread]: On master: BEGIN
+[0m22:35:49.748718 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m22:35:49.749435 [debug] [MainThread]: SQL status: OK in 0.001 seconds
+[0m22:35:49.749835 [debug] [MainThread]: On master: COMMIT
+[0m22:35:49.750229 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:35:49.750609 [debug] [MainThread]: On master: COMMIT
+[0m22:35:49.751194 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m22:35:49.751607 [debug] [MainThread]: On master: Close
+[0m22:35:49.752084 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m22:35:49.752457 [debug] [MainThread]: Connection 'model.buildcpg.sales_forecast_ready' was properly closed.
+[0m22:35:49.753336 [info ] [MainThread]: 
+[0m22:35:49.753823 [info ] [MainThread]: Finished running 3 view models in 0 hours 0 minutes and 0.32 seconds (0.32s).
+[0m22:35:49.754994 [debug] [MainThread]: Command end result
+[0m22:35:49.778634 [debug] [MainThread]: Wrote artifact WritableManifest to /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/target/manifest.json
+[0m22:35:49.780667 [debug] [MainThread]: Wrote artifact SemanticManifest to /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/target/semantic_manifest.json
+[0m22:35:49.788569 [debug] [MainThread]: Wrote artifact RunExecutionResult to /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/dbt/target/run_results.json
+[0m22:35:49.789049 [info ] [MainThread]: 
+[0m22:35:49.789533 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m22:35:49.789950 [info ] [MainThread]: 
+[0m22:35:49.790392 [info ] [MainThread]: Done. PASS=3 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=3
+[0m22:35:49.791115 [warn ] [MainThread]: [[33mWARNING[0m][DeprecationsSummary]: Deprecated functionality
+Summary of encountered deprecations:
+- ConfigSourcePathDeprecation: 1 occurrence
+- ConfigDataPathDeprecation: 1 occurrence
+To see all deprecation instances instead of just the first occurrence of each,
+run command again with the `--show-all-deprecations` flag. You may also need to
+run with `--no-partial-parse` as some deprecations are only encountered during
+parsing.
+[0m22:35:49.792452 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": true, "command_wall_clock_time": 1.6398699, "process_in_blocks": "0", "process_kernel_time": 0.419357, "process_mem_max_rss": "146608128", "process_out_blocks": "0", "process_user_time": 2.989622}
+[0m22:35:49.793017 [debug] [MainThread]: Command `dbt run` succeeded at 22:35:49.792895 after 1.64 seconds
+[0m22:35:49.793586 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10ccb6e10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1087775d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x108777510>]}
+[0m22:35:49.794070 [debug] [MainThread]: Flushing usage events
+[0m22:35:50.022864 [debug] [MainThread]: An error was encountered while trying to flush usage events
