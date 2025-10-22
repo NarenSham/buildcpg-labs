@@ -1,0 +1,1832 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-lab data engineering platform with dbt, DuckDB, and Python">
+      
+      
+        <meta name="author" content="narensham">
+      
+      
+      
+        <link rel="prev" href="../../architecture/overview/">
+      
+      
+        <link rel="next" href="../../troubleshooting/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Phase 1 Foundation - BuildCPG Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#phase-1-foundation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="BuildCPG Labs" class="md-header__button md-logo" aria-label="BuildCPG Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BuildCPG Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Phase 1 Foundation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="light-blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="light-blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/narensham/buildcpg-labs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    narensham/buildcpg-labs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/quick-start/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../architecture/overview/" class="md-tabs__link">
+          
+  
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Phases
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../labs/using-makefile.md" class="md-tabs__link">
+          
+  
+  
+  Working with Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../utilities/data-inspector.md" class="md-tabs__link">
+          
+  
+  
+  Shared Utilities
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../troubleshooting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Troubleshooting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BuildCPG Labs" class="md-nav__button md-logo" aria-label="BuildCPG Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    BuildCPG Labs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/narensham/buildcpg-labs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    narensham/buildcpg-labs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/first-lab.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    First Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/multi-lab-design.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Lab Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/medallion-architecture.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Medallion Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/shared-vs-lab-specific.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shared vs Lab-Specific
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phases
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Phases
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Phase 1 Foundation
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Phase 1 Foundation
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-phase-1-delivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Phase 1 Delivers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-gets-created" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Gets Created
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-by-Step Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Create Directory Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-shared-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Create Shared Utilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Create Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-create-lab1-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Create Lab1 Scripts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-add-git-ignore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Add Git Ignore
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-test-everything-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Test Everything Works
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-commit-to-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 7: Commit to Git
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How It Works
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How It Works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shared-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shared Utilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#central-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Central Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verification Checklist
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-not-included-yet" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's NOT Included Yet
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-phase-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting Phase 1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting Phase 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-error-no-module-named-shared" class="md-nav__link">
+    <span class="md-ellipsis">
+      Import Error: "No module named 'shared'"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-not-found-labs_configyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Not Found: "labs_config.yaml"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datainspector-returns-empty-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      DataInspector returns empty schemas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Phase
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phase2-automation.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Phase 2 Automation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phase3-future.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Phase 3+ (Future)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Working with Labs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Working with Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/using-makefile.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Makefile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/creating-new-lab.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating New Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/lab-structure.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../labs/data-inspector.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Inspector
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Shared Utilities
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Shared Utilities
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/data-inspector.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DataInspector
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/csv-monitor.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CSVMonitor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utilities/config-paths.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Config Paths
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-phase-1-delivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Phase 1 Delivers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-gets-created" class="md-nav__link">
+    <span class="md-ellipsis">
+      What Gets Created
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-by-step-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step-by-Step Setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step-by-Step Setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-create-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Create Directory Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-shared-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Create Shared Utilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-create-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Create Configuration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-create-lab1-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4: Create Lab1 Scripts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-add-git-ignore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5: Add Git Ignore
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-test-everything-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6: Test Everything Works
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-7-commit-to-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 7: Commit to Git
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      How It Works
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How It Works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shared-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shared Utilities
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#central-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Central Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verification Checklist
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#whats-not-included-yet" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's NOT Included Yet
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-phase-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting Phase 1
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting Phase 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#import-error-no-module-named-shared" class="md-nav__link">
+    <span class="md-ellipsis">
+      Import Error: "No module named 'shared'"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file-not-found-labs_configyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Not Found: "labs_config.yaml"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#datainspector-returns-empty-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      DataInspector returns empty schemas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-phase" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next Phase
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="phase-1-foundation">Phase 1: Foundation<a class="headerlink" href="#phase-1-foundation" title="Permanent link">&para;</a></h1>
+<p>Establish shared utilities and central configuration that all labs use.</p>
+<h2 id="what-phase-1-delivers">What Phase 1 Delivers<a class="headerlink" href="#what-phase-1-delivers" title="Permanent link">&para;</a></h2>
+<p>✅ <strong>Shared Utilities</strong> - DataInspector, CSVMonitor, Config Loaders<br />
+✅ <strong>Central Configuration</strong> - Lab registry, path management<br />
+✅ <strong>Lab1 Scripts</strong> - Data inspection and monitoring<br />
+✅ <strong>Clean Git History</strong> - No build artifacts or venv  </p>
+<h2 id="what-gets-created">What Gets Created<a class="headerlink" href="#what-gets-created" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>buildcpg-labs/
+├── shared/                          ← NEW
+│   ├── __init__.py
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   ├── data_inspector.py       # Database inspection
+│   │   ├── csv_monitor.py          # Detect new data
+│   │   └── config_loader.py        # Load configurations
+│   │
+│   ├── data_quality/
+│   │   ├── validators.py           # Validation rules
+│   │   └── expectations.py         # Data expectations
+│   │
+│   └── templates/                  ← For Phase 2
+│       └── (templates will go here)
+│
+├── config/                          ← NEW
+│   ├── labs_config.yaml            # Lab registry
+│   └── paths.py                    # Path helpers
+│
+└── lab1_sales_performance/         ← UPDATED
+    ├── scripts/
+    │   ├── inspect_data.py         # NEW - uses shared utilities
+    │   └── check_for_new_data.py   # NEW - uses shared utilities
+    └── .gitignore                  # NEW - ignore venv, artifacts
+</code></pre></div>
+<h2 id="step-by-step-setup">Step-by-Step Setup<a class="headerlink" href="#step-by-step-setup" title="Permanent link">&para;</a></h2>
+<h3 id="step-1-create-directory-structure">Step 1: Create Directory Structure<a class="headerlink" href="#step-1-create-directory-structure" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>buildcpg-labs
+mkdir<span class="w"> </span>-p<span class="w"> </span>shared/utils
+mkdir<span class="w"> </span>-p<span class="w"> </span>shared/data_quality
+mkdir<span class="w"> </span>-p<span class="w"> </span>shared/templates
+mkdir<span class="w"> </span>-p<span class="w"> </span>config
+
+<span class="c1"># Create __init__.py files</span>
+touch<span class="w"> </span>shared/__init__.py
+touch<span class="w"> </span>shared/utils/__init__.py
+touch<span class="w"> </span>shared/data_quality/__init__.py
+</code></pre></div>
+<h3 id="step-2-create-shared-utilities">Step 2: Create Shared Utilities<a class="headerlink" href="#step-2-create-shared-utilities" title="Permanent link">&para;</a></h3>
+<p>Create these files in <code>shared/utils/</code>:</p>
+<ul>
+<li><code>data_inspector.py</code> - Inspect databases</li>
+<li><code>csv_monitor.py</code> - Monitor CSV changes</li>
+<li><code>config_loader.py</code> - Load lab configurations</li>
+</ul>
+<p>See documentation links below.</p>
+<h3 id="step-3-create-configuration">Step 3: Create Configuration<a class="headerlink" href="#step-3-create-configuration" title="Permanent link">&para;</a></h3>
+<p>Create these files in <code>config/</code>:</p>
+<ul>
+<li><code>labs_config.yaml</code> - Central lab registry</li>
+<li><code>paths.py</code> - Path helpers for accessing labs</li>
+</ul>
+<h3 id="step-4-create-lab1-scripts">Step 4: Create Lab1 Scripts<a class="headerlink" href="#step-4-create-lab1-scripts" title="Permanent link">&para;</a></h3>
+<p>Create these files in <code>lab1_sales_performance/scripts/</code>:</p>
+<ul>
+<li><code>inspect_data.py</code> - Inspect lab1 database using shared DataInspector</li>
+<li><code>check_for_new_data.py</code> - Monitor lab1 CSV using shared CSVMonitor</li>
+</ul>
+<h3 id="step-5-add-git-ignore">Step 5: Add Git Ignore<a class="headerlink" href="#step-5-add-git-ignore" title="Permanent link">&para;</a></h3>
+<p>Create <code>.gitignore</code> at root and <code>lab1_sales_performance/.gitignore</code></p>
+<h3 id="step-6-test-everything-works">Step 6: Test Everything Works<a class="headerlink" href="#step-6-test-everything-works" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Test shared utilities</span>
+python<span class="w"> </span>shared/utils/data_inspector.py
+python<span class="w"> </span>shared/utils/csv_monitor.py
+
+<span class="c1"># Test config</span>
+python<span class="w"> </span>config/paths.py
+
+<span class="c1"># Test lab1 scripts</span>
+<span class="nb">cd</span><span class="w"> </span>lab1_sales_performance
+python<span class="w"> </span>scripts/inspect_data.py
+python<span class="w"> </span>scripts/check_for_new_data.py
+</code></pre></div>
+<h3 id="step-7-commit-to-git">Step 7: Commit to Git<a class="headerlink" href="#step-7-commit-to-git" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>shared/
+git<span class="w"> </span>add<span class="w"> </span>config/
+git<span class="w"> </span>add<span class="w"> </span>lab1_sales_performance/scripts/
+git<span class="w"> </span>add<span class="w"> </span>.gitignore
+git<span class="w"> </span>add<span class="w"> </span>lab1_sales_performance/.gitignore
+
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Phase 1: Create shared utilities and foundational structure&quot;</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div>
+<h2 id="how-it-works">How It Works<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h2>
+<h3 id="shared-utilities">Shared Utilities<a class="headerlink" href="#shared-utilities" title="Permanent link">&para;</a></h3>
+<p>Written once in <code>shared/</code>, used by all labs:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># In lab1_sales_performance/scripts/inspect_data.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;../..&#39;</span><span class="p">)</span>  <span class="c1"># Go to root</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shared.utils.data_inspector</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataInspector</span>
+
+<span class="n">inspector</span> <span class="o">=</span> <span class="n">DataInspector</span><span class="p">(</span><span class="s1">&#39;data/lab1_sales_performance.duckdb&#39;</span><span class="p">)</span>
+<span class="n">quality</span> <span class="o">=</span> <span class="n">inspector</span><span class="o">.</span><span class="n">get_quality_score</span><span class="p">(</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="s1">&#39;gold_orders_summary&#39;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># In lab2_forecast_model/scripts/inspect_data.py (FUTURE)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;../..&#39;</span><span class="p">)</span>  <span class="c1"># Go to root</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shared.utils.data_inspector</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataInspector</span>
+
+<span class="n">inspector</span> <span class="o">=</span> <span class="n">DataInspector</span><span class="p">(</span><span class="s1">&#39;data/lab2_forecast_model.duckdb&#39;</span><span class="p">)</span>
+<span class="n">quality</span> <span class="o">=</span> <span class="n">inspector</span><span class="o">.</span><span class="n">get_quality_score</span><span class="p">(</span><span class="s1">&#39;gold&#39;</span><span class="p">,</span> <span class="s1">&#39;forecast_summary&#39;</span><span class="p">)</span>
+<span class="c1"># Same code, different database</span>
+</code></pre></div>
+<h3 id="central-configuration">Central Configuration<a class="headerlink" href="#central-configuration" title="Permanent link">&para;</a></h3>
+<p>All labs registered in one place:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># config/labs_config.yaml</span>
+<span class="nt">labs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">lab1_sales_performance</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab1_sales_performance</span>
+<span class="w">    </span><span class="nt">db_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab1_sales_performance/data/lab1_sales_performance.duckdb</span>
+<span class="w">    </span><span class="nt">dbt_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab1_sales_performance/dbt</span>
+
+<span class="w">  </span><span class="nt">lab2_forecast_model</span><span class="p">:</span><span class="w">  </span><span class="c1"># When created</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab2_forecast_model</span>
+<span class="w">    </span><span class="nt">db_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab2_forecast_model/data/lab2_forecast_model.duckdb</span>
+<span class="w">    </span><span class="nt">dbt_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lab2_forecast_model/dbt</span>
+</code></pre></div>
+<h2 id="verification-checklist">Verification Checklist<a class="headerlink" href="#verification-checklist" title="Permanent link">&para;</a></h2>
+<p>After Phase 1 completion, verify:</p>
+<ul>
+<li>[ ] <code>shared/</code> directory exists with utilities</li>
+<li>[ ] <code>config/</code> directory exists with labs_config.yaml and paths.py</li>
+<li>[ ] <code>lab1_sales_performance/scripts/inspect_data.py</code> works</li>
+<li>[ ] <code>lab1_sales_performance/scripts/check_for_new_data.py</code> works</li>
+<li>[ ] <code>python config/paths.py</code> returns ✅</li>
+<li>[ ] <code>git status</code> shows clean working tree</li>
+<li>[ ] Changes committed to git</li>
+</ul>
+<h2 id="whats-not-included-yet">What's NOT Included Yet<a class="headerlink" href="#whats-not-included-yet" title="Permanent link">&para;</a></h2>
+<p>Phase 1 focuses on foundation. These come later:</p>
+<ul>
+<li>❌ Makefile (Phase 2)</li>
+<li>❌ Bootstrap script (Phase 2)</li>
+<li>❌ Orchestration/Airflow (Phase 3)</li>
+<li>❌ Advanced monitoring (Phase 3+)</li>
+</ul>
+<h2 id="troubleshooting-phase-1">Troubleshooting Phase 1<a class="headerlink" href="#troubleshooting-phase-1" title="Permanent link">&para;</a></h2>
+<h3 id="import-error-no-module-named-shared">Import Error: "No module named 'shared'"<a class="headerlink" href="#import-error-no-module-named-shared" title="Permanent link">&para;</a></h3>
+<p>Make sure you're running scripts from the right directory:
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>lab1_sales_performance
+python<span class="w"> </span>scripts/inspect_data.py<span class="w">  </span><span class="c1"># Works</span>
+python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import scripts.inspect_data&quot;</span><span class="w">  </span><span class="c1"># Also works</span>
+</code></pre></div></p>
+<h3 id="file-not-found-labs_configyaml">File Not Found: "labs_config.yaml"<a class="headerlink" href="#file-not-found-labs_configyaml" title="Permanent link">&para;</a></h3>
+<p>Verify the path exists:
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>-la<span class="w"> </span>config/labs_config.yaml
+</code></pre></div></p>
+<h3 id="datainspector-returns-empty-schemas">DataInspector returns empty schemas<a class="headerlink" href="#datainspector-returns-empty-schemas" title="Permanent link">&para;</a></h3>
+<p>Database might not have tables yet. Create some with dbt:
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>lab1_sales_performance/dbt
+dbt<span class="w"> </span>run
+</code></pre></div></p>
+<p>See <a href="../../troubleshooting/">Troubleshooting</a> for more help.</p>
+<h2 id="next-phase">Next Phase<a class="headerlink" href="#next-phase" title="Permanent link">&para;</a></h2>
+<p>Phase 2 adds automation:
+- Makefile for standardized commands
+- Bootstrap script for creating labs
+- Testing framework</p>
+<p>See <a href="phase2-automation.md">Phase 2: Automation</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

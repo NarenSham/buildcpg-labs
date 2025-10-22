@@ -1,0 +1,2845 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-lab data engineering platform with dbt, DuckDB, and Python">
+      
+      
+        <meta name="author" content="narensham">
+      
+      
+      
+        <link rel="prev" href="../troubleshooting/">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>FAQ - BuildCPG Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#frequently-asked-questions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BuildCPG Labs" class="md-header__button md-logo" aria-label="BuildCPG Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BuildCPG Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              FAQ
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="light-blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="light-blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/narensham/buildcpg-labs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    narensham/buildcpg-labs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting-started/quick-start/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../architecture/overview/" class="md-tabs__link">
+          
+  
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../phases/phase1-foundation/" class="md-tabs__link">
+          
+  
+  
+  Phases
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../labs/using-makefile.md" class="md-tabs__link">
+          
+  
+  
+  Working with Labs
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../utilities/data-inspector.md" class="md-tabs__link">
+          
+  
+  
+  Shared Utilities
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../troubleshooting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Troubleshooting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BuildCPG Labs" class="md-nav__button md-logo" aria-label="BuildCPG Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    BuildCPG Labs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/narensham/buildcpg-labs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    narensham/buildcpg-labs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/first-lab.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    First Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/multi-lab-design.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Lab Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/medallion-architecture.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Medallion Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/shared-vs-lab-specific.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shared vs Lab-Specific
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phases
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Phases
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phases/phase1-foundation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Phase 1 Foundation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phases/phase2-automation.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Phase 2 Automation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phases/phase3-future.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Phase 3+ (Future)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Working with Labs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Working with Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../labs/using-makefile.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Using Makefile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../labs/creating-new-lab.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Creating New Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../labs/lab-structure.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lab Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../labs/data-inspector.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Inspector
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Shared Utilities
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Shared Utilities
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../utilities/data-inspector.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DataInspector
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../utilities/csv-monitor.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CSVMonitor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../utilities/config-paths.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Config Paths
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      General Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-buildcpg-labs" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is BuildCPG Labs?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-multiple-labs-instead-of-one-big-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why multiple labs instead of one big project?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-i-need-to-use-all-labs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do I need to use all labs?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-labs-share-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can labs share data?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#does-this-work-on-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Does this work on Windows?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-duckdb-instead-of-other-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why DuckDB instead of other databases?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-the-difference-between-shared-and-lab-specific-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the difference between shared and lab-specific files?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-labs-communicate" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do labs communicate?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-use-different-python-versions-per-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I use different Python versions per lab?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-long-does-setup-take" class="md-nav__link">
+    <span class="md-ellipsis">
+      How long does setup take?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-skip-phase-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I skip Phase 1?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-if-i-only-want-phase-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      What if I only want Phase 1?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-customize-the-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I customize the templates?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-does-make-setup-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      What does make setup do?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-does-make-run-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      What does make run do?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-see-what-changed-in-my-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I see what changed in my database?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-use-dbt-commands-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I use dbt commands directly?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-add-a-new-model-to-lab1" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I add a new model to lab1?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shared-utilities-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shared Utilities Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Shared Utilities Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-use-datainspector-in-my-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I use DataInspector in my code?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-modify-shared-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I modify shared utilities?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-add-a-new-shared-utility" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I add a new shared utility?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-shared-utilities-get-committed-to-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do shared utilities get committed to git?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-is-my-data-stored" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where is my data stored?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-backup-my-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I backup my data?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-large-can-databases-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      How large can databases get?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-read-external-data-in-dbt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I read external data in dbt?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-connect-to-real-databases-not-duckdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I connect to real databases (not DuckDB)?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#can-i-commit-my-venv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I commit my venv?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-commit-my-duckdb-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I commit my .duckdb files?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-prevent-accidental-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I prevent accidental commits?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-i-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      What should I commit?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-shouldnt-i-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      What shouldn't I commit?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-fast-does-dbt-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      How fast does dbt run?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-make-dbt-faster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I make dbt faster?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#will-my-laptop-slow-down-with-multiple-labs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Will my laptop slow down with multiple labs?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scaling Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scaling Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#can-i-scale-to-50-labs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I scale to 50 labs?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-the-limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the limit?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-migrate-to-cloud-later" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I migrate to cloud later?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-the-difference-between-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the difference between phases?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-use-phase-1-without-phase-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I use Phase 1 without Phase 2?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-should-i-use-phase-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      When should I use Phase 2?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-should-i-use-phase-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      When should I use Phase 3?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#team-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Team Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Team Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#can-multiple-people-work-on-same-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can multiple people work on same lab?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-different-people-own-different-labs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can different people own different labs?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-we-prevent-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do we prevent conflicts?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-we-code-review-lab-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can we code review lab changes?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#my-database-is-corrupted" class="md-nav__link">
+    <span class="md-ellipsis">
+      My database is corrupted
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-accidentally-deleted-a-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      I accidentally deleted a model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#everything-is-broken" class="md-nav__link">
+    <span class="md-ellipsis">
+      Everything is broken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#who-do-i-ask-for-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Who do I ask for help?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#can-i-add-monitoringalerting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I add monitoring/alerting?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-use-python-notebooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I use Python notebooks?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-have-dashboards" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I have dashboards?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-do-ml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I do ML?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#still-have-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Still Have Questions?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#general-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      General Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-is-buildcpg-labs" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is BuildCPG Labs?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-multiple-labs-instead-of-one-big-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why multiple labs instead of one big project?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-i-need-to-use-all-labs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do I need to use all labs?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-labs-share-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can labs share data?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#does-this-work-on-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Does this work on Windows?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-duckdb-instead-of-other-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why DuckDB instead of other databases?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-the-difference-between-shared-and-lab-specific-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the difference between shared and lab-specific files?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-labs-communicate" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do labs communicate?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-use-different-python-versions-per-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I use different Python versions per lab?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#setup-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Setup Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-long-does-setup-take" class="md-nav__link">
+    <span class="md-ellipsis">
+      How long does setup take?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-skip-phase-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I skip Phase 1?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-if-i-only-want-phase-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      What if I only want Phase 1?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-customize-the-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I customize the templates?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#usage-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Usage Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Usage Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-does-make-setup-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      What does make setup do?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-does-make-run-do" class="md-nav__link">
+    <span class="md-ellipsis">
+      What does make run do?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-see-what-changed-in-my-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I see what changed in my database?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-use-dbt-commands-directly" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I use dbt commands directly?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-add-a-new-model-to-lab1" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I add a new model to lab1?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shared-utilities-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shared Utilities Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Shared Utilities Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-use-datainspector-in-my-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I use DataInspector in my code?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-modify-shared-utilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I modify shared utilities?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-add-a-new-shared-utility" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I add a new shared utility?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#do-shared-utilities-get-committed-to-git" class="md-nav__link">
+    <span class="md-ellipsis">
+      Do shared utilities get committed to git?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#where-is-my-data-stored" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where is my data stored?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-backup-my-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I backup my data?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-large-can-databases-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      How large can databases get?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-read-external-data-in-dbt" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I read external data in dbt?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-connect-to-real-databases-not-duckdb" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I connect to real databases (not DuckDB)?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#can-i-commit-my-venv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I commit my venv?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-commit-my-duckdb-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I commit my .duckdb files?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-i-prevent-accidental-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do I prevent accidental commits?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-should-i-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      What should I commit?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what-shouldnt-i-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      What shouldn't I commit?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-fast-does-dbt-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      How fast does dbt run?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-make-dbt-faster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I make dbt faster?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#will-my-laptop-slow-down-with-multiple-labs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Will my laptop slow down with multiple labs?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scaling Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scaling Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#can-i-scale-to-50-labs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I scale to 50 labs?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#whats-the-limit" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the limit?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-migrate-to-cloud-later" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I migrate to cloud later?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#whats-the-difference-between-phases" class="md-nav__link">
+    <span class="md-ellipsis">
+      What's the difference between phases?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-use-phase-1-without-phase-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I use Phase 1 without Phase 2?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-should-i-use-phase-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      When should I use Phase 2?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-should-i-use-phase-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      When should I use Phase 3?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#team-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Team Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Team Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#can-multiple-people-work-on-same-lab" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can multiple people work on same lab?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-different-people-own-different-labs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can different people own different labs?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-do-we-prevent-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      How do we prevent conflicts?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-we-code-review-lab-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can we code review lab changes?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Troubleshooting Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#my-database-is-corrupted" class="md-nav__link">
+    <span class="md-ellipsis">
+      My database is corrupted
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#i-accidentally-deleted-a-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      I accidentally deleted a model
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#everything-is-broken" class="md-nav__link">
+    <span class="md-ellipsis">
+      Everything is broken
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#who-do-i-ask-for-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Who do I ask for help?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#feature-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Feature Questions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Feature Questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#can-i-add-monitoringalerting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I add monitoring/alerting?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-use-python-notebooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I use Python notebooks?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-have-dashboards" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I have dashboards?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can-i-do-ml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Can I do ML?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#still-have-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Still Have Questions?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="frequently-asked-questions">Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permanent link">&para;</a></h1>
+<h2 id="general-questions">General Questions<a class="headerlink" href="#general-questions" title="Permanent link">&para;</a></h2>
+<h3 id="what-is-buildcpg-labs">What is BuildCPG Labs?<a class="headerlink" href="#what-is-buildcpg-labs" title="Permanent link">&para;</a></h3>
+<p>A data engineering platform for managing multiple independent data labs using dbt, DuckDB, and Python. Each lab is isolated but shares common utilities.</p>
+<h3 id="why-multiple-labs-instead-of-one-big-project">Why multiple labs instead of one big project?<a class="headerlink" href="#why-multiple-labs-instead-of-one-big-project" title="Permanent link">&para;</a></h3>
+<p>Different labs often have:
+- Different data sources and formats
+- Different transformation logic
+- Different schedules and SLAs
+- Independent teams working on them</p>
+<p>Keeping them separate prevents one from breaking others.</p>
+<h3 id="do-i-need-to-use-all-labs">Do I need to use all labs?<a class="headerlink" href="#do-i-need-to-use-all-labs" title="Permanent link">&para;</a></h3>
+<p>No. You can start with lab1 and create additional labs as needed. Each lab works independently.</p>
+<h3 id="can-labs-share-data">Can labs share data?<a class="headerlink" href="#can-labs-share-data" title="Permanent link">&para;</a></h3>
+<p>Currently, each lab has its own database. Future versions will support lab-to-lab data sharing through view exports.</p>
+<h3 id="does-this-work-on-windows">Does this work on Windows?<a class="headerlink" href="#does-this-work-on-windows" title="Permanent link">&para;</a></h3>
+<p>Yes, with WSL2 (Windows Subsystem for Linux). Mac 11+ and Linux are natively supported. No Docker required.</p>
+<h2 id="architecture-questions">Architecture Questions<a class="headerlink" href="#architecture-questions" title="Permanent link">&para;</a></h2>
+<h3 id="why-duckdb-instead-of-other-databases">Why DuckDB instead of other databases?<a class="headerlink" href="#why-duckdb-instead-of-other-databases" title="Permanent link">&para;</a></h3>
+<ul>
+<li>No server needed (embedded)</li>
+<li>Works on older Macs (Mac 11+)</li>
+<li>No Docker required</li>
+<li>Small, easy to manage</li>
+<li>Perfect for single-machine setups</li>
+<li>Can scale to multi-machine later</li>
+</ul>
+<h3 id="whats-the-difference-between-shared-and-lab-specific-files">What's the difference between shared and lab-specific files?<a class="headerlink" href="#whats-the-difference-between-shared-and-lab-specific-files" title="Permanent link">&para;</a></h3>
+<p><strong>Shared:</strong> Code used by ALL labs (DataInspector, CSVMonitor)<br />
+<strong>Lab-specific:</strong> Code only that lab uses (models, dashboards, data)</p>
+<h3 id="how-do-labs-communicate">How do labs communicate?<a class="headerlink" href="#how-do-labs-communicate" title="Permanent link">&para;</a></h3>
+<p>They don't (by design). Future phases will add data export/import between labs.</p>
+<h3 id="can-i-use-different-python-versions-per-lab">Can I use different Python versions per lab?<a class="headerlink" href="#can-i-use-different-python-versions-per-lab" title="Permanent link">&para;</a></h3>
+<p>Yes. Each lab has its own venv, so different packages/versions are allowed.</p>
+<h2 id="setup-questions">Setup Questions<a class="headerlink" href="#setup-questions" title="Permanent link">&para;</a></h2>
+<h3 id="how-long-does-setup-take">How long does setup take?<a class="headerlink" href="#how-long-does-setup-take" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>First time:</strong> 10-15 minutes (download, install dependencies)</li>
+<li><strong>Each additional lab:</strong> 2 minutes (automatic bootstrap)</li>
+</ul>
+<h3 id="can-i-skip-phase-1">Can I skip Phase 1?<a class="headerlink" href="#can-i-skip-phase-1" title="Permanent link">&para;</a></h3>
+<p>Not recommended. Phase 1 creates the foundation that Phases 2+ depend on.</p>
+<h3 id="what-if-i-only-want-phase-1">What if I only want Phase 1?<a class="headerlink" href="#what-if-i-only-want-phase-1" title="Permanent link">&para;</a></h3>
+<p>That's fine. Phase 1 is fully functional for basic lab work. Phase 2 adds convenience but isn't required.</p>
+<h3 id="can-i-customize-the-templates">Can I customize the templates?<a class="headerlink" href="#can-i-customize-the-templates" title="Permanent link">&para;</a></h3>
+<p>Yes. Edit files in <code>shared/templates/</code> and they'll be used for new labs created after that.</p>
+<h2 id="usage-questions">Usage Questions<a class="headerlink" href="#usage-questions" title="Permanent link">&para;</a></h2>
+<h3 id="what-does-make-setup-do">What does <code>make setup</code> do?<a class="headerlink" href="#what-does-make-setup-do" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Creates Python virtual environment (venv)</li>
+<li>Installs dependencies from requirements.txt</li>
+<li>Runs dbt debug to verify setup</li>
+</ol>
+<h3 id="what-does-make-run-do">What does <code>make run</code> do?<a class="headerlink" href="#what-does-make-run-do" title="Permanent link">&para;</a></h3>
+<p>Executes <code>dbt run</code> which transforms data through bronze → silver → gold layers.</p>
+<h3 id="how-do-i-see-what-changed-in-my-database">How do I see what changed in my database?<a class="headerlink" href="#how-do-i-see-what-changed-in-my-database" title="Permanent link">&para;</a></h3>
+<p>Run <code>make inspect</code> to see schemas, tables, row counts, and quality scores.</p>
+<h3 id="can-i-use-dbt-commands-directly">Can I use dbt commands directly?<a class="headerlink" href="#can-i-use-dbt-commands-directly" title="Permanent link">&para;</a></h3>
+<p>Yes. <code>cd lab/dbt &amp;&amp; dbt run</code> works the same as <code>make run</code>. Makefile just automates activation.</p>
+<h3 id="how-do-i-add-a-new-model-to-lab1">How do I add a new model to lab1?<a class="headerlink" href="#how-do-i-add-a-new-model-to-lab1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>lab1_sales_performance/dbt/models
+<span class="c1"># Create .sql file</span>
+<span class="c1"># Run: make run</span>
+</code></pre></div>
+<p>See dbt documentation for model details.</p>
+<h2 id="shared-utilities-questions">Shared Utilities Questions<a class="headerlink" href="#shared-utilities-questions" title="Permanent link">&para;</a></h2>
+<h3 id="how-do-i-use-datainspector-in-my-code">How do I use DataInspector in my code?<a class="headerlink" href="#how-do-i-use-datainspector-in-my-code" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;../..&#39;</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">shared.utils.data_inspector</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataInspector</span>
+
+<span class="n">inspector</span> <span class="o">=</span> <span class="n">DataInspector</span><span class="p">(</span><span class="s1">&#39;data/lab1_sales_performance.duckdb&#39;</span><span class="p">)</span>
+<span class="n">schemas</span> <span class="o">=</span> <span class="n">inspector</span><span class="o">.</span><span class="n">get_all_schemas</span><span class="p">()</span>
+</code></pre></div>
+<h3 id="can-i-modify-shared-utilities">Can I modify shared utilities?<a class="headerlink" href="#can-i-modify-shared-utilities" title="Permanent link">&para;</a></h3>
+<p>Yes, but test thoroughly. Changes affect ALL labs.</p>
+<h3 id="how-do-i-add-a-new-shared-utility">How do I add a new shared utility?<a class="headerlink" href="#how-do-i-add-a-new-shared-utility" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Create file in <code>shared/utils/</code></li>
+<li>Import it in your lab scripts</li>
+<li>Test thoroughly</li>
+<li>Commit to git</li>
+</ol>
+<h3 id="do-shared-utilities-get-committed-to-git">Do shared utilities get committed to git?<a class="headerlink" href="#do-shared-utilities-get-committed-to-git" title="Permanent link">&para;</a></h3>
+<p>Yes. They're in the git repo so everyone gets them.</p>
+<h2 id="data-questions">Data Questions<a class="headerlink" href="#data-questions" title="Permanent link">&para;</a></h2>
+<h3 id="where-is-my-data-stored">Where is my data stored?<a class="headerlink" href="#where-is-my-data-stored" title="Permanent link">&para;</a></h3>
+<p>In <code>lab/data/lab_name.duckdb</code> (DuckDB database file).</p>
+<h3 id="how-do-i-backup-my-data">How do I backup my data?<a class="headerlink" href="#how-do-i-backup-my-data" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Simply copy the .duckdb file</span>
+cp<span class="w"> </span>lab1_sales_performance/data/lab1_sales_performance.duckdb<span class="w"> </span>lab1_sales_performance/data/lab1_sales_performance.duckdb.backup
+</code></pre></div>
+<h3 id="how-large-can-databases-get">How large can databases get?<a class="headerlink" href="#how-large-can-databases-get" title="Permanent link">&para;</a></h3>
+<p>DuckDB on a single machine can handle multi-GB databases easily. For 100GB+, consider upgrading infrastructure.</p>
+<h3 id="can-i-read-external-data-in-dbt">Can I read external data in dbt?<a class="headerlink" href="#can-i-read-external-data-in-dbt" title="Permanent link">&para;</a></h3>
+<p>Yes. dbt supports reading from CSVs, APIs, and other sources via Jinja2 macros.</p>
+<h3 id="how-do-i-connect-to-real-databases-not-duckdb">How do I connect to real databases (not DuckDB)?<a class="headerlink" href="#how-do-i-connect-to-real-databases-not-duckdb" title="Permanent link">&para;</a></h3>
+<p>Future versions will support PostgreSQL, MySQL, etc. Currently limited to DuckDB.</p>
+<h2 id="git-questions">Git Questions<a class="headerlink" href="#git-questions" title="Permanent link">&para;</a></h2>
+<h3 id="can-i-commit-my-venv">Can I commit my venv?<a class="headerlink" href="#can-i-commit-my-venv" title="Permanent link">&para;</a></h3>
+<p>No. It's huge and system-specific. Use <code>.gitignore</code> to exclude it.</p>
+<h3 id="can-i-commit-my-duckdb-files">Can I commit my .duckdb files?<a class="headerlink" href="#can-i-commit-my-duckdb-files" title="Permanent link">&para;</a></h3>
+<p>For development: no (they change constantly).<br />
+For tracked data: yes (if you need version history).</p>
+<h3 id="how-do-i-prevent-accidental-commits">How do I prevent accidental commits?<a class="headerlink" href="#how-do-i-prevent-accidental-commits" title="Permanent link">&para;</a></h3>
+<p><code>.gitignore</code> automatically excludes venv, .duckdb, and build artifacts.</p>
+<h3 id="what-should-i-commit">What should I commit?<a class="headerlink" href="#what-should-i-commit" title="Permanent link">&para;</a></h3>
+<ul>
+<li>dbt models (.sql files)</li>
+<li>Python scripts (.py files)</li>
+<li>Configuration files (.yml, .yaml)</li>
+<li>Documentation (.md files)</li>
+<li>requirements.txt</li>
+</ul>
+<h3 id="what-shouldnt-i-commit">What shouldn't I commit?<a class="headerlink" href="#what-shouldnt-i-commit" title="Permanent link">&para;</a></h3>
+<ul>
+<li>venv/ directories</li>
+<li>.duckdb files (unless intentional)</li>
+<li>dbt/target/ and dbt/logs/</li>
+<li>.DS_Store</li>
+<li>IDE settings</li>
+</ul>
+<h2 id="performance-questions">Performance Questions<a class="headerlink" href="#performance-questions" title="Permanent link">&para;</a></h2>
+<h3 id="how-fast-does-dbt-run">How fast does dbt run?<a class="headerlink" href="#how-fast-does-dbt-run" title="Permanent link">&para;</a></h3>
+<p>Depends on data size. With ~3K rows: 1-2 seconds. Scale linearly with data.</p>
+<h3 id="can-i-make-dbt-faster">Can I make dbt faster?<a class="headerlink" href="#can-i-make-dbt-faster" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Incremental materialization (load only new data)</li>
+<li>Optimize SQL queries</li>
+<li>Add indexes (if using real databases)</li>
+</ul>
+<h3 id="will-my-laptop-slow-down-with-multiple-labs">Will my laptop slow down with multiple labs?<a class="headerlink" href="#will-my-laptop-slow-down-with-multiple-labs" title="Permanent link">&para;</a></h3>
+<p>Each lab runs independently. Multiple venvs take ~500MB each. Not a concern for 10 labs.</p>
+<h2 id="scaling-questions">Scaling Questions<a class="headerlink" href="#scaling-questions" title="Permanent link">&para;</a></h2>
+<h3 id="can-i-scale-to-50-labs">Can I scale to 50 labs?<a class="headerlink" href="#can-i-scale-to-50-labs" title="Permanent link">&para;</a></h3>
+<p>Yes. Structure supports unlimited labs. You'll just need:
+- Disk space (~1GB per lab average)
+- Orchestration tool (Airflow) to manage all runs</p>
+<h3 id="whats-the-limit">What's the limit?<a class="headerlink" href="#whats-the-limit" title="Permanent link">&para;</a></h3>
+<p>No hard limit. Practical limit depends on infrastructure.</p>
+<h3 id="can-i-migrate-to-cloud-later">Can I migrate to cloud later?<a class="headerlink" href="#can-i-migrate-to-cloud-later" title="Permanent link">&para;</a></h3>
+<p>Yes. The architecture is platform-agnostic. Move to Snowflake/BigQuery/etc. when needed.</p>
+<h2 id="phase-questions">Phase Questions<a class="headerlink" href="#phase-questions" title="Permanent link">&para;</a></h2>
+<h3 id="whats-the-difference-between-phases">What's the difference between phases?<a class="headerlink" href="#whats-the-difference-between-phases" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Phase 1:</strong> Shared utilities + configuration</li>
+<li><strong>Phase 2:</strong> Makefile + bootstrap (automation)</li>
+<li><strong>Phase 3+:</strong> Orchestration + monitoring</li>
+</ul>
+<h3 id="can-i-use-phase-1-without-phase-2">Can I use Phase 1 without Phase 2?<a class="headerlink" href="#can-i-use-phase-1-without-phase-2" title="Permanent link">&para;</a></h3>
+<p>Yes. Phase 1 is standalone and functional.</p>
+<h3 id="when-should-i-use-phase-2">When should I use Phase 2?<a class="headerlink" href="#when-should-i-use-phase-2" title="Permanent link">&para;</a></h3>
+<p>When you want <code>make</code> commands and automated lab creation. Highly recommended.</p>
+<h3 id="when-should-i-use-phase-3">When should I use Phase 3?<a class="headerlink" href="#when-should-i-use-phase-3" title="Permanent link">&para;</a></h3>
+<p>When managing 3+ labs and want automated scheduling (Airflow).</p>
+<h2 id="team-questions">Team Questions<a class="headerlink" href="#team-questions" title="Permanent link">&para;</a></h2>
+<h3 id="can-multiple-people-work-on-same-lab">Can multiple people work on same lab?<a class="headerlink" href="#can-multiple-people-work-on-same-lab" title="Permanent link">&para;</a></h3>
+<p>Yes. Use git branches for features.</p>
+<h3 id="can-different-people-own-different-labs">Can different people own different labs?<a class="headerlink" href="#can-different-people-own-different-labs" title="Permanent link">&para;</a></h3>
+<p>Yes. Each lab is independent.</p>
+<h3 id="how-do-we-prevent-conflicts">How do we prevent conflicts?<a class="headerlink" href="#how-do-we-prevent-conflicts" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Use git for coordination</li>
+<li>Clear lab ownership</li>
+<li>Communication on shared utilities</li>
+</ul>
+<h3 id="can-we-code-review-lab-changes">Can we code review lab changes?<a class="headerlink" href="#can-we-code-review-lab-changes" title="Permanent link">&para;</a></h3>
+<p>Yes. Pull requests work for both lab-specific and shared code.</p>
+<h2 id="troubleshooting-questions">Troubleshooting Questions<a class="headerlink" href="#troubleshooting-questions" title="Permanent link">&para;</a></h2>
+<h3 id="my-database-is-corrupted">My database is corrupted<a class="headerlink" href="#my-database-is-corrupted" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Delete it and recreate</span>
+rm<span class="w"> </span>lab1_sales_performance/data/lab1_sales_performance.duckdb
+<span class="nb">cd</span><span class="w"> </span>lab1_sales_performance/dbt
+dbt<span class="w"> </span>run<span class="w">  </span><span class="c1"># Recreates from source</span>
+</code></pre></div>
+<h3 id="i-accidentally-deleted-a-model">I accidentally deleted a model<a class="headerlink" href="#i-accidentally-deleted-a-model" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>&lt;file&gt;<span class="w">  </span><span class="c1"># Restore from git</span>
+<span class="nb">cd</span><span class="w"> </span>dbt
+dbt<span class="w"> </span>run<span class="w">  </span><span class="c1"># Recreate tables</span>
+</code></pre></div>
+<h3 id="everything-is-broken">Everything is broken<a class="headerlink" href="#everything-is-broken" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>status<span class="w">  </span><span class="c1"># See what changed</span>
+git<span class="w"> </span>diff<span class="w">   </span><span class="c1"># See details</span>
+git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w">  </span><span class="c1"># Go back to last commit</span>
+</code></pre></div>
+<h3 id="who-do-i-ask-for-help">Who do I ask for help?<a class="headerlink" href="#who-do-i-ask-for-help" title="Permanent link">&para;</a></h3>
+<p>See <a href="../troubleshooting/">Troubleshooting</a> guide or ask maintainer.</p>
+<h2 id="feature-questions">Feature Questions<a class="headerlink" href="#feature-questions" title="Permanent link">&para;</a></h2>
+<h3 id="can-i-add-monitoringalerting">Can I add monitoring/alerting?<a class="headerlink" href="#can-i-add-monitoringalerting" title="Permanent link">&para;</a></h3>
+<p>Yes, in Phase 3+. Currently manual checks only.</p>
+<h3 id="can-i-use-python-notebooks">Can I use Python notebooks?<a class="headerlink" href="#can-i-use-python-notebooks" title="Permanent link">&para;</a></h3>
+<p>Yes. Put them in <code>lab/notebooks/</code>.</p>
+<h3 id="can-i-have-dashboards">Can I have dashboards?<a class="headerlink" href="#can-i-have-dashboards" title="Permanent link">&para;</a></h3>
+<p>Yes. Connect BI tools (Tableau/Looker) to lab databases.</p>
+<h3 id="can-i-do-ml">Can I do ML?<a class="headerlink" href="#can-i-do-ml" title="Permanent link">&para;</a></h3>
+<p>Yes. Add models to <code>lab/pipelines/</code> or use Jupyter.</p>
+<hr />
+<h2 id="still-have-questions">Still Have Questions?<a class="headerlink" href="#still-have-questions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Check <a href="../getting-started/quick-start/">Getting Started</a></li>
+<li>Check <a href="../troubleshooting/">Troubleshooting</a></li>
+<li>Check <a href="../architecture/overview/">Architecture</a></li>
+<li>Ask in GitHub Issues</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
