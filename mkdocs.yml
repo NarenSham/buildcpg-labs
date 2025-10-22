@@ -7,13 +7,24 @@ edit_uri: edit/main/docs/
 
 theme:
   name: material
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.sections
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
   palette:
-    scheme: slate
-    primary: blue
-    accent: cyan
+    - scheme: default
+      primary: indigo
+      accent: light blue
+    - scheme: slate
+      primary: indigo
+      accent: light blue
   font:
-    text: Roboto
-    code: Roboto Mono
+    text: "Inter"
+    code: "JetBrains Mono"
   features:
     - content.code.copy
     - navigation.tabs
