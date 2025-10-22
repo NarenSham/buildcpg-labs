@@ -1,0 +1,1870 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-lab data engineering platform with dbt, DuckDB, and Python">
+      
+      
+        <meta name="author" content="narensham">
+      
+      
+        <link rel="canonical" href="https://narensham.github.io/buildcpg-labs/troubleshooting/">
+      
+      
+        <link rel="prev" href="../phases/phase1-foundation/">
+      
+      
+        <link rel="next" href="../faq/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Troubleshooting - BuildCPG Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#troubleshooting-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="BuildCPG Labs" class="md-header__button md-logo" aria-label="BuildCPG Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BuildCPG Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Troubleshooting
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="light-blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="light-blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/narensham/buildcpg-labs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    narensham/buildcpg-labs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting-started/quick-start/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../architecture/overview/" class="md-tabs__link">
+          
+  
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../phases/phase1-foundation/" class="md-tabs__link">
+          
+  
+  
+  Phases
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Troubleshooting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="BuildCPG Labs" class="md-nav__button md-logo" aria-label="BuildCPG Labs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    BuildCPG Labs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/narensham/buildcpg-labs/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    narensham/buildcpg-labs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/first-lab.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    First Lab
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/multi-lab-design.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Lab Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/medallion-architecture.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Medallion Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/shared-vs-lab-specific.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shared vs Lab-Specific
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phases
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Phases
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phases/phase1-foundation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Phase 1 Foundation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phases/phase2-automation.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Phase 2 Automation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../phases/phase3-future.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Phase 3+ (Future)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-version-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python Version Error
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtual-environment-not-activating" class="md-nav__link">
+    <span class="md-ellipsis">
+      Virtual Environment Not Activating
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pip-command-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      pip: command not found
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-denied-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permission Denied Error
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dbt-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      dbt Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="dbt Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dbt-command-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      dbt: command not found
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dbt-debug-shows-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      dbt debug shows errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profile not found
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-inspector-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Inspector Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Inspector Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modulenotfounderror-no-module-named-shared" class="md-nav__link">
+    <span class="md-ellipsis">
+      ModuleNotFoundError: No module named 'shared'
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filenotfounderror-labs_configyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      FileNotFoundError: labs_config.yaml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-file-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database file not found
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#too-many-loose-objects-in-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Too many loose objects in repository
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#venv-directory-accidentally-committed" class="md-nav__link">
+    <span class="md-ellipsis">
+      venv directory accidentally committed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#makefile-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Makefile Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Makefile Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#make-command-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      make: command not found
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-indentation-error-in-makefile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tab indentation error in Makefile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#venv-not-found-when-running-make" class="md-nav__link">
+    <span class="md-ellipsis">
+      venv not found when running make
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-data-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Data Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Data Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#no-schemas-in-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      No schemas in database
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-score-shows-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quality score shows 0%
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv-says-no-new-data-but-file-was-updated" class="md-nav__link">
+    <span class="md-ellipsis">
+      CSV says "no new data" but file was updated
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Help
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Help">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-debug-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Debug Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-file-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check File Permissions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify Directory Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-disk-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Disk Space
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#still-stuck" class="md-nav__link">
+    <span class="md-ellipsis">
+      Still Stuck?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python-version-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python Version Error
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virtual-environment-not-activating" class="md-nav__link">
+    <span class="md-ellipsis">
+      Virtual Environment Not Activating
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pip-command-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      pip: command not found
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permission-denied-error" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permission Denied Error
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dbt-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      dbt Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="dbt Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dbt-command-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      dbt: command not found
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dbt-debug-shows-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      dbt debug shows errors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profile not found
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-inspector-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Inspector Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Data Inspector Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modulenotfounderror-no-module-named-shared" class="md-nav__link">
+    <span class="md-ellipsis">
+      ModuleNotFoundError: No module named 'shared'
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filenotfounderror-labs_configyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      FileNotFoundError: labs_config.yaml
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-file-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database file not found
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Git Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#too-many-loose-objects-in-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Too many loose objects in repository
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#venv-directory-accidentally-committed" class="md-nav__link">
+    <span class="md-ellipsis">
+      venv directory accidentally committed
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#makefile-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Makefile Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Makefile Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#make-command-not-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      make: command not found
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tab-indentation-error-in-makefile" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tab indentation error in Makefile
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#venv-not-found-when-running-make" class="md-nav__link">
+    <span class="md-ellipsis">
+      venv not found when running make
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-data-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Data Issues
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Data Issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#no-schemas-in-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      No schemas in database
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quality-score-shows-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quality score shows 0%
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv-says-no-new-data-but-file-was-updated" class="md-nav__link">
+    <span class="md-ellipsis">
+      CSV says "no new data" but file was updated
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-help" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Help
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Getting Help">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#enable-debug-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enable Debug Logging
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-file-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check File Permissions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verify-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verify Directory Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-disk-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check Disk Space
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#still-stuck" class="md-nav__link">
+    <span class="md-ellipsis">
+      Still Stuck?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="troubleshooting-guide">Troubleshooting Guide<a class="headerlink" href="#troubleshooting-guide" title="Permanent link">&para;</a></h1>
+<p>Solutions to common issues in BuildCPG Labs.</p>
+<h2 id="installation-issues">Installation Issues<a class="headerlink" href="#installation-issues" title="Permanent link">&para;</a></h2>
+<h3 id="python-version-error">Python Version Error<a class="headerlink" href="#python-version-error" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> <code>python</code> command not found or shows Python 2.x</p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check available versions</span>
+which<span class="w"> </span>python3
+python3<span class="w"> </span>--version
+
+<span class="c1"># Use python3 instead of python</span>
+python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pyyaml
+</code></pre></div></p>
+<h3 id="virtual-environment-not-activating">Virtual Environment Not Activating<a class="headerlink" href="#virtual-environment-not-activating" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> <code>source venv/bin/activate</code> doesn't work on Mac</p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Try full path</span>
+<span class="nb">source</span><span class="w"> </span>./venv/bin/activate
+
+<span class="c1"># Or use this directly</span>
+./venv/bin/python<span class="w"> </span>--version
+
+<span class="c1"># For Zsh on newer Mac:</span>
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+</code></pre></div></p>
+<h3 id="pip-command-not-found">pip: command not found<a class="headerlink" href="#pip-command-not-found" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> <code>pip install</code> doesn't work</p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Use python -m pip instead</span>
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pyyaml<span class="w"> </span>duckdb<span class="w"> </span>pandas
+
+<span class="c1"># Or upgrade pip</span>
+python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+</code></pre></div></p>
+<h3 id="permission-denied-error">Permission Denied Error<a class="headerlink" href="#permission-denied-error" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> <code>permission denied: ./setup.sh</code></p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>setup.sh
+./setup.sh
+</code></pre></div></p>
+<h2 id="dbt-issues">dbt Issues<a class="headerlink" href="#dbt-issues" title="Permanent link">&para;</a></h2>
+<h3 id="dbt-command-not-found">dbt: command not found<a class="headerlink" href="#dbt-command-not-found" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> <code>dbt run</code> or <code>dbt debug</code> doesn't work</p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Make sure you&#39;re in lab directory</span>
+<span class="nb">cd</span><span class="w"> </span>lab1_sales_performance
+
+<span class="c1"># Make sure venv is activated</span>
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+
+<span class="c1"># Try again</span>
+dbt<span class="w"> </span>--version
+
+<span class="c1"># If still fails, reinstall</span>
+pip<span class="w"> </span>install<span class="w"> </span>dbt-duckdb
+</code></pre></div></p>
+<h3 id="dbt-debug-shows-errors">dbt debug shows errors<a class="headerlink" href="#dbt-debug-shows-errors" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> <code>dbt debug</code> fails with configuration errors</p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check you&#39;re in dbt directory</span>
+<span class="nb">cd</span><span class="w"> </span>lab1_sales_performance/dbt
+
+<span class="c1"># Verify profiles.yml exists</span>
+ls<span class="w"> </span>-la<span class="w"> </span>profiles.yml
+
+<span class="c1"># Check dbt_project.yml</span>
+ls<span class="w"> </span>-la<span class="w"> </span>dbt_project.yml
+
+<span class="c1"># Run debug again</span>
+dbt<span class="w"> </span>debug
+</code></pre></div></p>
+<h3 id="profile-not-found">Profile not found<a class="headerlink" href="#profile-not-found" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> <code>Profile 'lab1_duckdb' not found</code></p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check profiles.yml path</span>
+cat<span class="w"> </span>~/.dbt/profiles.yml
+
+<span class="c1"># Or ensure it&#39;s in the lab directory</span>
+<span class="nb">cd</span><span class="w"> </span>lab1_sales_performance/dbt
+cat<span class="w"> </span>profiles.yml
+
+<span class="c1"># Update dbt_project.yml to point to correct profile</span>
+</code></pre></div></p>
+<h2 id="data-inspector-issues">Data Inspector Issues<a class="headerlink" href="#data-inspector-issues" title="Permanent link">&para;</a></h2>
+<h3 id="modulenotfounderror-no-module-named-shared">ModuleNotFoundError: No module named 'shared'<a class="headerlink" href="#modulenotfounderror-no-module-named-shared" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> Python can't find shared utilities</p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Make sure you&#39;re in lab directory</span>
+<span class="nb">cd</span><span class="w"> </span>lab1_sales_performance
+
+<span class="c1"># Run from correct location</span>
+python<span class="w"> </span>scripts/inspect_data.py
+
+<span class="c1"># Verify path in script</span>
+head<span class="w"> </span>-20<span class="w"> </span>scripts/inspect_data.py
+<span class="c1"># Should show: sys.path.insert(0, &#39;../..&#39;)</span>
+</code></pre></div></p>
+<h3 id="filenotfounderror-labs_configyaml">FileNotFoundError: labs_config.yaml<a class="headerlink" href="#filenotfounderror-labs_configyaml" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> Configuration file not found</p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check file exists</span>
+ls<span class="w"> </span>-la<span class="w"> </span>config/labs_config.yaml
+
+<span class="c1"># Create if missing</span>
+touch<span class="w"> </span>config/labs_config.yaml
+
+<span class="c1"># Add content</span>
+cat<span class="w"> </span>&gt;<span class="w"> </span>config/labs_config.yaml<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">labs:</span>
+<span class="s">  lab1_sales_performance:</span>
+<span class="s">    path: lab1_sales_performance</span>
+<span class="s">    db_path: lab1_sales_performance/data/lab1_sales_performance.duckdb</span>
+<span class="s">    dbt_path: lab1_sales_performance/dbt</span>
+<span class="s">EOF</span>
+</code></pre></div></p>
+<h3 id="database-file-not-found">Database file not found<a class="headerlink" href="#database-file-not-found" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> <code>Cannot open file ".../lab1_sales_performance.duckdb"</code></p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check database exists</span>
+ls<span class="w"> </span>-la<span class="w"> </span>lab1_sales_performance/data/
+
+<span class="c1"># Create database by running dbt</span>
+<span class="nb">cd</span><span class="w"> </span>lab1_sales_performance/dbt
+dbt<span class="w"> </span>run
+
+<span class="c1"># Then try inspection again</span>
+<span class="nb">cd</span><span class="w"> </span>..
+python<span class="w"> </span>scripts/inspect_data.py
+</code></pre></div></p>
+<h2 id="git-issues">Git Issues<a class="headerlink" href="#git-issues" title="Permanent link">&para;</a></h2>
+<h3 id="too-many-loose-objects-in-repository">Too many loose objects in repository<a class="headerlink" href="#too-many-loose-objects-in-repository" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> <code>warning: There are too many unreachable loose objects</code></p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Remove gc.log if it exists</span>
+rm<span class="w"> </span>.git/gc.log<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">true</span>
+
+<span class="c1"># Prune repository</span>
+git<span class="w"> </span>prune
+
+<span class="c1"># Optimize repository</span>
+git<span class="w"> </span>gc<span class="w"> </span>--aggressive
+</code></pre></div></p>
+<h3 id="venv-directory-accidentally-committed">venv directory accidentally committed<a class="headerlink" href="#venv-directory-accidentally-committed" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> Tried to push and got huge file size</p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Remove from git tracking (keeps files on disk)</span>
+git<span class="w"> </span>rm<span class="w"> </span>-r<span class="w"> </span>--cached<span class="w"> </span>venv/
+git<span class="w"> </span>rm<span class="w"> </span>-r<span class="w"> </span>--cached<span class="w"> </span>.venv/
+git<span class="w"> </span>rm<span class="w"> </span>-r<span class="w"> </span>--cached<span class="w"> </span>dbt/target/
+
+<span class="c1"># Update .gitignore</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;venv/&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitignore
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;.venv/&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitignore
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;dbt/target/&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>.gitignore
+
+<span class="c1"># Commit cleanup</span>
+git<span class="w"> </span>add<span class="w"> </span>.gitignore
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Remove build artifacts from git&quot;</span>
+</code></pre></div></p>
+<h2 id="makefile-issues">Makefile Issues<a class="headerlink" href="#makefile-issues" title="Permanent link">&para;</a></h2>
+<h3 id="make-command-not-found">make: command not found<a class="headerlink" href="#make-command-not-found" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> <code>make</code> is not installed</p>
+<p><strong>Solution (Mac):</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Install Xcode command line tools</span>
+xcode-select<span class="w"> </span>--install
+
+<span class="c1"># Or install make directly</span>
+brew<span class="w"> </span>install<span class="w"> </span>make
+</code></pre></div></p>
+<p><strong>Solution (Linux):</strong>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>make<span class="w"> </span>build-essential
+</code></pre></div></p>
+<h3 id="tab-indentation-error-in-makefile">Tab indentation error in Makefile<a class="headerlink" href="#tab-indentation-error-in-makefile" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> <code>missing separator. Stop.</code> when running make</p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Makefiles require TAB indentation, not spaces</span>
+<span class="c1"># Edit Makefile and ensure all recipe lines start with TAB</span>
+
+<span class="c1"># In vim:</span>
+<span class="c1"># :set noexpandtab</span>
+
+<span class="c1"># In nano:</span>
+<span class="c1"># Ctrl+I to insert tab</span>
+
+<span class="c1"># Visual check:</span>
+cat<span class="w"> </span>-A<span class="w"> </span>Makefile<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-20
+<span class="c1"># Tabs show as ^I, spaces show as regular spaces</span>
+</code></pre></div></p>
+<h3 id="venv-not-found-when-running-make">venv not found when running make<a class="headerlink" href="#venv-not-found-when-running-make" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> <code>venv/bin/python: No such file or directory</code></p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Run setup first</span>
+make<span class="w"> </span>setup
+
+<span class="c1"># This creates venv and installs dependencies</span>
+</code></pre></div></p>
+<h2 id="common-data-issues">Common Data Issues<a class="headerlink" href="#common-data-issues" title="Permanent link">&para;</a></h2>
+<h3 id="no-schemas-in-database">No schemas in database<a class="headerlink" href="#no-schemas-in-database" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> <code>inspect_data.py</code> shows only 'main' and 'information_schema'</p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Tables haven&#39;t been created yet</span>
+<span class="c1"># Create them with dbt</span>
+<span class="nb">cd</span><span class="w"> </span>lab1_sales_performance/dbt
+dbt<span class="w"> </span>run
+
+<span class="c1"># Then inspect again</span>
+<span class="nb">cd</span><span class="w"> </span>..
+python<span class="w"> </span>scripts/inspect_data.py
+</code></pre></div></p>
+<h3 id="quality-score-shows-0">Quality score shows 0%<a class="headerlink" href="#quality-score-shows-0" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> <code>get_quality_score</code> returns 0 even with good data</p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># Check table has rows</span>
+python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
+<span class="s2">import sys</span>
+<span class="s2">sys.path.insert(0, &#39;../..&#39;)</span>
+<span class="s2">from shared.utils.data_inspector import DataInspector</span>
+<span class="s2">inspector = DataInspector(&#39;data/lab1_sales_performance.duckdb&#39;)</span>
+<span class="s2">print(inspector.get_table_stats(&#39;raw&#39;, &#39;sales_data&#39;))</span>
+<span class="s2">&quot;</span>
+
+<span class="c1"># If rows = 0, data wasn&#39;t loaded</span>
+<span class="c1"># Load it with dbt:</span>
+<span class="nb">cd</span><span class="w"> </span>dbt
+dbt<span class="w"> </span>run
+</code></pre></div></p>
+<h3 id="csv-says-no-new-data-but-file-was-updated">CSV says "no new data" but file was updated<a class="headerlink" href="#csv-says-no-new-data-but-file-was-updated" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> <code>check_for_new_data.py</code> doesn't detect changes</p>
+<p><strong>Solution:</strong>
+<div class="highlight"><pre><span></span><code><span class="c1"># State file might be outdated</span>
+<span class="c1"># Remove it to reset detection</span>
+rm<span class="w"> </span>lab1_sales_performance/.csv_state.json
+
+<span class="c1"># Run again</span>
+<span class="nb">cd</span><span class="w"> </span>lab1_sales_performance
+python<span class="w"> </span>scripts/check_for_new_data.py
+</code></pre></div></p>
+<h2 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h2>
+<h3 id="enable-debug-logging">Enable Debug Logging<a class="headerlink" href="#enable-debug-logging" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># For dbt:</span>
+dbt<span class="w"> </span>run<span class="w"> </span>--debug
+
+<span class="c1"># For Python scripts:</span>
+<span class="c1"># Add this to beginning of script:</span>
+import<span class="w"> </span>logging
+logging.basicConfig<span class="o">(</span><span class="nv">level</span><span class="o">=</span>logging.DEBUG<span class="o">)</span>
+</code></pre></div>
+<h3 id="check-file-permissions">Check File Permissions<a class="headerlink" href="#check-file-permissions" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Verify script is executable</span>
+ls<span class="w"> </span>-la<span class="w"> </span>scripts/inspect_data.py
+
+<span class="c1"># Make executable if needed</span>
+chmod<span class="w"> </span>+x<span class="w"> </span>scripts/inspect_data.py
+</code></pre></div>
+<h3 id="verify-directory-structure">Verify Directory Structure<a class="headerlink" href="#verify-directory-structure" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># From buildcpg-labs root:</span>
+tree<span class="w"> </span>-L<span class="w"> </span><span class="m">2</span><span class="w"> </span>-I<span class="w"> </span><span class="s1">&#39;__pycache__|*.pyc|venv&#39;</span>
+
+<span class="c1"># Or list key files:</span>
+find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;dbt_project.yml&quot;</span><span class="w"> </span>-o<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;labs_config.yaml&quot;</span><span class="w"> </span>-o<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;Makefile&quot;</span>
+</code></pre></div>
+<h3 id="check-disk-space">Check Disk Space<a class="headerlink" href="#check-disk-space" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Verify you have space</span>
+df<span class="w"> </span>-h
+
+<span class="c1"># Check database size</span>
+du<span class="w"> </span>-sh<span class="w"> </span>lab1_sales_performance/data/
+</code></pre></div>
+<h2 id="still-stuck">Still Stuck?<a class="headerlink" href="#still-stuck" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Check <a href="../faq/">FAQ</a> for common questions</li>
+<li>Review <a href="../getting-started/quick-start/">Quick Start</a></li>
+<li>Check <a href="../architecture/overview/">Architecture</a> to understand the design</li>
+<li>Review the exact error message and search in this guide</li>
+<li>Check git commit history for clues: <code>git log --oneline</code>  </li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

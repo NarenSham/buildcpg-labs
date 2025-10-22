@@ -60,14 +60,14 @@ nav:
       - Phase 1 Foundation: phases/phase1-foundation.md
       - Phase 2 Automation: phases/phase2-automation.md
       - Phase 3+ (Future): phases/phase3-future.md
-  - Working with Labs:
-      - Using Makefile: labs/using-makefile.md
-      - Creating New Lab: labs/creating-new-lab.md
-      - Lab Structure: labs/lab-structure.md
-      - Data Inspector: labs/data-inspector.md
-  - Shared Utilities:
-      - DataInspector: utilities/data-inspector.md
-      - CSVMonitor: utilities/csv-monitor.md
-      - Config Paths: utilities/config-paths.md
+  # - Working with Labs:
+  #     - Using Makefile: labs/using-makefile.md
+  #     - Creating New Lab: labs/creating-new-lab.md
+  #     - Lab Structure: labs/lab-structure.md
+  #     - Data Inspector: labs/data-inspector.md
+  # - Shared Utilities:
+  #     - DataInspector: utilities/data-inspector.md
+  #     - CSVMonitor: utilities/csv-monitor.md
+  #     - Config Paths: utilities/config-paths.md
   - Troubleshooting: troubleshooting.md
   - FAQ: faq.md
