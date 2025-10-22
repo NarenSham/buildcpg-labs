@@ -31,10 +31,15 @@ BuildCPG Labs uses a **multi-lab, shared-utilities** architecture designed for s
 └─────────────────────────────────────────────────────────┘
 ```
 
-## Directory Structure
+## Directory Structure (Current Setup)
 
 ```
 buildcpg-labs/
+│
+├── .venv/                           # SINGLE venv (shared by all labs)
+│   ├── bin/
+│   ├── lib/
+│   └── ...
 │
 ├── shared/                          # Shared across ALL labs
 │   ├── __init__.py
@@ -42,6 +47,10 @@ buildcpg-labs/
 │   │   ├── data_inspector.py       # Inspect databases
 │   │   ├── csv_monitor.py          # Detect new data
 │   │   └── config_loader.py        # Load configurations
+│   │
+│   ├── config/                      # Config inside shared (not at root)
+│   │   ├── labs_config.yaml        # Central lab registry
+│   │   └── paths.py                # Path helpers
 │   │
 │   ├── data_quality/
 │   │   ├── validators.py           # Quality validators
@@ -53,13 +62,10 @@ buildcpg-labs/
 │       ├── dbt_project_template.yml
 │       └── .gitignore_template
 │
-├── config/
-│   ├── labs_config.yaml            # Central lab registry
-│   └── paths.py                    # Path helpers
-│
-├── lab1_sales_performance/         # LAB 1 (Independent)
+├── lab1_sales_performance/         # LAB 1 (Independent data, shares venv)
 │   ├── dbt/
 │   │   ├── dbt_project.yml
+│   │   ├── profiles.yml            # Manually edited when switching labs
 │   │   ├── models/
 │   │   │   ├── staging/
 │   │   │   ├── intermediate/
@@ -78,15 +84,13 @@ buildcpg-labs/
 │   │   ├── data_ingestion.py
 │   │   └── data_quality.py
 │   │
-│   ├── Makefile
-│   ├── requirements.txt
-│   ├── venv/
+│   ├── requirements.txt            # Shared dependencies
 │   └── .gitignore
 │
-├── lab2_forecast_model/            # LAB 2 (Independent)
+├── lab2_forecast_model/            # LAB 2 (Independent data, shares venv)
 │   └── (Same structure as lab1)
 │
-├── lab3_customer_segmentation/     # LAB 3 (Independent)
+├── lab3_customer_segmentation/     # LAB 3 (Independent data, shares venv)
 │   └── (Same structure as lab1)
 │
 ├── orchestration/
@@ -101,23 +105,55 @@ buildcpg-labs/
 
 ## Key Concepts
 
-### Labs Are Independent
+### Single Virtual Environment Approach
+
+**Current Setup:**
+- ONE `.venv/` at root shared by all labs
+- All labs use same Python packages
+- Switch between labs by changing dbt profiles manually
+
+**Advantages:**
+- Less disk space (~500MB vs ~500MB per lab)
+- Consistent package versions across all labs
+- Simpler initial setup
+
+**Trade-offs:**
+- Cannot have labs with conflicting dependencies
+- Must manually edit `profiles.yml` when switching labs
+- Risk of profile switching errors (writing to wrong database)
+- No concurrent work on different labs
+
+⚠️ **See [Current Setup Details](current-setup.md) for full pros/cons analysis**
+
+### Labs Have Independent Data
 - Each lab has its own **database** (lab1.duckdb, lab2.duckdb)
 - Each lab has its own **dbt project** (dbt/models/, dbt/dbt_project.yml)
-- Each lab has its own **Python environment** (venv/)
-- Each lab can use different versions of packages
-- Labs don't affect each other if one breaks
+- Each lab has its own **raw data** (data/raw/)
+- Labs share Python environment but NOT data
 
 ### Shared Utilities
 - **DataInspector** - Check database quality (used by all labs)
 - **CSVMonitor** - Detect new data in CSVs (used by all labs)
 - **Config Paths** - Get paths for any lab (used by all labs)
-- Written once, used by all labs
+- Written once in `shared/`, used by all labs
 - Bug fix in shared code fixes all labs
 
-### Central Configuration
+### Configuration Location
+
+**Config is inside shared/config/ (not at root level):**
+
+```python
+# Import pattern for lab scripts
+import sys
+sys.path.insert(0, '../..')
+from shared.config.paths import get_lab_db_path  # Note: shared.config
+
+# NOT this:
+# from config.paths import get_lab_db_path  # ❌ Wrong path
+```
+
 ```yaml
-# config/labs_config.yaml
+# shared/config/labs_config.yaml
 labs:
   lab1_sales_performance:
     path: lab1_sales_performance
@@ -161,6 +197,29 @@ All results aggregated
 Alert team if any lab fails
 ```
 
+## Workflow: Switching Between Labs
+
+```bash
+# 1. Activate shared venv (once per session)
+cd buildcpg-labs
+source .venv/bin/activate
+
+# 2. Work on lab1
+cd lab1_sales_performance/dbt
+# profiles.yml should point to: ../data/lab1_sales_performance.duckdb
+dbt debug  # Verify correct database
+dbt run
+
+# 3. Switch to lab2
+cd ../../lab2_forecast_model/dbt
+# Edit profiles.yml to point to: ../data/lab2_forecast_model.duckdb
+vim profiles.yml  # Update path
+dbt debug  # Verify correct database
+dbt run
+```
+
+⚠️ **Critical:** Always run `dbt debug` before `dbt run` to verify you're pointing to the correct database.
+
 ## Technology Stack
 
 | Layer | Technology |
@@ -168,48 +227,72 @@ Alert team if any lab fails
 | **Database** | DuckDB (embedded, Mac compatible) |
 | **Transformation** | dbt (data build tool) |
 | **Scripting** | Python 3.11+ |
-| **Orchestration** | Airflow (optional) |
+| **Environment** | Single venv (shared) |
+| **Orchestration** | Airflow (optional, future) |
 | **Version Control** | Git |
 | **Documentation** | MkDocs |
 
 ## Design Principles
 
-### 1. Independence
-Labs can fail independently. One broken lab doesn't affect others.
+### 1. Data Independence
+Labs have separate databases and raw data. One lab's data corruption doesn't affect others.
 
-### 2. Reusability
+### 2. Shared Python Environment
+All labs use same venv for consistency and space efficiency (with trade-offs).
+
+### 3. Reusability
 Code written for shared utilities is used by all labs without duplication.
 
-### 3. Scalability
-Adding lab 10 takes same effort as adding lab 2.
+### 4. Scalability
+Adding lab 10 takes same effort as adding lab 2 (but dependency conflicts may limit this).
 
-### 4. Clarity
+### 5. Clarity
 Each lab's purpose is clear. Shared code's purpose is clear.
 
-### 5. Automation
-Manual work is minimized. Bootstrapping and Makefiles handle repetition.
+### 6. Manual Coordination
+Profile switching requires discipline and verification steps.
 
-## Comparison: Before vs After
+## Comparison: Current vs Alternative Architectures
 
-### Before (Before Phase 1)
-- Everything in root or lab1
-- Duplicate code across potential labs
-- Manual setup for each lab
-- Unclear structure
-- Hard to add new labs
+### Current Setup (Single venv)
+✅ Space efficient (one venv)  
+✅ Consistent packages  
+✅ Simple setup  
+❌ Dependency conflicts possible  
+❌ Manual profile switching  
+❌ No concurrent work  
 
-### After Phase 1 (Foundation)
-- Clear shared vs lab-specific separation
-- Reusable utilities
-- Still manual setup
-- But clear structure ready for automation
+### Alternative: Per-Lab venvs
+❌ More disk space  
+❌ More complex setup  
+✅ Complete isolation  
+✅ Different dependencies per lab  
+✅ Automatic profile management  
+✅ Concurrent work safe  
 
-### After Phase 2 (Automation)
-- `make` commands everywhere
-- `./setup_new_lab.sh` creates labs instantly
-- Everything documented
-- Scaling is trivial
+**When to migrate:** See [Current Setup Analysis](current-setup.md)
+
+## Migration Path
+
+### Current State: Phase 1 (Single venv)
+- Shared utilities ✅
+- Central configuration ✅
+- Lab1 working ✅
+- Single venv ✅
+
+### Future: Phase 2 (Optional migration to per-lab venvs)
+When you hit:
+- 3+ labs
+- Dependency conflicts
+- Multiple team members
+- Production requirements
+
+Then consider: Per-lab venvs + automated profile management
 
 ---
 
-See [Multi-Lab Design](multi-lab-design.md) for detailed explanation of how labs interact.
+## See Also
+
+- **[Current Setup Details](current-setup.md)** - Full analysis of single venv approach
+- **[Shared vs Lab-Specific](shared-vs-lab-specific.md)** - What goes where
+- **[Phase 1 Guide](../phases/phase1-foundation.md)** - Implementation details
