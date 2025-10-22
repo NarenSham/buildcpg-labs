@@ -15,6 +15,13 @@ models:
       - name: total_quantity
         description: "Total quantity ordered"
       - name: total_revenue
-        description: "Total revenue"
+        description: "Total sales amount"
+        tests:
+          - not_null
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+          
       - name: avg_order_value
         description: "Average order value"
+        tests:
+          - not_null
