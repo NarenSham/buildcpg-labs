@@ -1,7 +1,8 @@
 site_name: BuildCPG Labs
 site_description: Multi-lab data engineering platform with dbt, DuckDB, and Python
 site_author: narensham
-repo_url: https://github.com/narensham/buildcpg-labs
+site_url: https://narensham.github.io/buildcpg-labs/
+repo_url: https://github.com/narensham/buildcpg-labs/
 repo_name: narensham/buildcpg-labs
 edit_uri: edit/main/docs/
 
