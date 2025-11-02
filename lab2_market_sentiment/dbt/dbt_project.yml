@@ -1,0 +1,51 @@
+name: 'lab2_market_sentiment'
+version: '1.0.0'
+config-version: 2
+profile: 'lab2_market_sentiment'
+
+model-paths: ['models']
+analysis-paths: ['analyses']
+test-paths: ['tests']
+seed-paths: ['seeds']
+macro-paths: ['macros']
+
+target-path: 'target'
+clean-targets: ['target', 'dbt_modules', 'dbt_packages']
+
+vars:
+  sentiment_threshold_positive: 0.5
+  sentiment_threshold_negative: -0.5
+  lookback_days: 90
+
+models:
+  lab2_market_sentiment:
+    staging:
+      +materialized: ephemeral
+      +tags: ['staging', 'daily']
+    
+    intermediate:
+      +materialized: table
+      +tags: ['intermediate', 'daily']
+      +on_schema_change: fail
+    
+    mart:
+      +materialized: table
+      +tags: ['mart', 'daily']
+      
+      fct_sentiment_events:
+        +materialized: incremental
+        +incremental_strategy: 'merge'
+        +unique_id: 'sentiment_event_id'
+        +on_schema_change: fail
+        +contract:
+          enforced: false
+      
+      mart_daily_sentiment:
+        +materialized: incremental
+        +incremental_strategy: 'merge'
+        +unique_id: ['sentiment_date', 'brand']
+        +on_schema_change: fail
+
+tests:
+  lab2_market_sentiment:
+    +store_failures: true

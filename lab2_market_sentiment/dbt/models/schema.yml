@@ -1,0 +1,82 @@
+version: 2
+
+models:
+  - name: fct_sentiment_events
+    description: |
+      **Fact Table: Sentiment Events**
+      Grain: One row per sentiment event (Reddit post or news article)
+      
+      This is the core fact table for all sentiment analysis.
+      Each row represents one piece of content with its sentiment score.
+      
+      **Join Keys:**
+      - brand_key → dim_brands
+      - source_key → dim_source
+      
+      **Used By:**
+      - mart_daily_sentiment
+      - mart_brand_metrics
+      - Streamlit dashboard
+    
+    columns:
+      - name: sentiment_event_id
+        description: Unique surrogate key for this event
+        tests:
+          - not_null
+          - unique
+      
+      - name: brand_key
+        description: Foreign key to brand dimension
+        tests:
+          - not_null
+      
+      - name: sentiment_score
+        description: Sentiment score from -1 (very negative) to 1 (very positive)
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: -1
+              max_value: 1
+      
+      - name: published_date
+        description: Date the content was published
+        tests:
+          - not_null
+      
+      - name: quality_flag
+        description: Data quality assessment
+        tests:
+          - accepted_values:
+              values: ['VALID', 'INVALID_SENTIMENT', 'NULL_HEADLINE']
+  
+  - name: mart_daily_sentiment
+    description: |
+      **Mart: Daily Sentiment Aggregates**
+      Grain: One row per (date, brand)
+      Materialization: Incremental merge
+      
+      Daily aggregates of sentiment metrics by brand.
+      Used for dashboard and trend analysis.
+    
+    tests:
+      - dbt_expectations.expect_composite_columns_to_be_unique:
+          column_name: [sentiment_date, brand]
+    
+    columns:
+      - name: sentiment_date
+        description: Date of aggregation
+        tests:
+          - not_null
+      
+      - name: avg_sentiment
+        description: Average sentiment for the day
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: -1
+              max_value: 1
+      
+      - name: anomaly_flag
+        description: Whether this day's sentiment is statistically anomalous
+        tests:
+          - accepted_values:
+              values: ['NORMAL', 'ANOMALY']
