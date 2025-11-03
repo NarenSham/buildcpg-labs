@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Multi-lab data engineering platform with dbt, DuckDB, and Python">
+        <meta name="description" content="Multi-lab data engineering platform using dbt, DuckDB, and Python">
       
       
         <meta name="author" content="narensham">
@@ -47,8 +47,8 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
     
@@ -69,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="light-blue">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -86,6 +86,10 @@
     <div data-md-component="announce">
       
     </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
     
     
       
@@ -127,13 +131,21 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="light-blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
     
   
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="light-blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
     
   
 </form>
@@ -188,13 +200,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/narensham/buildcpg-labs/" title="Go to repository" class="md-source" data-md-component="source">
+        <a href="https://github.com/NarenSham/buildcpg-labs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
   </div>
   <div class="md-source__repository">
-    narensham/buildcpg-labs
+    NarenSham/buildcpg-labs
   </div>
 </a>
       </div>
@@ -273,12 +285,62 @@
   
     
     
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../labs/lab2-overview/" class="md-tabs__link">
+          
+  
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
       <li class="md-tabs__item">
         <a href="../phases/phase1-foundation/" class="md-tabs__link">
           
   
   
   Phases
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../utilities/overview.md" class="md-tabs__link">
+          
+  
+  
+  Utilities
 
         </a>
       </li>
@@ -364,13 +426,13 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/narensham/buildcpg-labs/" title="Go to repository" class="md-source" data-md-component="source">
+      <a href="https://github.com/NarenSham/buildcpg-labs" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
   </div>
   <div class="md-source__repository">
-    narensham/buildcpg-labs
+    NarenSham/buildcpg-labs
   </div>
 </a>
     </div>
@@ -411,13 +473,17 @@
     
       
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -486,29 +552,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../getting-started/first-lab.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    First Lab
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -528,13 +571,17 @@
     
       
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -668,16 +715,194 @@
     
       
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Labs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Lab 2 - Market Sentiment
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Lab 2 - Market Sentiment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../labs/lab2-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../labs/lab2-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../labs/lab2-quick-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
             
   
   
@@ -690,8 +915,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Phases
           </label>
@@ -709,7 +934,82 @@
   
   
   <span class="md-ellipsis">
-    Phase 1 Foundation
+    Phase 1 - Foundation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Utilities
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Utilities
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../utilities/overview.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
     
   </span>
   
@@ -727,12 +1027,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../phases/phase2-automation.md" class="md-nav__link">
+      <a href="../utilities/data-inspector.md" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Phase 2 Automation
+    Data Inspector
     
   </span>
   
@@ -750,12 +1050,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../phases/phase3-future.md" class="md-nav__link">
+      <a href="../utilities/csv-monitor.md" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Phase 3+ (Future)
+    CSV Monitor
     
   </span>
   
@@ -1528,10 +1828,10 @@
   
 
 
-<h1 id="troubleshooting-guide">Troubleshooting Guide<a class="headerlink" href="#troubleshooting-guide" title="Permanent link">&para;</a></h1>
+<h1 id="troubleshooting-guide">Troubleshooting Guide</h1>
 <p>Solutions to common issues in BuildCPG Labs.</p>
-<h2 id="installation-issues">Installation Issues<a class="headerlink" href="#installation-issues" title="Permanent link">&para;</a></h2>
-<h3 id="python-version-error">Python Version Error<a class="headerlink" href="#python-version-error" title="Permanent link">&para;</a></h3>
+<h2 id="installation-issues">Installation Issues</h2>
+<h3 id="python-version-error">Python Version Error</h3>
 <p><strong>Problem:</strong> <code>python</code> command not found or shows Python 2.x</p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Check available versions</span>
@@ -1542,7 +1842,7 @@ python3<span class="w"> </span>--version
 python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
 python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>pyyaml
 </code></pre></div></p>
-<h3 id="virtual-environment-not-activating">Virtual Environment Not Activating<a class="headerlink" href="#virtual-environment-not-activating" title="Permanent link">&para;</a></h3>
+<h3 id="virtual-environment-not-activating">Virtual Environment Not Activating</h3>
 <p><strong>Problem:</strong> <code>source venv/bin/activate</code> doesn't work on Mac</p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Try full path</span>
@@ -1554,7 +1854,7 @@ python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </s
 <span class="c1"># For Zsh on newer Mac:</span>
 <span class="nb">source</span><span class="w"> </span>venv/bin/activate
 </code></pre></div></p>
-<h3 id="pip-command-not-found">pip: command not found<a class="headerlink" href="#pip-command-not-found" title="Permanent link">&para;</a></h3>
+<h3 id="pip-command-not-found">pip: command not found</h3>
 <p><strong>Problem:</strong> <code>pip install</code> doesn't work</p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Use python -m pip instead</span>
@@ -1563,14 +1863,14 @@ python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </sp
 <span class="c1"># Or upgrade pip</span>
 python<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
 </code></pre></div></p>
-<h3 id="permission-denied-error">Permission Denied Error<a class="headerlink" href="#permission-denied-error" title="Permanent link">&para;</a></h3>
+<h3 id="permission-denied-error">Permission Denied Error</h3>
 <p><strong>Problem:</strong> <code>permission denied: ./setup.sh</code></p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>setup.sh
 ./setup.sh
 </code></pre></div></p>
-<h2 id="dbt-issues">dbt Issues<a class="headerlink" href="#dbt-issues" title="Permanent link">&para;</a></h2>
-<h3 id="dbt-command-not-found">dbt: command not found<a class="headerlink" href="#dbt-command-not-found" title="Permanent link">&para;</a></h3>
+<h2 id="dbt-issues">dbt Issues</h2>
+<h3 id="dbt-command-not-found">dbt: command not found</h3>
 <p><strong>Problem:</strong> <code>dbt run</code> or <code>dbt debug</code> doesn't work</p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Make sure you&#39;re in lab directory</span>
@@ -1585,7 +1885,7 @@ dbt<span class="w"> </span>--version
 <span class="c1"># If still fails, reinstall</span>
 pip<span class="w"> </span>install<span class="w"> </span>dbt-duckdb
 </code></pre></div></p>
-<h3 id="dbt-debug-shows-errors">dbt debug shows errors<a class="headerlink" href="#dbt-debug-shows-errors" title="Permanent link">&para;</a></h3>
+<h3 id="dbt-debug-shows-errors">dbt debug shows errors</h3>
 <p><strong>Problem:</strong> <code>dbt debug</code> fails with configuration errors</p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Check you&#39;re in dbt directory</span>
@@ -1600,7 +1900,7 @@ ls<span class="w"> </span>-la<span class="w"> </span>dbt_project.yml
 <span class="c1"># Run debug again</span>
 dbt<span class="w"> </span>debug
 </code></pre></div></p>
-<h3 id="profile-not-found">Profile not found<a class="headerlink" href="#profile-not-found" title="Permanent link">&para;</a></h3>
+<h3 id="profile-not-found">Profile not found</h3>
 <p><strong>Problem:</strong> <code>Profile 'lab1_duckdb' not found</code></p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Check profiles.yml path</span>
@@ -1612,8 +1912,8 @@ cat<span class="w"> </span>profiles.yml
 
 <span class="c1"># Update dbt_project.yml to point to correct profile</span>
 </code></pre></div></p>
-<h2 id="data-inspector-issues">Data Inspector Issues<a class="headerlink" href="#data-inspector-issues" title="Permanent link">&para;</a></h2>
-<h3 id="modulenotfounderror-no-module-named-shared">ModuleNotFoundError: No module named 'shared'<a class="headerlink" href="#modulenotfounderror-no-module-named-shared" title="Permanent link">&para;</a></h3>
+<h2 id="data-inspector-issues">Data Inspector Issues</h2>
+<h3 id="modulenotfounderror-no-module-named-shared">ModuleNotFoundError: No module named 'shared'</h3>
 <p><strong>Problem:</strong> Python can't find shared utilities</p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Make sure you&#39;re in lab directory</span>
@@ -1626,7 +1926,7 @@ python<span class="w"> </span>scripts/inspect_data.py
 head<span class="w"> </span>-20<span class="w"> </span>scripts/inspect_data.py
 <span class="c1"># Should show: sys.path.insert(0, &#39;../..&#39;)</span>
 </code></pre></div></p>
-<h3 id="filenotfounderror-labs_configyaml">FileNotFoundError: labs_config.yaml<a class="headerlink" href="#filenotfounderror-labs_configyaml" title="Permanent link">&para;</a></h3>
+<h3 id="filenotfounderror-labs_configyaml">FileNotFoundError: labs_config.yaml</h3>
 <p><strong>Problem:</strong> Configuration file not found</p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Check file exists</span>
@@ -1644,7 +1944,7 @@ cat<span class="w"> </span>&gt;<span class="w"> </span>config/labs_config.yaml<s
 <span class="s">    dbt_path: lab1_sales_performance/dbt</span>
 <span class="s">EOF</span>
 </code></pre></div></p>
-<h3 id="database-file-not-found">Database file not found<a class="headerlink" href="#database-file-not-found" title="Permanent link">&para;</a></h3>
+<h3 id="database-file-not-found">Database file not found</h3>
 <p><strong>Problem:</strong> <code>Cannot open file ".../lab1_sales_performance.duckdb"</code></p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Check database exists</span>
@@ -1658,8 +1958,8 @@ dbt<span class="w"> </span>run
 <span class="nb">cd</span><span class="w"> </span>..
 python<span class="w"> </span>scripts/inspect_data.py
 </code></pre></div></p>
-<h2 id="git-issues">Git Issues<a class="headerlink" href="#git-issues" title="Permanent link">&para;</a></h2>
-<h3 id="too-many-loose-objects-in-repository">Too many loose objects in repository<a class="headerlink" href="#too-many-loose-objects-in-repository" title="Permanent link">&para;</a></h3>
+<h2 id="git-issues">Git Issues</h2>
+<h3 id="too-many-loose-objects-in-repository">Too many loose objects in repository</h3>
 <p><strong>Problem:</strong> <code>warning: There are too many unreachable loose objects</code></p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Remove gc.log if it exists</span>
@@ -1671,7 +1971,7 @@ git<span class="w"> </span>prune
 <span class="c1"># Optimize repository</span>
 git<span class="w"> </span>gc<span class="w"> </span>--aggressive
 </code></pre></div></p>
-<h3 id="venv-directory-accidentally-committed">venv directory accidentally committed<a class="headerlink" href="#venv-directory-accidentally-committed" title="Permanent link">&para;</a></h3>
+<h3 id="venv-directory-accidentally-committed">venv directory accidentally committed</h3>
 <p><strong>Problem:</strong> Tried to push and got huge file size</p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Remove from git tracking (keeps files on disk)</span>
@@ -1688,8 +1988,8 @@ git<span class="w"> </span>rm<span class="w"> </span>-r<span class="w"> </span>-
 git<span class="w"> </span>add<span class="w"> </span>.gitignore
 git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Remove build artifacts from git&quot;</span>
 </code></pre></div></p>
-<h2 id="makefile-issues">Makefile Issues<a class="headerlink" href="#makefile-issues" title="Permanent link">&para;</a></h2>
-<h3 id="make-command-not-found">make: command not found<a class="headerlink" href="#make-command-not-found" title="Permanent link">&para;</a></h3>
+<h2 id="makefile-issues">Makefile Issues</h2>
+<h3 id="make-command-not-found">make: command not found</h3>
 <p><strong>Problem:</strong> <code>make</code> is not installed</p>
 <p><strong>Solution (Mac):</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Install Xcode command line tools</span>
@@ -1702,7 +2002,7 @@ brew<span class="w"> </span>install<span class="w"> </span>make
 <div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
 sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>make<span class="w"> </span>build-essential
 </code></pre></div></p>
-<h3 id="tab-indentation-error-in-makefile">Tab indentation error in Makefile<a class="headerlink" href="#tab-indentation-error-in-makefile" title="Permanent link">&para;</a></h3>
+<h3 id="tab-indentation-error-in-makefile">Tab indentation error in Makefile</h3>
 <p><strong>Problem:</strong> <code>missing separator. Stop.</code> when running make</p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Makefiles require TAB indentation, not spaces</span>
@@ -1718,7 +2018,7 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w
 cat<span class="w"> </span>-A<span class="w"> </span>Makefile<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-20
 <span class="c1"># Tabs show as ^I, spaces show as regular spaces</span>
 </code></pre></div></p>
-<h3 id="venv-not-found-when-running-make">venv not found when running make<a class="headerlink" href="#venv-not-found-when-running-make" title="Permanent link">&para;</a></h3>
+<h3 id="venv-not-found-when-running-make">venv not found when running make</h3>
 <p><strong>Problem:</strong> <code>venv/bin/python: No such file or directory</code></p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Run setup first</span>
@@ -1726,8 +2026,8 @@ make<span class="w"> </span>setup
 
 <span class="c1"># This creates venv and installs dependencies</span>
 </code></pre></div></p>
-<h2 id="common-data-issues">Common Data Issues<a class="headerlink" href="#common-data-issues" title="Permanent link">&para;</a></h2>
-<h3 id="no-schemas-in-database">No schemas in database<a class="headerlink" href="#no-schemas-in-database" title="Permanent link">&para;</a></h3>
+<h2 id="common-data-issues">Common Data Issues</h2>
+<h3 id="no-schemas-in-database">No schemas in database</h3>
 <p><strong>Problem:</strong> <code>inspect_data.py</code> shows only 'main' and 'information_schema'</p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Tables haven&#39;t been created yet</span>
@@ -1739,7 +2039,7 @@ dbt<span class="w"> </span>run
 <span class="nb">cd</span><span class="w"> </span>..
 python<span class="w"> </span>scripts/inspect_data.py
 </code></pre></div></p>
-<h3 id="quality-score-shows-0">Quality score shows 0%<a class="headerlink" href="#quality-score-shows-0" title="Permanent link">&para;</a></h3>
+<h3 id="quality-score-shows-0">Quality score shows 0%</h3>
 <p><strong>Problem:</strong> <code>get_quality_score</code> returns 0 even with good data</p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># Check table has rows</span>
@@ -1756,7 +2056,7 @@ python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;<
 <span class="nb">cd</span><span class="w"> </span>dbt
 dbt<span class="w"> </span>run
 </code></pre></div></p>
-<h3 id="csv-says-no-new-data-but-file-was-updated">CSV says "no new data" but file was updated<a class="headerlink" href="#csv-says-no-new-data-but-file-was-updated" title="Permanent link">&para;</a></h3>
+<h3 id="csv-says-no-new-data-but-file-was-updated">CSV says "no new data" but file was updated</h3>
 <p><strong>Problem:</strong> <code>check_for_new_data.py</code> doesn't detect changes</p>
 <p><strong>Solution:</strong>
 <div class="highlight"><pre><span></span><code><span class="c1"># State file might be outdated</span>
@@ -1767,8 +2067,8 @@ rm<span class="w"> </span>lab1_sales_performance/.csv_state.json
 <span class="nb">cd</span><span class="w"> </span>lab1_sales_performance
 python<span class="w"> </span>scripts/check_for_new_data.py
 </code></pre></div></p>
-<h2 id="getting-help">Getting Help<a class="headerlink" href="#getting-help" title="Permanent link">&para;</a></h2>
-<h3 id="enable-debug-logging">Enable Debug Logging<a class="headerlink" href="#enable-debug-logging" title="Permanent link">&para;</a></h3>
+<h2 id="getting-help">Getting Help</h2>
+<h3 id="enable-debug-logging">Enable Debug Logging</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># For dbt:</span>
 dbt<span class="w"> </span>run<span class="w"> </span>--debug
 
@@ -1777,28 +2077,28 @@ dbt<span class="w"> </span>run<span class="w"> </span>--debug
 import<span class="w"> </span>logging
 logging.basicConfig<span class="o">(</span><span class="nv">level</span><span class="o">=</span>logging.DEBUG<span class="o">)</span>
 </code></pre></div>
-<h3 id="check-file-permissions">Check File Permissions<a class="headerlink" href="#check-file-permissions" title="Permanent link">&para;</a></h3>
+<h3 id="check-file-permissions">Check File Permissions</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># Verify script is executable</span>
 ls<span class="w"> </span>-la<span class="w"> </span>scripts/inspect_data.py
 
 <span class="c1"># Make executable if needed</span>
 chmod<span class="w"> </span>+x<span class="w"> </span>scripts/inspect_data.py
 </code></pre></div>
-<h3 id="verify-directory-structure">Verify Directory Structure<a class="headerlink" href="#verify-directory-structure" title="Permanent link">&para;</a></h3>
+<h3 id="verify-directory-structure">Verify Directory Structure</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># From buildcpg-labs root:</span>
 tree<span class="w"> </span>-L<span class="w"> </span><span class="m">2</span><span class="w"> </span>-I<span class="w"> </span><span class="s1">&#39;__pycache__|*.pyc|venv&#39;</span>
 
 <span class="c1"># Or list key files:</span>
 find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;dbt_project.yml&quot;</span><span class="w"> </span>-o<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;labs_config.yaml&quot;</span><span class="w"> </span>-o<span class="w"> </span>-name<span class="w"> </span><span class="s2">&quot;Makefile&quot;</span>
 </code></pre></div>
-<h3 id="check-disk-space">Check Disk Space<a class="headerlink" href="#check-disk-space" title="Permanent link">&para;</a></h3>
+<h3 id="check-disk-space">Check Disk Space</h3>
 <div class="highlight"><pre><span></span><code><span class="c1"># Verify you have space</span>
 df<span class="w"> </span>-h
 
 <span class="c1"># Check database size</span>
 du<span class="w"> </span>-sh<span class="w"> </span>lab1_sales_performance/data/
 </code></pre></div>
-<h2 id="still-stuck">Still Stuck?<a class="headerlink" href="#still-stuck" title="Permanent link">&para;</a></h2>
+<h2 id="still-stuck">Still Stuck?</h2>
 <ol>
 <li>Check <a href="../faq/">FAQ</a> for common questions</li>
 <li>Review <a href="../getting-started/quick-start/">Quick Start</a></li>
@@ -1813,6 +2113,38 @@ du<span class="w"> </span>-sh<span class="w"> </span>lab1_sales_performance/data
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 20, 2025 03:25:49 UTC">October 20, 2025</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 20, 2025 03:25:49 UTC">October 20, 2025</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -1823,6 +2155,8 @@ du<span class="w"> </span>-sh<span class="w"> </span>lab1_sales_performance/data
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -1840,10 +2174,30 @@ du<span class="w"> </span>-sh<span class="w"> </span>lab1_sales_performance/data
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
   
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 narensham
+    </div>
+  
   
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/NarenSham/buildcpg-labs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
 </div>
@@ -1860,7 +2214,7 @@ du<span class="w"> </span>-sh<span class="w"> </span>lab1_sales_performance/data
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>

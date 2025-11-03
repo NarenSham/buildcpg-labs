@@ -36,3 +36,18 @@ https://docs.getdbt.com/docs/configure-your-profile
 [0m23:14:06.189172 [debug] [MainThread]: Command `dbt debug` failed at 23:14:06.188655 after 0.05 seconds
 [0m23:14:06.190088 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10d535b50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10fbf9550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10fb0ab90>]}
 [0m23:14:06.190778 [debug] [MainThread]: Flushing usage events
+[0m18:51:02.776170 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a1e9c50>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a562790>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a562650>]}
+
+
+============================== 18:51:02.782201 | 93084464-fc03-4587-bf96-f7d363860ac2 ==============================
+[0m18:51:02.782201 [info ] [MainThread]: Running with dbt=1.7.0
+[0m18:51:02.783100 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'fail_fast': 'False', 'profiles_dir': '/Users/narensham/.dbt', 'log_path': 'logs', 'debug': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'invocation_command': 'dbt deps', 'introspect': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m18:51:02.784248 [error] [MainThread]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /Users/narensham/Documents/Projects/Cursor/buildcpg-labs/lab2_market_sentiment/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m18:51:02.785948 [debug] [MainThread]: Resource report: {"command_name": "deps", "command_wall_clock_time": 0.07810496, "process_user_time": 2.627167, "process_kernel_time": 0.251337, "process_mem_max_rss": "115843072", "command_success": false, "process_in_blocks": "0", "process_out_blocks": "0"}
+[0m18:51:02.786705 [debug] [MainThread]: Command `dbt deps` failed at 18:51:02.786480 after 0.08 seconds
+[0m18:51:02.787301 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a5c3e10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x1058be010>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x10a209790>]}
+[0m18:51:02.788021 [debug] [MainThread]: Flushing usage events

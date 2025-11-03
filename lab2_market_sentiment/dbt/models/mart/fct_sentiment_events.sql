@@ -1,30 +1,52 @@
 {{ config(
-    materialized='incremental',
-    unique_id='sentiment_event_id',
-    incremental_strategy='merge',
-    tags=['mart', 'facts'],
-    description='Fact table: One row per sentiment event',
-    contract={
-        'enforced': True,
-        'columns': [
-            {'name': 'sentiment_event_id', 'data_type': 'string', 'constraints': ['not_null', 'unique']},
-            {'name': 'brand_key', 'data_type': 'string', 'constraints': ['not_null']},
-            {'name': 'source_key', 'data_type': 'int64'},
-            {'name': 'sentiment_score', 'data_type': 'double', 'constraints': ['not_null']},
-        ]
-    }
+  materialized='incremental',
+  unique_key='sentiment_event_id',
+  tags=['mart', 'facts'],
+  description='Fact table: One row per sentiment event',
+  incremental_strategy='delete+insert'
 ) }}
 
+WITH base_data AS (
+    SELECT
+        sentiment_event_id,
+        brand_key,
+        source_key,
+        content_id,
+        creator,
+        brand,
+        headline,
+        body_text,
+        engagement_count,
+        sentiment_score,
+        sentiment_category,
+        published_at,
+        source,
+        ingested_at,
+        
+        -- Quality tracking (calculate here so we can filter on it)
+        CASE 
+            WHEN NOT {{ validate_sentiment('sentiment_score') }} THEN 'INVALID_SENTIMENT'
+            WHEN headline IS NULL THEN 'NULL_HEADLINE'
+            ELSE 'VALID'
+        END as quality_flag
+        
+    FROM {{ ref('int_sentiment_unified') }}
+    
+    {% if is_incremental() %}
+    WHERE published_at > (SELECT MAX(published_at) FROM {{ this }})
+    {% endif %}
+)
+
 SELECT
-    sentiment_event_id,
+    CAST(sentiment_event_id AS VARCHAR) as sentiment_event_id,
     brand_key,
-    source_key,
+    CAST(source_key AS INTEGER) as source_key,
     content_id,
     creator,
     brand,
     headline,
     body_text,
-    engagement_count,
+    CAST(engagement_count AS BIGINT) as engagement_count,  -- Changed to BIGINT
     sentiment_score,
     sentiment_category,
     published_at,
@@ -33,28 +55,16 @@ SELECT
     
     -- Date components for easy filtering
     CAST(published_at AS DATE) as published_date,
-    EXTRACT(YEAR FROM published_at) as published_year,
-    EXTRACT(MONTH FROM published_at) as published_month,
-    EXTRACT(DAYOFWEEK FROM published_at) as published_day_of_week,
-    EXTRACT(HOUR FROM published_at) as published_hour,
+    CAST(EXTRACT(YEAR FROM published_at) AS BIGINT) as published_year,      -- Changed to BIGINT
+    CAST(EXTRACT(MONTH FROM published_at) AS BIGINT) as published_month,    -- Changed to BIGINT
+    CAST(EXTRACT(DAYOFWEEK FROM published_at) AS BIGINT) as published_day_of_week,  -- Changed to BIGINT
+    CAST(EXTRACT(HOUR FROM published_at) AS BIGINT) as published_hour,      -- Changed to BIGINT
     
-    -- Quality tracking
-    CASE 
-        WHEN NOT {{ validate_sentiment('sentiment_score') }} THEN 'INVALID_SENTIMENT'
-        WHEN headline IS NULL THEN 'NULL_HEADLINE'
-        ELSE 'VALID'
-    END as quality_flag,
+    quality_flag,
     
     -- Metadata
     get_current_timestamp() as _dbt_updated_at,
     '{{ run_started_at }}' as _dbt_run_timestamp
 
-FROM {{ ref('int_sentiment_unified') }}
-
-{% if execute %}
-    {% if this.exists %}
-        WHERE published_at > (SELECT MAX(published_at) FROM {{ this }})
-    {% endif %}
-{% endif %}
-
+FROM base_data
 WHERE quality_flag = 'VALID'

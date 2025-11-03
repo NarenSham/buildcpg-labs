@@ -1,6 +1,7 @@
 {{ config(
     materialized='incremental',
     unique_id=['sentiment_date', 'brand'],
+    on_schema_change='append_new_columns',
     incremental_strategy='merge',
     tags=['mart', 'daily'],
     description='Daily sentiment aggregates by brand'

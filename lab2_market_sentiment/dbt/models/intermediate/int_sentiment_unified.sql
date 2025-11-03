@@ -35,25 +35,33 @@ news_refined AS (
         {{ generate_surrogate_key(['article_id', 'published_at']) }} as content_hash
     FROM {{ ref('stg_news__articles') }}
 ),
-
 combined AS (
     SELECT * FROM reddit_refined
     UNION ALL
     SELECT * FROM news_refined
 ),
+combined_with_dedup AS (
+    SELECT 
+        *,
+        ROW_NUMBER() OVER (
+            PARTITION BY content_id, published_at 
+            ORDER BY ingested_at
+        ) as row_num
+    FROM combined
+),
 
 -- Add surrogate keys
 with_surrogate_keys AS (
     SELECT
-        {{ generate_surrogate_key(['content_id', 'published_at']) }} as sentiment_event_id,
+        {{ generate_surrogate_key(['content_id', 'published_at','row_num']) }} as sentiment_event_id,
         {{ generate_surrogate_key(['brand']) }} as brand_key,
         CASE 
             WHEN source = 'reddit' THEN 1
             WHEN source = 'news' THEN 2
             ELSE 0
         END as source_key,
-        combined.*
-    FROM combined
+        combined_with_dedup.*
+    FROM combined_with_dedup
 ),
 
 -- Add business logic

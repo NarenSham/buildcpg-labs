@@ -17,38 +17,114 @@ models:
       - mart_daily_sentiment
       - mart_brand_metrics
       - Streamlit dashboard
-    
+
+    contract:
+      enforced: true
+
     columns:
       - name: sentiment_event_id
         description: Unique surrogate key for this event
+        data_type: varchar
         tests:
           - not_null
           - unique
-      
+
       - name: brand_key
         description: Foreign key to brand dimension
+        data_type: varchar
         tests:
           - not_null
-      
+
       - name: sentiment_score
         description: Sentiment score from -1 (very negative) to 1 (very positive)
+        data_type: double
         tests:
           - not_null
           - dbt_expectations.expect_column_values_to_be_between:
               min_value: -1
               max_value: 1
-      
+
       - name: published_date
         description: Date the content was published
+        data_type: date
         tests:
           - not_null
-      
+
       - name: quality_flag
         description: Data quality assessment
+        data_type: varchar
         tests:
           - accepted_values:
               values: ['VALID', 'INVALID_SENTIMENT', 'NULL_HEADLINE']
-  
+
+      - name: _dbt_run_timestamp
+        data_type: varchar
+        description: Internal dbt run timestamp
+
+      - name: _dbt_updated_at
+        data_type: timestamp with time zone
+        description: Internal dbt update timestamp
+
+      - name: body_text
+        data_type: varchar
+        description: Full text of the Reddit post or news article
+
+      - name: brand
+        data_type: varchar
+        description: Brand mentioned in the content
+
+      - name: content_id
+        data_type: varchar
+        description: Source-specific content ID
+
+      - name: creator
+        data_type: varchar
+        description: Username or author
+
+      - name: engagement_count
+        data_type: bigint
+        description: Number of upvotes, likes, or shares
+
+      - name: headline
+        data_type: varchar
+        description: Headline text (if applicable)
+
+      - name: ingested_at
+        data_type: timestamp
+        description: Time when the data was ingested
+
+      - name: published_at
+        data_type: timestamp
+        description: Original publish timestamp
+
+      - name: published_day_of_week
+        data_type: bigint
+        description: Day of the week (0=Monday)
+
+      - name: published_hour
+        data_type: bigint
+        description: Hour of publication
+
+      - name: published_month
+        data_type: bigint
+        description: Month of publication
+
+      - name: published_year
+        data_type: bigint
+        description: Year of publication
+
+      - name: sentiment_category
+        data_type: varchar
+        description: Text category of sentiment (Positive/Negative/Neutral)
+
+      - name: source
+        data_type: varchar
+        description: Source platform (e.g., Reddit, NewsAPI)
+
+      - name: source_key
+        data_type: integer
+        description: Foreign key to source dimension
+
   - name: mart_daily_sentiment
     description: |
       **Mart: Daily Sentiment Aggregates**
@@ -57,26 +133,88 @@ models:
       
       Daily aggregates of sentiment metrics by brand.
       Used for dashboard and trend analysis.
-    
+
+    contract:
+      enforced: true
+
     tests:
-      - dbt_expectations.expect_composite_columns_to_be_unique:
-          column_name: [sentiment_date, brand]
-    
+      - dbt_expectations.expect_compound_columns_to_be_unique:
+          column_list: ["sentiment_date", "brand"]
+
     columns:
       - name: sentiment_date
         description: Date of aggregation
+        data_type: date
         tests:
           - not_null
-      
+
+      - name: brand
+        description: Brand name
+        data_type: varchar
+
       - name: avg_sentiment
         description: Average sentiment for the day
+        data_type: double
         tests:
           - dbt_expectations.expect_column_values_to_be_between:
               min_value: -1
               max_value: 1
-      
+
+      - name: min_sentiment
+        description: Minimum sentiment score
+        data_type: double
+
+      - name: max_sentiment
+        description: Maximum sentiment score
+        data_type: double
+
+      - name: stddev_sentiment
+        description: Standard deviation of sentiment
+        data_type: double
+
+      - name: content_count
+        description: Number of content pieces
+        data_type: bigint
+
+      - name: positive_count
+        description: Count of positive sentiment
+        data_type: bigint
+
+      - name: negative_count
+        description: Count of negative sentiment
+        data_type: bigint
+
+      - name: neutral_count
+        description: Count of neutral sentiment
+        data_type: bigint
+
+      - name: positive_ratio
+        description: Ratio of positive content
+        data_type: double
+
+      - name: total_engagement
+        description: Total engagement count
+        data_type: hugeint
+
+      - name: avg_engagement
+        description: Average engagement
+        data_type: double
+
+      - name: source_count
+        description: Number of unique sources
+        data_type: bigint
+
+      - name: z_score_sentiment
+        description: Z-score for anomaly detection
+        data_type: double
+
       - name: anomaly_flag
         description: Whether this day's sentiment is statistically anomalous
+        data_type: varchar
         tests:
           - accepted_values:
               values: ['NORMAL', 'ANOMALY']
+
+      - name: mart_load_date
+        description: Date the mart was loaded
+        data_type: timestamp with time zone

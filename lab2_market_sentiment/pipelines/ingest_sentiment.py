@@ -55,7 +55,7 @@ def generate_news_data(n_records=300):
         "article_id": [f"news_{i:05d}" for i in range(n_records)],
         "publication": np.random.choice(publications, n_records),
         "brand": np.random.choice(brands, n_records),
-        "headline": [f"News: {brand} announces new product" for brand in np.random.choice(brands, n_records)],
+        "headline": [f"News: {brand} announces new product {i}" for i, brand in enumerate(np.random.choice(brands, n_records))],
         "body": [f"Article content about CPG market #{i}" for i in range(n_records)],
         "url": [f"https://example.com/article-{i}" for i in range(n_records)],
         "published_at": [
