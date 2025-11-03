@@ -4,6 +4,8 @@
 venv/
 */.venv/
 lab2_market_sentiment/lab2_env/	
+lab2_market_sentiment/lab2_env
+*/lab2_env/
 
 # Python
 __pycache__/
