@@ -1,73 +1,167 @@
 site_name: BuildCPG Labs
-site_description: Multi-lab data engineering platform with dbt, DuckDB, and Python
+site_description: Multi-lab data engineering platform using dbt, DuckDB, and Python
 site_author: narensham
-site_url: https://narensham.github.io/buildcpg-labs/
-repo_url: https://github.com/narensham/buildcpg-labs/
-repo_name: narensham/buildcpg-labs
+site_url: https://narensham.github.io/buildcpg-labs
+
+repo_name: NarenSham/buildcpg-labs
+repo_url: https://github.com/NarenSham/buildcpg-labs
 edit_uri: edit/main/docs/
 
 theme:
   name: material
-  features:
-    - navigation.instant
-    - navigation.tabs
-    - navigation.sections
-    - search.suggest
-    - search.highlight
-    - content.code.copy
-    - content.tabs.link
   palette:
-    - scheme: default
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: indigo
-      accent: light blue
-    - scheme: slate
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
       primary: indigo
-      accent: light blue
-  font:
-    text: "Inter"
-    code: "JetBrains Mono"
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  
   features:
-    - content.code.copy
     - navigation.tabs
     - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
     - navigation.top
+    - navigation.tracking
+    - navigation.instant
     - search.suggest
     - search.highlight
+    - search.share
+    - content.tabs.link
+    - content.code.annotation
+    - content.code.copy
+    - content.tooltips
+  
+  icon:
+    repo: fontawesome/brands/github
+  
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+plugins:
+  - search:
+      lang: en
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: timeago
 
 markdown_extensions:
+  # Mermaid diagrams - CRITICAL for diagram rendering
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  
+  # Code highlighting
   - pymdownx.highlight:
-      use_pygments: true
-  - pymdownx.superfences
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  
+  # Tabbed content
   - pymdownx.tabbed:
       alternate_style: true
-  - admonition
+  
+  # Additional features
   - pymdownx.details
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  
+  # Emoji support
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  
+  # Admonitions (callouts)
+  - admonition
+  
+  # Attributes and metadata
+  - attr_list
+  - md_in_html
+  - def_list
+  
+  # Tables
+  - tables
+  
+  # Table of contents
   - toc:
       permalink: true
+      toc_depth: 3
+  
+  # Footnotes
+  - footnotes
+  
+  # Abbreviations
+  - abbr
+
+# Mermaid JavaScript initialization
+extra_javascript:
+  - https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js
+  - javascripts/mermaid-init.js
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/NarenSham/buildcpg-labs
+    - icon: fontawesome/brands/python
+      link: https://www.python.org
+  
+  version:
+    provider: mike
+  
+  analytics:
+    provider: google
+    property: !ENV GOOGLE_ANALYTICS_KEY
 
 nav:
   - Home: index.md
+  
   - Getting Started:
       - Quick Start: getting-started/quick-start.md
       - Installation: getting-started/installation.md
-      - First Lab: getting-started/first-lab.md
+  
   - Architecture:
       - Overview: architecture/overview.md
       - Multi-Lab Design: architecture/multi-lab-design.md
       - Medallion Architecture: architecture/medallion-architecture.md
       - Shared vs Lab-Specific: architecture/shared-vs-lab-specific.md
+  
+  - Labs:
+    - Lab 2 - Market Sentiment:
+        - Overview: labs/lab2-overview.md
+        - Setup Guide: labs/lab2-setup.md
+        - Data Models: labs/lab2-data-models.md
+        - Troubleshooting: labs/lab2-troubleshooting.md
+        - Quick Reference: labs/lab2-quick-reference.md
+
   - Phases:
-      - Phase 1 Foundation: phases/phase1-foundation.md
-      - Phase 2 Automation: phases/phase2-automation.md
-      - Phase 3+ (Future): phases/phase3-future.md
-  # - Working with Labs:
-  #     - Using Makefile: labs/using-makefile.md
-  #     - Creating New Lab: labs/creating-new-lab.md
-  #     - Lab Structure: labs/lab-structure.md
-  #     - Data Inspector: labs/data-inspector.md
-  # - Shared Utilities:
-  #     - DataInspector: utilities/data-inspector.md
-  #     - CSVMonitor: utilities/csv-monitor.md
-  #     - Config Paths: utilities/config-paths.md
+      - Phase 1 - Foundation: phases/phase1-foundation.md
+  
+  
   - Troubleshooting: troubleshooting.md
   - FAQ: faq.md
+
+copyright: Copyright &copy; 2025 narensham
