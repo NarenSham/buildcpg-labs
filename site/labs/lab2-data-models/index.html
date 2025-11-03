@@ -1,0 +1,3196 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Multi-lab data engineering platform using dbt, DuckDB, and Python">
+      
+      
+        <meta name="author" content="narensham">
+      
+      
+        <link rel="canonical" href="https://narensham.github.io/buildcpg-labs/labs/lab2-data-models/">
+      
+      
+        <link rel="prev" href="../lab2-setup/">
+      
+      
+        <link rel="next" href="../lab2-troubleshooting/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Data Models - BuildCPG Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#lab-2-data-models-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="BuildCPG Labs" class="md-header__button md-logo" aria-label="BuildCPG Labs" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            BuildCPG Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data Models
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../getting-started/quick-start/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../architecture/overview/" class="md-tabs__link">
+          
+  
+  
+  Architecture
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../lab2-overview/" class="md-tabs__link">
+          
+  
+  
+  Labs
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../phases/phase1-foundation/" class="md-tabs__link">
+          
+  
+  
+  Phases
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../troubleshooting/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Troubleshooting
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../faq/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  FAQ
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="BuildCPG Labs" class="md-nav__button md-logo" aria-label="BuildCPG Labs" data-md-component="logo">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    BuildCPG Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Getting Started
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Getting Started
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Start
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Architecture
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/multi-lab-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multi-Lab Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/medallion-architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Medallion Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/shared-vs-lab-specific/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shared vs Lab-Specific
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Labs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Labs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Lab 2 - Market Sentiment
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Lab 2 - Market Sentiment
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Data Models
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Models
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#model-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Hierarchy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#staging-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Staging Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Staging Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stg_reddit__posts" class="md-nav__link">
+    <span class="md-ellipsis">
+      stg_reddit__posts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stg_news__articles" class="md-nav__link">
+    <span class="md-ellipsis">
+      stg_news__articles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intermediate-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intermediate Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Intermediate Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#int_sentiment_unified" class="md-nav__link">
+    <span class="md-ellipsis">
+      int_sentiment_unified
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mart-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mart Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mart Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fct_sentiment_events" class="md-nav__link">
+    <span class="md-ellipsis">
+      fct_sentiment_events
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mart_daily_sentiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      mart_daily_sentiment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Macros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Macros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate_surrogate_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_surrogate_key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_sentiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_sentiment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_current_timestamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_current_timestamp
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-lineage-complete-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Lineage Complete View
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-execution-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Execution Order
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Statistics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-performance-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Performance Tips
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Query Performance Tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optimize-staging-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimize Staging Queries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leverage-incremental-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Leverage Incremental Models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-aggregates-for-dashboards" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Aggregates for Dashboards
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-quality-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Quality Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Relationships
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sentiment-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sentiment Distribution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related Documentation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2-quick-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Phases
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Phases
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../phases/phase1-foundation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Phase 1 - Foundation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#model-hierarchy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Hierarchy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#staging-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Staging Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Staging Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stg_reddit__posts" class="md-nav__link">
+    <span class="md-ellipsis">
+      stg_reddit__posts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stg_news__articles" class="md-nav__link">
+    <span class="md-ellipsis">
+      stg_news__articles
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intermediate-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intermediate Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Intermediate Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#int_sentiment_unified" class="md-nav__link">
+    <span class="md-ellipsis">
+      int_sentiment_unified
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mart-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mart Layer
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mart Layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fct_sentiment_events" class="md-nav__link">
+    <span class="md-ellipsis">
+      fct_sentiment_events
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mart_daily_sentiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      mart_daily_sentiment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Macros
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Macros">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generate_surrogate_key" class="md-nav__link">
+    <span class="md-ellipsis">
+      generate_surrogate_key
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validate_sentiment" class="md-nav__link">
+    <span class="md-ellipsis">
+      validate_sentiment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_current_timestamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_current_timestamp
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-lineage-complete-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Lineage Complete View
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-execution-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Execution Order
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-statistics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Statistics
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-performance-tips" class="md-nav__link">
+    <span class="md-ellipsis">
+      Query Performance Tips
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Query Performance Tips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optimize-staging-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimize Staging Queries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#leverage-incremental-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Leverage Incremental Models
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-aggregates-for-dashboards" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Aggregates for Dashboards
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-quality-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Quality Summary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model Relationships
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sentiment-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sentiment Distribution
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related Documentation
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="lab-2-data-models-reference">Lab 2: Data Models Reference<a class="headerlink" href="#lab-2-data-models-reference" title="Permanent link">&para;</a></h1>
+<p>Complete reference for all data models in the Market Sentiment Analysis lab with schemas, lineage, and examples.</p>
+<h2 id="model-hierarchy">Model Hierarchy<a class="headerlink" href="#model-hierarchy" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>graph TB
+    subgraph "Data Sources"
+        A[reddit_real.csv]
+        B[news_real.csv]
+    end
+
+    subgraph "Staging Layer"
+        C[stg_reddit__posts]
+        D[stg_news__articles]
+    end
+
+    subgraph "Intermediate Layer"
+        E[int_sentiment_unified]
+    end
+
+    subgraph "Mart Layer"
+        F[fct_sentiment_events]
+        G[mart_daily_sentiment]
+    end
+
+    A --&gt; C
+    B --&gt; D
+    C --&gt; E
+    D --&gt; E
+    E --&gt; F
+    F --&gt; G
+
+    style A fill:#fee2e2,stroke:#dc2626
+    style B fill:#fee2e2,stroke:#dc2626
+    style C fill:#dbeafe,stroke:#2563eb
+    style D fill:#dbeafe,stroke:#2563eb
+    style E fill:#fef3c7,stroke:#f59e0b
+    style F fill:#dcfce7,stroke:#16a34a
+    style G fill:#dcfce7,stroke:#16a34a</code></pre>
+<h2 id="architecture-overview">Architecture Overview<a class="headerlink" href="#architecture-overview" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart LR
+    subgraph Sources
+        R[Reddit API&lt;br/&gt;~500 records]
+        N[News API&lt;br/&gt;~300 records]
+    end
+
+    subgraph Bronze["Bronze Layer (Staging)"]
+        SR[stg_reddit__posts&lt;br/&gt;VIEW]
+        SN[stg_news__articles&lt;br/&gt;VIEW]
+    end
+
+    subgraph Silver["Silver Layer (Intermediate)"]
+        IU[int_sentiment_unified&lt;br/&gt;TABLE&lt;br/&gt;800 rows]
+    end
+
+    subgraph Gold["Gold Layer (Marts)"]
+        FCT[fct_sentiment_events&lt;br/&gt;INCREMENTAL&lt;br/&gt;Fact Table]
+        MART[mart_daily_sentiment&lt;br/&gt;INCREMENTAL&lt;br/&gt;Aggregate]
+    end
+
+    R --&gt;|CSV| SR
+    N --&gt;|CSV| SN
+    SR --&gt; IU
+    SN --&gt; IU
+    IU --&gt; FCT
+    FCT --&gt; MART
+
+    style Sources fill:#fef3c7
+    style Bronze fill:#dbeafe
+    style Silver fill:#fef9c3
+    style Gold fill:#dcfce7</code></pre>
+<hr />
+<h2 id="staging-layer">Staging Layer<a class="headerlink" href="#staging-layer" title="Permanent link">&para;</a></h2>
+<h3 id="stg_reddit__posts">stg_reddit__posts<a class="headerlink" href="#stg_reddit__posts" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Clean and standardize Reddit post data from raw CSV files.</p>
+<p><strong>Materialization:</strong> View (real-time freshness)</p>
+<p><strong>Source:</strong> <code>data/raw/reddit_real.csv</code></p>
+<p><strong>Transformations:</strong>
+- Column renaming to snake_case
+- Type casting for proper data types
+- Timestamp parsing and validation
+- Basic null handling</p>
+<pre class="mermaid"><code>graph LR
+    A[reddit_real.csv] --&gt; B[Column Rename]
+    B --&gt; C[Type Casting]
+    C --&gt; D[Timestamp Parse]
+    D --&gt; E[stg_reddit__posts]
+
+    style A fill:#fee2e2
+    style E fill:#dbeafe</code></pre>
+<p><strong>Schema:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>post_id</td>
+<td>VARCHAR</td>
+<td>No</td>
+<td>Unique Reddit post identifier</td>
+<td><code>reddit_00042</code></td>
+</tr>
+<tr>
+<td>author</td>
+<td>VARCHAR</td>
+<td>Yes</td>
+<td>Reddit username</td>
+<td><code>user_5234</code></td>
+</tr>
+<tr>
+<td>brand</td>
+<td>VARCHAR</td>
+<td>No</td>
+<td>Brand mentioned</td>
+<td><code>Coca-Cola</code></td>
+</tr>
+<tr>
+<td>title</td>
+<td>VARCHAR</td>
+<td>Yes</td>
+<td>Post title</td>
+<td><code>Post about brand 42</code></td>
+</tr>
+<tr>
+<td>body</td>
+<td>VARCHAR</td>
+<td>Yes</td>
+<td>Post body text</td>
+<td><code>Discussion about CPG...</code></td>
+</tr>
+<tr>
+<td>upvotes</td>
+<td>BIGINT</td>
+<td>Yes</td>
+<td>Number of upvotes</td>
+<td><code>3452</code></td>
+</tr>
+<tr>
+<td>comments_count</td>
+<td>BIGINT</td>
+<td>Yes</td>
+<td>Number of comments</td>
+<td><code>127</code></td>
+</tr>
+<tr>
+<td>created_at</td>
+<td>TIMESTAMP</td>
+<td>No</td>
+<td>Post creation time</td>
+<td><code>2024-11-15 14:23:11</code></td>
+</tr>
+<tr>
+<td>sentiment_score</td>
+<td>DOUBLE</td>
+<td>No</td>
+<td>Sentiment (-1 to 1)</td>
+<td><code>0.435</code></td>
+</tr>
+<tr>
+<td>source</td>
+<td>VARCHAR</td>
+<td>No</td>
+<td>Always 'reddit'</td>
+<td><code>reddit</code></td>
+</tr>
+<tr>
+<td>ingested_at</td>
+<td>TIMESTAMP</td>
+<td>No</td>
+<td>Ingestion timestamp</td>
+<td><code>2025-01-15 10:30:00</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Row Count:</strong> ~500 records</p>
+<p><strong>Sample SQL:</strong>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">-- View Reddit sentiment by brand</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">SELECT</span><span class="w"> </span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">brand</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">post_count</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_sentiment</span><span class="p">,</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="n">upvotes</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_upvotes</span><span class="p">,</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="n">comments_count</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_comments</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;stg_reddit__posts&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">brand</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">avg_sentiment</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</span></code></pre></div></p>
+<p><strong>Quality Checks:</strong>
+- No NULL post_ids
+- Valid timestamps (not future dates)
+- Sentiment scores in valid range</p>
+<hr />
+<h3 id="stg_news__articles">stg_news__articles<a class="headerlink" href="#stg_news__articles" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Clean and standardize news article data from raw CSV files.</p>
+<p><strong>Materialization:</strong> View (real-time freshness)</p>
+<p><strong>Source:</strong> <code>data/raw/news_real.csv</code></p>
+<p><strong>Transformations:</strong>
+- Column renaming to snake_case
+- Type casting for proper data types
+- URL validation
+- Timestamp parsing</p>
+<pre class="mermaid"><code>graph LR
+    A[news_real.csv] --&gt; B[Column Rename]
+    B --&gt; C[Type Casting]
+    C --&gt; D[URL Validate]
+    D --&gt; E[Timestamp Parse]
+    E --&gt; F[stg_news__articles]
+
+    style A fill:#fee2e2
+    style F fill:#dbeafe</code></pre>
+<p><strong>Schema:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Nullable</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>article_id</td>
+<td>VARCHAR</td>
+<td>No</td>
+<td>Unique article identifier</td>
+<td><code>news_00123</code></td>
+</tr>
+<tr>
+<td>publication</td>
+<td>VARCHAR</td>
+<td>Yes</td>
+<td>News source</td>
+<td><code>Forbes</code></td>
+</tr>
+<tr>
+<td>brand</td>
+<td>VARCHAR</td>
+<td>No</td>
+<td>Brand mentioned</td>
+<td><code>PepsiCo</code></td>
+</tr>
+<tr>
+<td>headline</td>
+<td>VARCHAR</td>
+<td>Yes</td>
+<td>Article headline</td>
+<td><code>News: PepsiCo announces...</code></td>
+</tr>
+<tr>
+<td>body</td>
+<td>VARCHAR</td>
+<td>Yes</td>
+<td>Article body</td>
+<td><code>Article content...</code></td>
+</tr>
+<tr>
+<td>url</td>
+<td>VARCHAR</td>
+<td>Yes</td>
+<td>Article URL</td>
+<td><code>https://example.com/article-123</code></td>
+</tr>
+<tr>
+<td>published_at</td>
+<td>TIMESTAMP</td>
+<td>No</td>
+<td>Publication time</td>
+<td><code>2024-12-01 09:15:00</code></td>
+</tr>
+<tr>
+<td>sentiment_score</td>
+<td>DOUBLE</td>
+<td>No</td>
+<td>Sentiment (-1 to 1)</td>
+<td><code>-0.234</code></td>
+</tr>
+<tr>
+<td>source</td>
+<td>VARCHAR</td>
+<td>No</td>
+<td>Always 'news'</td>
+<td><code>news</code></td>
+</tr>
+<tr>
+<td>ingested_at</td>
+<td>TIMESTAMP</td>
+<td>No</td>
+<td>Ingestion timestamp</td>
+<td><code>2025-01-15 10:30:00</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Row Count:</strong> ~300 records</p>
+<p><strong>Sample SQL:</strong>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">-- Top publications by sentiment</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">SELECT</span><span class="w"> </span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">publication</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">article_count</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_sentiment</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="k">MIN</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">min_sentiment</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="k">MAX</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">max_sentiment</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;stg_news__articles&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">publication</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">article_count</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</span></code></pre></div></p>
+<p><strong>Quality Checks:</strong>
+- No NULL article_ids
+- Valid URLs format
+- Valid timestamps</p>
+<hr />
+<h2 id="intermediate-layer">Intermediate Layer<a class="headerlink" href="#intermediate-layer" title="Permanent link">&para;</a></h2>
+<h3 id="int_sentiment_unified">int_sentiment_unified<a class="headerlink" href="#int_sentiment_unified" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Unified sentiment data with business logic, enrichment, and quality validation.</p>
+<p><strong>Materialization:</strong> Table (full refresh)</p>
+<p><strong>Sources:</strong> 
+- {{ ref('stg_reddit__posts') }}
+- {{ ref('stg_news__articles') }}</p>
+<p><strong>Key Features:</strong>
+- 🔑 Surrogate key generation for unique identification
+- 📊 Sentiment categorization (positive/negative/neutral)
+- 📈 Engagement metrics and percentiles
+- 📉 7-day moving averages
+- ✅ Quality validation and flags
+- 🔄 Window functions for trends</p>
+<pre class="mermaid"><code>graph TB
+    A[stg_reddit__posts] --&gt; B[Union]
+    C[stg_news__articles] --&gt; B
+    B --&gt; D[Generate Surrogate Keys]
+    D --&gt; E[Sentiment Categorization]
+    E --&gt; F[Engagement Metrics]
+    F --&gt; G[Moving Averages]
+    G --&gt; H[Quality Validation]
+    H --&gt; I[int_sentiment_unified]
+
+    style I fill:#fef3c7</code></pre>
+<p><strong>Schema:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+<th>Business Logic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Keys &amp; Identifiers</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sentiment_event_id</td>
+<td>VARCHAR</td>
+<td>Unique event identifier</td>
+<td><code>md5(content_id + published_at + source)</code></td>
+</tr>
+<tr>
+<td>brand_key</td>
+<td>VARCHAR</td>
+<td>Brand surrogate key</td>
+<td><code>md5(brand)</code></td>
+</tr>
+<tr>
+<td>source_key</td>
+<td>INTEGER</td>
+<td>Source identifier</td>
+<td><code>1=reddit, 2=news</code></td>
+</tr>
+<tr>
+<td>content_id</td>
+<td>VARCHAR</td>
+<td>Source-specific ID</td>
+<td>From source system</td>
+</tr>
+<tr>
+<td>content_hash</td>
+<td>VARCHAR</td>
+<td>Content hash</td>
+<td>For deduplication</td>
+</tr>
+<tr>
+<td><strong>Core Data</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>creator</td>
+<td>VARCHAR</td>
+<td>Author/publication</td>
+<td>Username or publication name</td>
+</tr>
+<tr>
+<td>brand</td>
+<td>VARCHAR</td>
+<td>Brand name</td>
+<td><code>Coca-Cola</code>, <code>PepsiCo</code>, etc</td>
+</tr>
+<tr>
+<td>headline</td>
+<td>VARCHAR</td>
+<td>Title/headline</td>
+<td>Post title or article headline</td>
+</tr>
+<tr>
+<td>body_text</td>
+<td>VARCHAR</td>
+<td>Full content</td>
+<td>Complete text content</td>
+</tr>
+<tr>
+<td><strong>Sentiment Metrics</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sentiment_score</td>
+<td>DOUBLE</td>
+<td>Sentiment score</td>
+<td><code>-1</code> to <code>1</code> range</td>
+</tr>
+<tr>
+<td>sentiment_category</td>
+<td>VARCHAR</td>
+<td>Category</td>
+<td><code>positive/negative/neutral</code></td>
+</tr>
+<tr>
+<td><strong>Engagement Metrics</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>engagement_count</td>
+<td>BIGINT</td>
+<td>Engagement metric</td>
+<td>Upvotes/shares/likes</td>
+</tr>
+<tr>
+<td>engagement_percentile</td>
+<td>DOUBLE</td>
+<td>Percentile rank</td>
+<td><code>0.0</code> to <code>1.0</code></td>
+</tr>
+<tr>
+<td>post_rank_by_brand</td>
+<td>BIGINT</td>
+<td>Rank within brand</td>
+<td>By engagement DESC</td>
+</tr>
+<tr>
+<td><strong>Temporal Data</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>published_at</td>
+<td>TIMESTAMP</td>
+<td>Publication time</td>
+<td>When content was published</td>
+</tr>
+<tr>
+<td>source</td>
+<td>VARCHAR</td>
+<td>Source platform</td>
+<td><code>reddit</code> or <code>news</code></td>
+</tr>
+<tr>
+<td>ingested_at</td>
+<td>TIMESTAMP</td>
+<td>Ingestion time</td>
+<td>When data was loaded</td>
+</tr>
+<tr>
+<td><strong>Trend Analysis</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>moving_avg_sentiment_7d</td>
+<td>DOUBLE</td>
+<td>7-day MA</td>
+<td>Rolling average sentiment</td>
+</tr>
+<tr>
+<td>sentiment_change</td>
+<td>DOUBLE</td>
+<td>Change from previous</td>
+<td>Sentiment delta</td>
+</tr>
+<tr>
+<td><strong>Metadata</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>_dbt_load_date</td>
+<td>TIMESTAMP</td>
+<td>dbt load timestamp</td>
+<td>When model ran</td>
+</tr>
+<tr>
+<td>_dbt_run_timestamp</td>
+<td>VARCHAR</td>
+<td>dbt run identifier</td>
+<td>Run batch ID</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Row Count:</strong> ~800 records (Reddit + News combined)</p>
+<p><strong>Business Logic Implementation:</strong></p>
+<h4 id="1-sentiment-categorization">1. Sentiment Categorization<a class="headerlink" href="#1-sentiment-categorization" title="Permanent link">&para;</a></h4>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">CASE</span><span class="w"> </span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="n">sentiment_score</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="n">var</span><span class="p">(</span><span class="s1">&#39;sentiment_threshold_positive&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;positive&#39;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="k">WHEN</span><span class="w"> </span><span class="n">sentiment_score</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="n">var</span><span class="p">(</span><span class="s1">&#39;sentiment_threshold_negative&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;negative&#39;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;neutral&#39;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">END</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sentiment_category</span>
+</span></code></pre></div>
+<strong>Thresholds:</strong> <code>positive &gt;= 0.3</code>, <code>negative &lt;= -0.3</code></p>
+<h4 id="2-engagement-percentile">2. Engagement Percentile<a class="headerlink" href="#2-engagement-percentile" title="Permanent link">&para;</a></h4>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">ROUND</span><span class="p">(</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="p">(</span><span class="n">engagement_count</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">NULLIF</span><span class="p">(</span><span class="k">MAX</span><span class="p">(</span><span class="n">engagement_count</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(),</span><span class="w"> </span><span class="mi">0</span><span class="p">),</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="mi">3</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">engagement_percentile</span>
+</span></code></pre></div>
+<h4 id="3-brand-ranking">3. Brand Ranking<a class="headerlink" href="#3-brand-ranking" title="Permanent link">&para;</a></h4>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">ROW_NUMBER</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">brand</span><span class="w"> </span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">engagement_count</span><span class="w"> </span><span class="k">DESC</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">post_rank_by_brand</span>
+</span></code></pre></div>
+<h4 id="4-moving-average-7-day">4. Moving Average (7-day)<a class="headerlink" href="#4-moving-average-7-day" title="Permanent link">&para;</a></h4>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">AVG</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">brand</span><span class="w"> </span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">published_at</span><span class="w"> </span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">moving_avg_sentiment_7d</span>
+</span></code></pre></div>
+<h4 id="5-sentiment-change">5. Sentiment Change<a class="headerlink" href="#5-sentiment-change" title="Permanent link">&para;</a></h4>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">sentiment_score</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">LAG</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">brand</span><span class="w"> </span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">published_at</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sentiment_change</span>
+</span></code></pre></div>
+<p><strong>Data Flow Diagram:</strong></p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant S as Staging
+    participant U as Union
+    participant K as Keys
+    participant B as Business Logic
+    participant Q as Quality
+    participant I as int_sentiment_unified
+
+    S-&gt;&gt;U: Reddit + News data
+    U-&gt;&gt;K: Generate surrogate keys
+    K-&gt;&gt;B: Add sentiment categories
+    B-&gt;&gt;B: Calculate engagement metrics
+    B-&gt;&gt;B: Compute moving averages
+    B-&gt;&gt;B: Calculate trends
+    B-&gt;&gt;Q: Validate quality
+    Q-&gt;&gt;I: Store validated data</code></pre>
+<p><strong>Quality Filters:</strong>
+- ✅ Sentiment score between -1 and 1
+- ✅ No future dates
+- ✅ No NULL required fields
+- ✅ Valid brand names</p>
+<p><strong>Sample Queries:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">-- Top performing content by brand</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">SELECT</span><span class="w"> </span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="n">brand</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="n">headline</span><span class="p">,</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="n">sentiment_score</span><span class="p">,</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="n">engagement_count</span><span class="p">,</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="n">engagement_percentile</span><span class="p">,</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="n">post_rank_by_brand</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;int_sentiment_unified&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">post_rank_by_brand</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">10</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">brand</span><span class="p">,</span><span class="w"> </span><span class="n">post_rank_by_brand</span><span class="p">;</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="c1">-- Sentiment trends over time</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="k">SELECT</span><span class="w"> </span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="w">    </span><span class="n">brand</span><span class="p">,</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a><span class="w">    </span><span class="n">DATE_TRUNC</span><span class="p">(</span><span class="s1">&#39;day&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">published_at</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">date</span><span class="p">,</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a><span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">daily_sentiment</span><span class="p">,</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="n">moving_avg_sentiment_7d</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">trend_7d</span><span class="p">,</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">content_count</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;int_sentiment_unified&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">brand</span><span class="p">,</span><span class="w"> </span><span class="n">DATE_TRUNC</span><span class="p">(</span><span class="s1">&#39;day&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">published_at</span><span class="p">)</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">brand</span><span class="p">,</span><span class="w"> </span><span class="nb">date</span><span class="p">;</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="c1">-- Sentiment distribution</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="k">SELECT</span><span class="w"> </span>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="w">    </span><span class="n">sentiment_category</span><span class="p">,</span>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">count</span><span class="p">,</span>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_score</span><span class="p">,</span>
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">engagement_count</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_engagement</span>
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;int_sentiment_unified&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">sentiment_category</span>
+</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">avg_score</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</span></code></pre></div>
+<hr />
+<h2 id="mart-layer">Mart Layer<a class="headerlink" href="#mart-layer" title="Permanent link">&para;</a></h2>
+<h3 id="fct_sentiment_events">fct_sentiment_events<a class="headerlink" href="#fct_sentiment_events" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Fact table for all sentiment events (granular, event-level data).</p>
+<p><strong>Materialization:</strong> Incremental (delete+insert strategy)</p>
+<p><strong>Grain:</strong> One row per sentiment event (Reddit post or news article)</p>
+<p><strong>Unique Key:</strong> <code>sentiment_event_id</code></p>
+<p><strong>Source:</strong> {{ ref('int_sentiment_unified') }}</p>
+<pre class="mermaid"><code>graph TB
+    subgraph "Incremental Logic"
+        A[int_sentiment_unified] --&gt; B{is_incremental?}
+        B --&gt;|Yes| C[Filter: published_at &gt; MAX]
+        B --&gt;|No| D[Load all data]
+        C --&gt; E[Filter: quality_flag = VALID]
+        D --&gt; E
+        E --&gt; F[fct_sentiment_events]
+    end
+
+    style F fill:#dcfce7,stroke:#16a34a</code></pre>
+<p><strong>Schema:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Contract</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Primary Key</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sentiment_event_id</td>
+<td>VARCHAR</td>
+<td>✅ NOT NULL, UNIQUE</td>
+<td>Unique event identifier</td>
+</tr>
+<tr>
+<td><strong>Foreign Keys</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>brand_key</td>
+<td>VARCHAR</td>
+<td>✅ NOT NULL</td>
+<td>Brand dimension key</td>
+</tr>
+<tr>
+<td>source_key</td>
+<td>INTEGER</td>
+<td></td>
+<td>Source identifier (1=reddit, 2=news)</td>
+</tr>
+<tr>
+<td><strong>Descriptive Attributes</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>content_id</td>
+<td>VARCHAR</td>
+<td></td>
+<td>Source-specific content ID</td>
+</tr>
+<tr>
+<td>creator</td>
+<td>VARCHAR</td>
+<td></td>
+<td>Author or publication name</td>
+</tr>
+<tr>
+<td>brand</td>
+<td>VARCHAR</td>
+<td></td>
+<td>Brand name</td>
+</tr>
+<tr>
+<td>headline</td>
+<td>VARCHAR</td>
+<td></td>
+<td>Post title or article headline</td>
+</tr>
+<tr>
+<td>body_text</td>
+<td>VARCHAR</td>
+<td></td>
+<td>Full content text</td>
+</tr>
+<tr>
+<td>source</td>
+<td>VARCHAR</td>
+<td></td>
+<td>Platform (reddit/news)</td>
+</tr>
+<tr>
+<td><strong>Metrics</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>engagement_count</td>
+<td>BIGINT</td>
+<td></td>
+<td>Upvotes, shares, likes</td>
+</tr>
+<tr>
+<td>sentiment_score</td>
+<td>DOUBLE</td>
+<td>✅ NOT NULL, [-1,1]</td>
+<td>Sentiment score</td>
+</tr>
+<tr>
+<td>sentiment_category</td>
+<td>VARCHAR</td>
+<td></td>
+<td>positive/negative/neutral</td>
+</tr>
+<tr>
+<td><strong>Temporal Dimensions</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>published_at</td>
+<td>TIMESTAMP</td>
+<td></td>
+<td>Original publish time</td>
+</tr>
+<tr>
+<td>published_date</td>
+<td>DATE</td>
+<td>✅ NOT NULL</td>
+<td>Publish date (for partitioning)</td>
+</tr>
+<tr>
+<td>published_year</td>
+<td>BIGINT</td>
+<td></td>
+<td>Year (for aggregation)</td>
+</tr>
+<tr>
+<td>published_month</td>
+<td>BIGINT</td>
+<td></td>
+<td>Month 1-12</td>
+</tr>
+<tr>
+<td>published_day_of_week</td>
+<td>BIGINT</td>
+<td></td>
+<td>Day 0-6 (0=Monday)</td>
+</tr>
+<tr>
+<td>published_hour</td>
+<td>BIGINT</td>
+<td></td>
+<td>Hour 0-23</td>
+</tr>
+<tr>
+<td>ingested_at</td>
+<td>TIMESTAMP</td>
+<td></td>
+<td>Data ingestion time</td>
+</tr>
+<tr>
+<td><strong>Quality &amp; Metadata</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>quality_flag</td>
+<td>VARCHAR</td>
+<td>✅ Accepted values</td>
+<td>VALID/INVALID_SENTIMENT/NULL_HEADLINE</td>
+</tr>
+<tr>
+<td>_dbt_updated_at</td>
+<td>TIMESTAMP</td>
+<td></td>
+<td>Last update time</td>
+</tr>
+<tr>
+<td>_dbt_run_timestamp</td>
+<td>VARCHAR</td>
+<td></td>
+<td>dbt run identifier</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Row Count:</strong> ~800 records (only VALID quality_flag)</p>
+<p><strong>Incremental Logic:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">WITH</span><span class="w"> </span><span class="n">base_data</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">        </span><span class="k">CASE</span><span class="w"> </span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">            </span><span class="k">WHEN</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="n">validate_sentiment</span><span class="p">(</span><span class="s1">&#39;sentiment_score&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;INVALID_SENTIMENT&#39;</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">            </span><span class="k">WHEN</span><span class="w"> </span><span class="n">headline</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;NULL_HEADLINE&#39;</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">            </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;VALID&#39;</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">        </span><span class="k">END</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">quality_flag</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;int_sentiment_unified&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">    </span><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">is_incremental</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="err">}</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">published_at</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">published_at</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="err">}}</span><span class="p">)</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">    </span><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="n">endif</span><span class="w"> </span><span class="o">%</span><span class="err">}</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="p">)</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">base_data</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">quality_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;VALID&#39;</span>
+</span></code></pre></div>
+<p><strong>Data Quality Tests:</strong></p>
+<pre class="mermaid"><code>graph LR
+    A[fct_sentiment_events] --&gt; B[Uniqueness Test]
+    A --&gt; C[Not Null Tests]
+    A --&gt; D[Range Tests]
+    A --&gt; E[Accepted Values]
+    A --&gt; F[Custom Logic]
+
+    B --&gt; B1[sentiment_event_id UNIQUE]
+    C --&gt; C1[sentiment_event_id NOT NULL]
+    C --&gt; C2[brand_key NOT NULL]
+    C --&gt; C3[sentiment_score NOT NULL]
+    C --&gt; C4[published_date NOT NULL]
+    D --&gt; D1[sentiment_score BETWEEN -1 AND 1]
+    D --&gt; D2[No future dates]
+    E --&gt; E1[quality_flag values]
+    F --&gt; F1[Business validations]
+
+    style A fill:#dcfce7</code></pre>
+<p><strong>Sample Queries:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">-- Daily sentiment by brand</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">SELECT</span><span class="w"> </span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="n">published_date</span><span class="p">,</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="n">brand</span><span class="p">,</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">event_count</span><span class="p">,</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_sentiment</span><span class="p">,</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">engagement_count</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_engagement</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;fct_sentiment_events&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">published_date</span><span class="p">,</span><span class="w"> </span><span class="n">brand</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">published_date</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="n">brand</span><span class="p">;</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="c1">-- Sentiment distribution</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="k">SELECT</span><span class="w"> </span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">    </span><span class="n">sentiment_category</span><span class="p">,</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">count</span><span class="p">,</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">))</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(),</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">pct</span><span class="p">,</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_score</span><span class="p">,</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">engagement_count</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_engagement</span>
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19" href="#__codelineno-9-19"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;fct_sentiment_events&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20" href="#__codelineno-9-20"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">sentiment_category</span>
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21" href="#__codelineno-9-21"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">count</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22" href="#__codelineno-9-22"></a>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23" href="#__codelineno-9-23"></a><span class="c1">-- Top brands by positive sentiment</span>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24" href="#__codelineno-9-24"></a><span class="k">SELECT</span><span class="w"> </span>
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25" href="#__codelineno-9-25"></a><span class="w">    </span><span class="n">brand</span><span class="p">,</span>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26" href="#__codelineno-9-26"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_mentions</span><span class="p">,</span>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27" href="#__codelineno-9-27"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">sentiment_category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;positive&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">positive_mentions</span><span class="p">,</span>
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28" href="#__codelineno-9-28"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_sentiment</span><span class="p">,</span>
+</span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29" href="#__codelineno-9-29"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">engagement_count</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_engagement</span>
+</span><span id="__span-9-30"><a id="__codelineno-9-30" name="__codelineno-9-30" href="#__codelineno-9-30"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;fct_sentiment_events&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-9-31"><a id="__codelineno-9-31" name="__codelineno-9-31" href="#__codelineno-9-31"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">brand</span>
+</span><span id="__span-9-32"><a id="__codelineno-9-32" name="__codelineno-9-32" href="#__codelineno-9-32"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">avg_sentiment</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</span><span id="__span-9-33"><a id="__codelineno-9-33" name="__codelineno-9-33" href="#__codelineno-9-33"></a>
+</span><span id="__span-9-34"><a id="__codelineno-9-34" name="__codelineno-9-34" href="#__codelineno-9-34"></a><span class="c1">-- Temporal patterns (hourly)</span>
+</span><span id="__span-9-35"><a id="__codelineno-9-35" name="__codelineno-9-35" href="#__codelineno-9-35"></a><span class="k">SELECT</span><span class="w"> </span>
+</span><span id="__span-9-36"><a id="__codelineno-9-36" name="__codelineno-9-36" href="#__codelineno-9-36"></a><span class="w">    </span><span class="n">published_hour</span><span class="p">,</span>
+</span><span id="__span-9-37"><a id="__codelineno-9-37" name="__codelineno-9-37" href="#__codelineno-9-37"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">event_count</span><span class="p">,</span>
+</span><span id="__span-9-38"><a id="__codelineno-9-38" name="__codelineno-9-38" href="#__codelineno-9-38"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_sentiment</span>
+</span><span id="__span-9-39"><a id="__codelineno-9-39" name="__codelineno-9-39" href="#__codelineno-9-39"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;fct_sentiment_events&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-9-40"><a id="__codelineno-9-40" name="__codelineno-9-40" href="#__codelineno-9-40"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">published_hour</span>
+</span><span id="__span-9-41"><a id="__codelineno-9-41" name="__codelineno-9-41" href="#__codelineno-9-41"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">published_hour</span><span class="p">;</span>
+</span></code></pre></div>
+<hr />
+<h3 id="mart_daily_sentiment">mart_daily_sentiment<a class="headerlink" href="#mart_daily_sentiment" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Daily aggregated sentiment metrics by brand with anomaly detection.</p>
+<p><strong>Materialization:</strong> Incremental (delete+insert strategy)</p>
+<p><strong>Grain:</strong> One row per (date, brand) combination</p>
+<p><strong>Unique Key:</strong> ['sentiment_date', 'brand']</p>
+<p><strong>Source:</strong> {{ ref('fct_sentiment_events') }}</p>
+<pre class="mermaid"><code>graph TB
+    A[fct_sentiment_events] --&gt; B[Group by date, brand]
+    B --&gt; C[Calculate Aggregates]
+    C --&gt; D[Compute Z-Scores]
+    D --&gt; E[Flag Anomalies]
+    E --&gt; F[mart_daily_sentiment]
+
+    subgraph "Aggregations"
+        C --&gt; C1[Avg/Min/Max Sentiment]
+        C --&gt; C2[Content Counts]
+        C --&gt; C3[Engagement Metrics]
+        C --&gt; C4[Source Diversity]
+    end
+
+    subgraph "Anomaly Detection"
+        D --&gt; D1[Z-Score &gt; 2]
+        D1 --&gt; E
+    end
+
+    style F fill:#dcfce7,stroke:#16a34a</code></pre>
+<p><strong>Schema:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Contract</th>
+<th>Description</th>
+<th>Calculation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dimensions</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sentiment_date</td>
+<td>DATE</td>
+<td>✅ NOT NULL</td>
+<td>Aggregation date</td>
+<td><code>CAST(published_date AS DATE)</code></td>
+</tr>
+<tr>
+<td>brand</td>
+<td>VARCHAR</td>
+<td></td>
+<td>Brand name</td>
+<td>Dimension</td>
+</tr>
+<tr>
+<td><strong>Sentiment Metrics</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>avg_sentiment</td>
+<td>DOUBLE</td>
+<td>✅ [-1,1]</td>
+<td>Average sentiment</td>
+<td><code>AVG(sentiment_score)</code></td>
+</tr>
+<tr>
+<td>min_sentiment</td>
+<td>DOUBLE</td>
+<td></td>
+<td>Minimum sentiment</td>
+<td><code>MIN(sentiment_score)</code></td>
+</tr>
+<tr>
+<td>max_sentiment</td>
+<td>DOUBLE</td>
+<td></td>
+<td>Maximum sentiment</td>
+<td><code>MAX(sentiment_score)</code></td>
+</tr>
+<tr>
+<td>stddev_sentiment</td>
+<td>DOUBLE</td>
+<td></td>
+<td>Standard deviation</td>
+<td><code>STDDEV(sentiment_score)</code></td>
+</tr>
+<tr>
+<td><strong>Content Counts</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>content_count</td>
+<td>BIGINT</td>
+<td></td>
+<td>Total pieces of content</td>
+<td><code>COUNT(*)</code></td>
+</tr>
+<tr>
+<td>positive_count</td>
+<td>BIGINT</td>
+<td></td>
+<td>Positive content count</td>
+<td><code>SUM(CASE category = 'positive')</code></td>
+</tr>
+<tr>
+<td>negative_count</td>
+<td>BIGINT</td>
+<td></td>
+<td>Negative content count</td>
+<td><code>SUM(CASE category = 'negative')</code></td>
+</tr>
+<tr>
+<td>neutral_count</td>
+<td>BIGINT</td>
+<td></td>
+<td>Neutral content count</td>
+<td><code>SUM(CASE category = 'neutral')</code></td>
+</tr>
+<tr>
+<td>positive_ratio</td>
+<td>DOUBLE</td>
+<td></td>
+<td>Ratio of positive</td>
+<td><code>positive_count / content_count</code></td>
+</tr>
+<tr>
+<td><strong>Engagement</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>total_engagement</td>
+<td>HUGEINT</td>
+<td></td>
+<td>Sum of all engagement</td>
+<td><code>SUM(engagement_count)</code></td>
+</tr>
+<tr>
+<td>avg_engagement</td>
+<td>DOUBLE</td>
+<td></td>
+<td>Average engagement</td>
+<td><code>AVG(engagement_count)</code></td>
+</tr>
+<tr>
+<td><strong>Diversity</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>source_count</td>
+<td>BIGINT</td>
+<td></td>
+<td>Unique sources</td>
+<td><code>COUNT(DISTINCT source)</code></td>
+</tr>
+<tr>
+<td><strong>Anomaly Detection</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>z_score_sentiment</td>
+<td>DOUBLE</td>
+<td></td>
+<td>Statistical z-score</td>
+<td><code>(avg - brand_avg) / brand_stddev</code></td>
+</tr>
+<tr>
+<td>anomaly_flag</td>
+<td>VARCHAR</td>
+<td>✅ Accepted values</td>
+<td>NORMAL/ANOMALY</td>
+<td><code>ABS(z_score) &gt; 2</code></td>
+</tr>
+<tr>
+<td><strong>Metadata</strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mart_load_date</td>
+<td>TIMESTAMP</td>
+<td></td>
+<td>Mart load time</td>
+<td><code>get_current_timestamp()</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Aggregation Logic:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">SELECT</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="k">CAST</span><span class="p">(</span><span class="n">published_date</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="nb">DATE</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sentiment_date</span><span class="p">,</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="n">brand</span><span class="p">,</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="c1">-- Sentiment metrics</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_sentiment</span><span class="p">,</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="k">MIN</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">min_sentiment</span><span class="p">,</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="k">MAX</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">max_sentiment</span><span class="p">,</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="w">    </span><span class="n">STDDEV</span><span class="p">(</span><span class="n">sentiment_score</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">stddev_sentiment</span><span class="p">,</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="w">    </span><span class="c1">-- Content counts</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">content_count</span><span class="p">,</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">sentiment_category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;positive&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">positive_count</span><span class="p">,</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">sentiment_category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;negative&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">negative_count</span><span class="p">,</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">sentiment_category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;neutral&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">neutral_count</span><span class="p">,</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="w">    </span><span class="n">positive_count</span><span class="p">::</span><span class="n">DOUBLE</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">content_count</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">positive_ratio</span><span class="p">,</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="w">    </span><span class="c1">-- Engagement</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">engagement_count</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_engagement</span><span class="p">,</span>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="n">engagement_count</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_engagement</span><span class="p">,</span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="w">    </span><span class="c1">-- Diversity</span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="w">    </span><span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="k">source</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">source_count</span><span class="p">,</span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="w">    </span><span class="c1">-- Anomaly detection</span>
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="w">    </span><span class="p">(</span><span class="n">avg_sentiment</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">avg_sentiment</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">brand</span><span class="p">))</span><span class="w"> </span><span class="o">/</span>
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="w">    </span><span class="k">NULLIF</span><span class="p">(</span><span class="n">STDDEV</span><span class="p">(</span><span class="n">avg_sentiment</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">brand</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">z_score_sentiment</span><span class="p">,</span>
+</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a>
+</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="w">    </span><span class="k">CASE</span>
+</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a><span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="k">ABS</span><span class="p">(</span><span class="n">z_score_sentiment</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;ANOMALY&#39;</span>
+</span><span id="__span-10-31"><a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a><span class="w">        </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;NORMAL&#39;</span>
+</span><span id="__span-10-32"><a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a><span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">anomaly_flag</span><span class="p">,</span>
+</span><span id="__span-10-33"><a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a>
+</span><span id="__span-10-34"><a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a><span class="w">    </span><span class="n">get_current_timestamp</span><span class="p">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">mart_load_date</span>
+</span><span id="__span-10-35"><a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a>
+</span><span id="__span-10-36"><a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;fct_sentiment_events&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-10-37"><a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">sentiment_date</span><span class="p">,</span><span class="w"> </span><span class="n">brand</span>
+</span></code></pre></div>
+<p><strong>Anomaly Detection Visualization:</strong></p>
+<pre class="mermaid"><code>graph LR
+    A[Daily Sentiment] --&gt; B[Calculate Brand Mean]
+    A --&gt; C[Calculate Brand StdDev]
+    B --&gt; D[Compute Z-Score]
+    C --&gt; D
+    D --&gt; E{|Z-Score| &gt; 2?}
+    E --&gt;|Yes| F[ANOMALY]
+    E --&gt;|No| G[NORMAL]
+
+    style F fill:#fee2e2,stroke:#dc2626
+    style G fill:#dcfce7,stroke:#16a34a</code></pre>
+<p><strong>Incremental Logic:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">is_incremental</span><span class="p">()</span><span class="w"> </span><span class="o">%</span><span class="err">}</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">sentiment_date</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">sentiment_date</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="err">}}</span><span class="p">)</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="n">endif</span><span class="w"> </span><span class="o">%</span><span class="err">}</span>
+</span></code></pre></div>
+<p><strong>Sample Queries:</strong></p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1">-- Recent anomalies</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">SELECT</span><span class="w"> </span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="n">sentiment_date</span><span class="p">,</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">    </span><span class="n">brand</span><span class="p">,</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="n">avg_sentiment</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_sentiment</span><span class="p">,</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="n">z_score_sentiment</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">z_score</span><span class="p">,</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">    </span><span class="n">anomaly_flag</span><span class="p">,</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">    </span><span class="n">content_count</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;mart_daily_sentiment&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">anomaly_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ANOMALY&#39;</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">    </span><span class="k">AND</span><span class="w"> </span><span class="n">sentiment_date</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="k">CURRENT_DATE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;7 days&#39;</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">sentiment_date</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="k">ABS</span><span class="p">(</span><span class="n">z_score_sentiment</span><span class="p">)</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="c1">-- Brand comparison</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="k">SELECT</span><span class="w"> </span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="w">    </span><span class="n">brand</span><span class="p">,</span>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">avg_sentiment</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">overall_sentiment</span><span class="p">,</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">positive_ratio</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">positive_ratio</span><span class="p">,</span>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">content_count</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">total_mentions</span><span class="p">,</span>
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">avg_engagement</span><span class="p">),</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_engagement</span><span class="p">,</span>
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="k">CASE</span><span class="w"> </span><span class="k">WHEN</span><span class="w"> </span><span class="n">anomaly_flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;ANOMALY&#39;</span><span class="w"> </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">END</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">anomaly_days</span>
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;mart_daily_sentiment&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">brand</span>
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">overall_sentiment</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>
+</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a><span class="c1">-- Trend analysis (7-day)</span>
+</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a><span class="k">SELECT</span><span class="w"> </span>
+</span><span id="__span-12-28"><a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a><span class="w">    </span><span class="n">sentiment_date</span><span class="p">,</span>
+</span><span id="__span-12-29"><a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a><span class="w">    </span><span class="n">brand</span><span class="p">,</span>
+</span><span id="__span-12-30"><a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="n">avg_sentiment</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sentiment</span><span class="p">,</span>
+</span><span id="__span-12-31"><a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="n">LAG</span><span class="p">(</span><span class="n">avg_sentiment</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">brand</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">sentiment_date</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sentiment_7d_ago</span><span class="p">,</span>
+</span><span id="__span-12-32"><a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="n">avg_sentiment</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">LAG</span><span class="p">(</span><span class="n">avg_sentiment</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">brand</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">sentiment_date</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">change_7d</span>
+</span><span id="__span-12-33"><a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;mart_daily_sentiment&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-12-34"><a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">sentiment_date</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="k">CURRENT_DATE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;30 days&#39;</span>
+</span><span id="__span-12-35"><a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">brand</span><span class="p">,</span><span class="w"> </span><span class="n">sentiment_date</span><span class="p">;</span>
+</span><span id="__span-12-36"><a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a>
+</span><span id="__span-12-37"><a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a><span class="c1">-- Weekly summary</span>
+</span><span id="__span-12-38"><a id="__codelineno-12-38" name="__codelineno-12-38" href="#__codelineno-12-38"></a><span class="k">SELECT</span><span class="w"> </span>
+</span><span id="__span-12-39"><a id="__codelineno-12-39" name="__codelineno-12-39" href="#__codelineno-12-39"></a><span class="w">    </span><span class="n">DATE_TRUNC</span><span class="p">(</span><span class="s1">&#39;week&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">sentiment_date</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">week_start</span><span class="p">,</span>
+</span><span id="__span-12-40"><a id="__codelineno-12-40" name="__codelineno-12-40" href="#__codelineno-12-40"></a><span class="w">    </span><span class="n">brand</span><span class="p">,</span>
+</span><span id="__span-12-41"><a id="__codelineno-12-41" name="__codelineno-12-41" href="#__codelineno-12-41"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">avg_sentiment</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">weekly_sentiment</span><span class="p">,</span>
+</span><span id="__span-12-42"><a id="__codelineno-12-42" name="__codelineno-12-42" href="#__codelineno-12-42"></a><span class="w">    </span><span class="k">SUM</span><span class="p">(</span><span class="n">content_count</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">weekly_mentions</span><span class="p">,</span>
+</span><span id="__span-12-43"><a id="__codelineno-12-43" name="__codelineno-12-43" href="#__codelineno-12-43"></a><span class="w">    </span><span class="n">ROUND</span><span class="p">(</span><span class="k">AVG</span><span class="p">(</span><span class="n">positive_ratio</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">avg_positive_ratio</span>
+</span><span id="__span-12-44"><a id="__codelineno-12-44" name="__codelineno-12-44" href="#__codelineno-12-44"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;mart_daily_sentiment&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-12-45"><a id="__codelineno-12-45" name="__codelineno-12-45" href="#__codelineno-12-45"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">DATE_TRUNC</span><span class="p">(</span><span class="s1">&#39;week&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">sentiment_date</span><span class="p">),</span><span class="w"> </span><span class="n">brand</span>
+</span><span id="__span-12-46"><a id="__codelineno-12-46" name="__codelineno-12-46" href="#__codelineno-12-46"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">week_start</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="n">brand</span><span class="p">;</span>
+</span></code></pre></div>
+<hr />
+<h2 id="macros">Macros<a class="headerlink" href="#macros" title="Permanent link">&para;</a></h2>
+<h3 id="generate_surrogate_key">generate_surrogate_key<a class="headerlink" href="#generate_surrogate_key" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Generate MD5 hash-based surrogate keys for unique identification.</p>
+<p><strong>Location:</strong> <code>dbt/macros/generate_surrogate_key.sql</code></p>
+<p><strong>Usage:</strong>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="err">{{</span><span class="w"> </span><span class="n">generate_surrogate_key</span><span class="p">([</span><span class="s1">&#39;column1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;column2&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;column3&#39;</span><span class="p">])</span><span class="w"> </span><span class="err">}}</span>
+</span></code></pre></div></p>
+<p><strong>Implementation:</strong>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="n">macro</span><span class="w"> </span><span class="n">generate_surrogate_key</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="err">}</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="n">md5</span><span class="p">(</span><span class="n">concat</span><span class="p">(</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">        </span><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">columns</span><span class="w"> </span><span class="o">%</span><span class="err">}</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">            </span><span class="k">coalesce</span><span class="p">(</span><span class="k">cast</span><span class="p">(</span><span class="err">{{</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="err">}}</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nb">varchar</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="w">            </span><span class="err">{</span><span class="o">%-</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="n">loop</span><span class="p">.</span><span class="k">last</span><span class="w"> </span><span class="o">%</span><span class="err">}</span><span class="p">,</span><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="n">endif</span><span class="w"> </span><span class="o">%</span><span class="err">}</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a><span class="w">        </span><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="n">endfor</span><span class="w"> </span><span class="o">%</span><span class="err">}</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="w">    </span><span class="p">))</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="n">endmacro</span><span class="w"> </span><span class="o">%</span><span class="err">}</span>
+</span></code></pre></div></p>
+<p><strong>Example:</strong>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1">-- Generate unique event ID</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="err">{{</span><span class="w"> </span><span class="n">generate_surrogate_key</span><span class="p">([</span><span class="s1">&#39;content_id&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;published_at&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;source&#39;</span><span class="p">])</span><span class="w"> </span><span class="err">}}</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">sentiment_event_id</span>
+</span></code></pre></div></p>
+<hr />
+<h3 id="validate_sentiment">validate_sentiment<a class="headerlink" href="#validate_sentiment" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Validate sentiment scores are within acceptable range.</p>
+<p><strong>Location:</strong> <code>dbt/macros/validate_sentiment.sql</code></p>
+<p><strong>Usage:</strong>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">WHERE</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="n">validate_sentiment</span><span class="p">(</span><span class="s1">&#39;sentiment_score&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span></code></pre></div></p>
+<p><strong>Implementation:</strong>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="n">macro</span><span class="w"> </span><span class="n">validate_sentiment</span><span class="p">(</span><span class="k">column_name</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="err">}</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">    </span><span class="p">(</span><span class="err">{{</span><span class="w"> </span><span class="k">column_name</span><span class="w"> </span><span class="err">}}</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">column_name</span><span class="w"> </span><span class="err">}}</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="err">{</span><span class="o">%</span><span class="w"> </span><span class="n">endmacro</span><span class="w"> </span><span class="o">%</span><span class="err">}</span>
+</span></code></pre></div></p>
+<hr />
+<h3 id="get_current_timestamp">get_current_timestamp<a class="headerlink" href="#get_current_timestamp" title="Permanent link">&para;</a></h3>
+<p><strong>Purpose:</strong> Get current timestamp consistently across models.</p>
+<p><strong>Location:</strong> <code>dbt/macros/get_current_timestamp.sql</code></p>
+<p><strong>Usage:</strong>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">get_current_timestamp</span><span class="p">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">load_timestamp</span>
+</span></code></pre></div></p>
+<hr />
+<h2 id="data-lineage-complete-view">Data Lineage Complete View<a class="headerlink" href="#data-lineage-complete-view" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>graph TB
+    subgraph "Raw Data"
+        R[reddit_real.csv&lt;br/&gt;500 rows]
+        N[news_real.csv&lt;br/&gt;300 rows]
+    end
+
+    subgraph "Bronze - Staging"
+        SR[stg_reddit__posts&lt;br/&gt;VIEW&lt;br/&gt;500 rows]
+        SN[stg_news__articles&lt;br/&gt;VIEW&lt;br/&gt;300 rows]
+    end
+
+    subgraph "Silver - Intermediate"
+        IU[int_sentiment_unified&lt;br/&gt;TABLE&lt;br/&gt;800 rows&lt;br/&gt;+ Surrogate Keys&lt;br/&gt;+ Business Logic&lt;br/&gt;+ Quality Flags]
+    end
+
+    subgraph "Gold - Marts"
+        FCT[fct_sentiment_events&lt;br/&gt;INCREMENTAL&lt;br/&gt;~800 rows&lt;br/&gt;Grain: One per event&lt;br/&gt;Key: sentiment_event_id]
+        MART[mart_daily_sentiment&lt;br/&gt;INCREMENTAL&lt;br/&gt;~varies&lt;br/&gt;Grain: One per date-brand&lt;br/&gt;Key: [date, brand]]
+    end
+
+    subgraph "Tests"
+        T1[14 Data Quality Tests&lt;br/&gt;✅ All Passing]
+    end
+
+    R --&gt;|Clean &amp; Type| SR
+    N --&gt;|Clean &amp; Type| SN
+    SR --&gt;|UNION ALL| IU
+    SN --&gt;|UNION ALL| IU
+    IU --&gt;|Filter VALID| FCT
+    FCT --&gt;|Aggregate Daily| MART
+    FCT -.-&gt;|Validate| T1
+    MART -.-&gt;|Validate| T1
+
+    style R fill:#fee2e2
+    style N fill:#fee2e2
+    style SR fill:#dbeafe
+    style SN fill:#dbeafe
+    style IU fill:#fef3c7
+    style FCT fill:#dcfce7
+    style MART fill:#dcfce7
+    style T1 fill:#e0e7ff</code></pre>
+<hr />
+<h2 id="model-execution-order">Model Execution Order<a class="headerlink" href="#model-execution-order" title="Permanent link">&para;</a></h2>
+<p>dbt automatically determines execution order based on dependencies:</p>
+<pre class="mermaid"><code>graph LR
+    A[1. Staging Models&lt;br/&gt;Parallel] --&gt; B[2. Intermediate&lt;br/&gt;Serial]
+    B --&gt; C[3. Mart Models&lt;br/&gt;Parallel]
+    C --&gt; D[4. Tests&lt;br/&gt;Parallel]
+
+    style A fill:#dbeafe
+    style B fill:#fef3c7
+    style C fill:#dcfce7
+    style D fill:#e0e7ff</code></pre>
+<p><strong>Execution Time:</strong> ~2-3 seconds for full build with sample data</p>
+<hr />
+<h2 id="model-statistics">Model Statistics<a class="headerlink" href="#model-statistics" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Type</th>
+<th>Rows</th>
+<th>Columns</th>
+<th>Tests</th>
+<th>Build Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stg_reddit__posts</td>
+<td>View</td>
+<td>500</td>
+<td>11</td>
+<td>0</td>
+<td>&lt;0.1s</td>
+</tr>
+<tr>
+<td>stg_news__articles</td>
+<td>View</td>
+<td>300</td>
+<td>10</td>
+<td>0</td>
+<td>&lt;0.1s</td>
+</tr>
+<tr>
+<td>int_sentiment_unified</td>
+<td>Table</td>
+<td>800</td>
+<td>23</td>
+<td>0</td>
+<td>0.4s</td>
+</tr>
+<tr>
+<td>fct_sentiment_events</td>
+<td>Incremental</td>
+<td>~800</td>
+<td>20</td>
+<td>8</td>
+<td>0.3s</td>
+</tr>
+<tr>
+<td>mart_daily_sentiment</td>
+<td>Incremental</td>
+<td>varies</td>
+<td>14</td>
+<td>6</td>
+<td>0.2s</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="query-performance-tips">Query Performance Tips<a class="headerlink" href="#query-performance-tips" title="Permanent link">&para;</a></h2>
+<h3 id="optimize-staging-queries">Optimize Staging Queries<a class="headerlink" href="#optimize-staging-queries" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1">-- Use WHERE clauses early</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;stg_reddit__posts&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">published_at</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="k">CURRENT_DATE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;30 days&#39;</span><span class="w">  </span><span class="c1">-- Filter early</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="k">AND</span><span class="w"> </span><span class="n">brand</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Coca-Cola&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;PepsiCo&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">-- Reduce data volume</span>
+</span></code></pre></div>
+<h3 id="leverage-incremental-models">Leverage Incremental Models<a class="headerlink" href="#leverage-incremental-models" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1">-- Query only recent data</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;fct_sentiment_events&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">published_date</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="k">CURRENT_DATE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;7 days&#39;</span><span class="p">;</span>
+</span></code></pre></div>
+<h3 id="use-aggregates-for-dashboards">Use Aggregates for Dashboards<a class="headerlink" href="#use-aggregates-for-dashboards" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1">-- Use pre-aggregated mart instead of raw events</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">FROM</span><span class="w"> </span><span class="err">{{</span><span class="w"> </span><span class="k">ref</span><span class="p">(</span><span class="s1">&#39;mart_daily_sentiment&#39;</span><span class="p">)</span><span class="w"> </span><span class="err">}}</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">sentiment_date</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="k">CURRENT_DATE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nb">INTERVAL</span><span class="w"> </span><span class="s1">&#39;30 days&#39;</span><span class="p">;</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="c1">-- Much faster than aggregating fct_sentiment_events</span>
+</span></code></pre></div>
+<hr />
+<h2 id="data-quality-summary">Data Quality Summary<a class="headerlink" href="#data-quality-summary" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>pie title Test Coverage by Category
+    "Uniqueness" : 2
+    "Not Null" : 5
+    "Range Validation" : 2
+    "Accepted Values" : 2
+    "Custom Logic" : 3</code></pre>
+<p><strong>Test Results:</strong> ✅ 14/14 Passing</p>
+<hr />
+<h2 id="model-relationships">Model Relationships<a class="headerlink" href="#model-relationships" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>erDiagram
+    FCT_SENTIMENT_EVENTS ||--o{ MART_DAILY_SENTIMENT : aggregates
+    FCT_SENTIMENT_EVENTS {
+        varchar sentiment_event_id PK
+        varchar brand_key FK
+        integer source_key FK
+        double sentiment_score
+        date published_date
+    }
+    MART_DAILY_SENTIMENT {
+        date sentiment_date PK
+        varchar brand PK
+        double avg_sentiment
+        bigint content_count
+        varchar anomaly_flag
+    }</code></pre>
+<hr />
+<h2 id="sentiment-distribution">Sentiment Distribution<a class="headerlink" href="#sentiment-distribution" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>graph TD
+    A[All Events&lt;br/&gt;800 total] --&gt; B{Sentiment Score}
+    B --&gt;|&gt;= 0.3| C[Positive&lt;br/&gt;~33%]
+    B --&gt;|Between| D[Neutral&lt;br/&gt;~33%]
+    B --&gt;|&lt;= -0.3| E[Negative&lt;br/&gt;~33%]
+
+    style C fill:#dcfce7,stroke:#16a34a
+    style D fill:#fef3c7,stroke:#f59e0b
+    style E fill:#fee2e2,stroke:#dc2626</code></pre>
+<hr />
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../lab2-overview/">Lab 2 Overview</a> - Architecture and features</li>
+<li><a href="../lab2-setup/">Lab 2 Setup</a> - Installation guide</li>
+<li><a href="../lab2-troubleshooting/">Lab 2 Troubleshooting</a> - Common issues</li>
+<li><a href="../lab2-quick-reference/">Lab 2 Quick Reference</a> - Common commands</li>
+<li><a href="https://docs.getdbt.com">dbt Documentation</a> - Official dbt docs</li>
+</ul>
+<hr />
+<p><strong>Last Updated:</strong> November 2025<br />
+<strong>Maintained By:</strong> narensham<br />
+<strong>Total Models:</strong> 5<br />
+<strong>Total Tests:</strong> 14<br />
+<strong>Status:</strong> ✅ Production Ready</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="November 3, 2025 04:51:59 UTC"><span class="timeago" datetime="2025-11-03T04:51:59+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 3, 2025 04:51:59 UTC">2025-11-03</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="November 3, 2025 04:51:59 UTC"><span class="timeago" datetime="2025-11-03T04:51:59+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 3, 2025 04:51:59 UTC">2025-11-03</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 narensham
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/NarenSham/buildcpg-labs" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.python.org" target="_blank" rel="noopener" title="www.python.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "navigation.instant", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.annotation", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
+      
+    
+  </body>
+</html>

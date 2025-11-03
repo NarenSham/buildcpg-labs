@@ -50,9 +50,23 @@
       
     
     
+      <link rel="stylesheet" href="../css/timeago.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -98,8 +112,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="BuildCPG Labs" class="md-header__button md-logo" aria-label="BuildCPG Labs" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -173,6 +186,11 @@
       </label>
       <nav class="md-search__options" aria-label="Search">
         
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
@@ -196,18 +214,6 @@
 </div>
       
     
-    
-      <div class="md-header__source">
-        <a href="https://github.com/NarenSham/buildcpg-labs" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
-  </div>
-  <div class="md-source__repository">
-    NarenSham/buildcpg-labs
-  </div>
-</a>
-      </div>
     
   </nav>
   
@@ -331,26 +337,6 @@
   
   
   
-    
-    
-      <li class="md-tabs__item">
-        <a href="../utilities/overview.md" class="md-tabs__link">
-          
-  
-  
-  Utilities
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
     <li class="md-tabs__item">
       <a href="../troubleshooting/" class="md-tabs__link">
         
@@ -416,24 +402,11 @@
   <label class="md-nav__title" for="__drawer">
     <a href=".." title="BuildCPG Labs" class="md-nav__button md-logo" aria-label="BuildCPG Labs" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../images/logo.png" alt="logo">
 
     </a>
     BuildCPG Labs
   </label>
-  
-    <div class="md-nav__source">
-      <a href="https://github.com/NarenSham/buildcpg-labs" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
-  </div>
-  <div class="md-source__repository">
-    NarenSham/buildcpg-labs
-  </div>
-</a>
-    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -821,12 +794,58 @@
   
   
     <li class="md-nav__item">
-      <a href="../labs/lab2-architecture/" class="md-nav__link">
+      <a href="../labs/lab2-setup/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Architecture
+    Setup Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../labs/lab2-data-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Models
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../labs/lab2-troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
     
   </span>
   
@@ -933,127 +952,6 @@
   
   <span class="md-ellipsis">
     Phase 1 - Foundation
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Utilities
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            Utilities
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../utilities/overview.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Overview
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../utilities/data-inspector.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Data Inspector
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../utilities/csv-monitor.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    CSV Monitor
     
   </span>
   
@@ -2582,25 +2480,25 @@
   
 
 
-<h1 id="frequently-asked-questions">Frequently Asked Questions</h1>
-<h2 id="general-questions">General Questions</h2>
-<h3 id="what-is-buildcpg-labs">What is BuildCPG Labs?</h3>
+<h1 id="frequently-asked-questions">Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Permanent link">&para;</a></h1>
+<h2 id="general-questions">General Questions<a class="headerlink" href="#general-questions" title="Permanent link">&para;</a></h2>
+<h3 id="what-is-buildcpg-labs">What is BuildCPG Labs?<a class="headerlink" href="#what-is-buildcpg-labs" title="Permanent link">&para;</a></h3>
 <p>A data engineering platform for managing multiple independent data labs using dbt, DuckDB, and Python. Each lab is isolated but shares common utilities.</p>
-<h3 id="why-multiple-labs-instead-of-one-big-project">Why multiple labs instead of one big project?</h3>
+<h3 id="why-multiple-labs-instead-of-one-big-project">Why multiple labs instead of one big project?<a class="headerlink" href="#why-multiple-labs-instead-of-one-big-project" title="Permanent link">&para;</a></h3>
 <p>Different labs often have:
 - Different data sources and formats
 - Different transformation logic
 - Different schedules and SLAs
 - Independent teams working on them</p>
 <p>Keeping them separate prevents one from breaking others.</p>
-<h3 id="do-i-need-to-use-all-labs">Do I need to use all labs?</h3>
+<h3 id="do-i-need-to-use-all-labs">Do I need to use all labs?<a class="headerlink" href="#do-i-need-to-use-all-labs" title="Permanent link">&para;</a></h3>
 <p>No. You can start with lab1 and create additional labs as needed. Each lab works independently.</p>
-<h3 id="can-labs-share-data">Can labs share data?</h3>
+<h3 id="can-labs-share-data">Can labs share data?<a class="headerlink" href="#can-labs-share-data" title="Permanent link">&para;</a></h3>
 <p>Currently, each lab has its own database. Future versions will support lab-to-lab data sharing through view exports.</p>
-<h3 id="does-this-work-on-windows">Does this work on Windows?</h3>
+<h3 id="does-this-work-on-windows">Does this work on Windows?<a class="headerlink" href="#does-this-work-on-windows" title="Permanent link">&para;</a></h3>
 <p>Yes, with WSL2 (Windows Subsystem for Linux). Mac 11+ and Linux are natively supported. No Docker required.</p>
-<h2 id="architecture-questions">Architecture Questions</h2>
-<h3 id="why-duckdb-instead-of-other-databases">Why DuckDB instead of other databases?</h3>
+<h2 id="architecture-questions">Architecture Questions<a class="headerlink" href="#architecture-questions" title="Permanent link">&para;</a></h2>
+<h3 id="why-duckdb-instead-of-other-databases">Why DuckDB instead of other databases?<a class="headerlink" href="#why-duckdb-instead-of-other-databases" title="Permanent link">&para;</a></h3>
 <ul>
 <li>No server needed (embedded)</li>
 <li>Works on older Macs (Mac 11+)</li>
@@ -2609,86 +2507,86 @@
 <li>Perfect for single-machine setups</li>
 <li>Can scale to multi-machine later</li>
 </ul>
-<h3 id="whats-the-difference-between-shared-and-lab-specific-files">What's the difference between shared and lab-specific files?</h3>
+<h3 id="whats-the-difference-between-shared-and-lab-specific-files">What's the difference between shared and lab-specific files?<a class="headerlink" href="#whats-the-difference-between-shared-and-lab-specific-files" title="Permanent link">&para;</a></h3>
 <p><strong>Shared:</strong> Code used by ALL labs (DataInspector, CSVMonitor)<br />
 <strong>Lab-specific:</strong> Code only that lab uses (models, dashboards, data)</p>
-<h3 id="how-do-labs-communicate">How do labs communicate?</h3>
+<h3 id="how-do-labs-communicate">How do labs communicate?<a class="headerlink" href="#how-do-labs-communicate" title="Permanent link">&para;</a></h3>
 <p>They don't (by design). Future phases will add data export/import between labs.</p>
-<h3 id="can-i-use-different-python-versions-per-lab">Can I use different Python versions per lab?</h3>
+<h3 id="can-i-use-different-python-versions-per-lab">Can I use different Python versions per lab?<a class="headerlink" href="#can-i-use-different-python-versions-per-lab" title="Permanent link">&para;</a></h3>
 <p>Yes. Each lab has its own venv, so different packages/versions are allowed.</p>
-<h2 id="setup-questions">Setup Questions</h2>
-<h3 id="how-long-does-setup-take">How long does setup take?</h3>
+<h2 id="setup-questions">Setup Questions<a class="headerlink" href="#setup-questions" title="Permanent link">&para;</a></h2>
+<h3 id="how-long-does-setup-take">How long does setup take?<a class="headerlink" href="#how-long-does-setup-take" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>First time:</strong> 10-15 minutes (download, install dependencies)</li>
 <li><strong>Each additional lab:</strong> 2 minutes (automatic bootstrap)</li>
 </ul>
-<h3 id="can-i-skip-phase-1">Can I skip Phase 1?</h3>
+<h3 id="can-i-skip-phase-1">Can I skip Phase 1?<a class="headerlink" href="#can-i-skip-phase-1" title="Permanent link">&para;</a></h3>
 <p>Not recommended. Phase 1 creates the foundation that Phases 2+ depend on.</p>
-<h3 id="what-if-i-only-want-phase-1">What if I only want Phase 1?</h3>
+<h3 id="what-if-i-only-want-phase-1">What if I only want Phase 1?<a class="headerlink" href="#what-if-i-only-want-phase-1" title="Permanent link">&para;</a></h3>
 <p>That's fine. Phase 1 is fully functional for basic lab work. Phase 2 adds convenience but isn't required.</p>
-<h3 id="can-i-customize-the-templates">Can I customize the templates?</h3>
+<h3 id="can-i-customize-the-templates">Can I customize the templates?<a class="headerlink" href="#can-i-customize-the-templates" title="Permanent link">&para;</a></h3>
 <p>Yes. Edit files in <code>shared/templates/</code> and they'll be used for new labs created after that.</p>
-<h2 id="usage-questions">Usage Questions</h2>
-<h3 id="what-does-make-setup-do">What does <code>make setup</code> do?</h3>
+<h2 id="usage-questions">Usage Questions<a class="headerlink" href="#usage-questions" title="Permanent link">&para;</a></h2>
+<h3 id="what-does-make-setup-do">What does <code>make setup</code> do?<a class="headerlink" href="#what-does-make-setup-do" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Creates Python virtual environment (venv)</li>
 <li>Installs dependencies from requirements.txt</li>
 <li>Runs dbt debug to verify setup</li>
 </ol>
-<h3 id="what-does-make-run-do">What does <code>make run</code> do?</h3>
+<h3 id="what-does-make-run-do">What does <code>make run</code> do?<a class="headerlink" href="#what-does-make-run-do" title="Permanent link">&para;</a></h3>
 <p>Executes <code>dbt run</code> which transforms data through bronze → silver → gold layers.</p>
-<h3 id="how-do-i-see-what-changed-in-my-database">How do I see what changed in my database?</h3>
+<h3 id="how-do-i-see-what-changed-in-my-database">How do I see what changed in my database?<a class="headerlink" href="#how-do-i-see-what-changed-in-my-database" title="Permanent link">&para;</a></h3>
 <p>Run <code>make inspect</code> to see schemas, tables, row counts, and quality scores.</p>
-<h3 id="can-i-use-dbt-commands-directly">Can I use dbt commands directly?</h3>
+<h3 id="can-i-use-dbt-commands-directly">Can I use dbt commands directly?<a class="headerlink" href="#can-i-use-dbt-commands-directly" title="Permanent link">&para;</a></h3>
 <p>Yes. <code>cd lab/dbt &amp;&amp; dbt run</code> works the same as <code>make run</code>. Makefile just automates activation.</p>
-<h3 id="how-do-i-add-a-new-model-to-lab1">How do I add a new model to lab1?</h3>
-<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>lab1_sales_performance/dbt/models
-<span class="c1"># Create .sql file</span>
-<span class="c1"># Run: make run</span>
-</code></pre></div>
+<h3 id="how-do-i-add-a-new-model-to-lab1">How do I add a new model to lab1?<a class="headerlink" href="#how-do-i-add-a-new-model-to-lab1" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>lab1_sales_performance/dbt/models
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="c1"># Create .sql file</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Run: make run</span>
+</span></code></pre></div>
 <p>See dbt documentation for model details.</p>
-<h2 id="shared-utilities-questions">Shared Utilities Questions</h2>
-<h3 id="how-do-i-use-datainspector-in-my-code">How do I use DataInspector in my code?</h3>
-<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;../..&#39;</span><span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">shared.utils.data_inspector</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataInspector</span>
-
-<span class="n">inspector</span> <span class="o">=</span> <span class="n">DataInspector</span><span class="p">(</span><span class="s1">&#39;data/lab1_sales_performance.duckdb&#39;</span><span class="p">)</span>
-<span class="n">schemas</span> <span class="o">=</span> <span class="n">inspector</span><span class="o">.</span><span class="n">get_all_schemas</span><span class="p">()</span>
-</code></pre></div>
-<h3 id="can-i-modify-shared-utilities">Can I modify shared utilities?</h3>
+<h2 id="shared-utilities-questions">Shared Utilities Questions<a class="headerlink" href="#shared-utilities-questions" title="Permanent link">&para;</a></h2>
+<h3 id="how-do-i-use-datainspector-in-my-code">How do I use DataInspector in my code?<a class="headerlink" href="#how-do-i-use-datainspector-in-my-code" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;../..&#39;</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">shared.utils.data_inspector</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataInspector</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">inspector</span> <span class="o">=</span> <span class="n">DataInspector</span><span class="p">(</span><span class="s1">&#39;data/lab1_sales_performance.duckdb&#39;</span><span class="p">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">schemas</span> <span class="o">=</span> <span class="n">inspector</span><span class="o">.</span><span class="n">get_all_schemas</span><span class="p">()</span>
+</span></code></pre></div>
+<h3 id="can-i-modify-shared-utilities">Can I modify shared utilities?<a class="headerlink" href="#can-i-modify-shared-utilities" title="Permanent link">&para;</a></h3>
 <p>Yes, but test thoroughly. Changes affect ALL labs.</p>
-<h3 id="how-do-i-add-a-new-shared-utility">How do I add a new shared utility?</h3>
+<h3 id="how-do-i-add-a-new-shared-utility">How do I add a new shared utility?<a class="headerlink" href="#how-do-i-add-a-new-shared-utility" title="Permanent link">&para;</a></h3>
 <ol>
 <li>Create file in <code>shared/utils/</code></li>
 <li>Import it in your lab scripts</li>
 <li>Test thoroughly</li>
 <li>Commit to git</li>
 </ol>
-<h3 id="do-shared-utilities-get-committed-to-git">Do shared utilities get committed to git?</h3>
+<h3 id="do-shared-utilities-get-committed-to-git">Do shared utilities get committed to git?<a class="headerlink" href="#do-shared-utilities-get-committed-to-git" title="Permanent link">&para;</a></h3>
 <p>Yes. They're in the git repo so everyone gets them.</p>
-<h2 id="data-questions">Data Questions</h2>
-<h3 id="where-is-my-data-stored">Where is my data stored?</h3>
+<h2 id="data-questions">Data Questions<a class="headerlink" href="#data-questions" title="Permanent link">&para;</a></h2>
+<h3 id="where-is-my-data-stored">Where is my data stored?<a class="headerlink" href="#where-is-my-data-stored" title="Permanent link">&para;</a></h3>
 <p>In <code>lab/data/lab_name.duckdb</code> (DuckDB database file).</p>
-<h3 id="how-do-i-backup-my-data">How do I backup my data?</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Simply copy the .duckdb file</span>
-cp<span class="w"> </span>lab1_sales_performance/data/lab1_sales_performance.duckdb<span class="w"> </span>lab1_sales_performance/data/lab1_sales_performance.duckdb.backup
-</code></pre></div>
-<h3 id="how-large-can-databases-get">How large can databases get?</h3>
+<h3 id="how-do-i-backup-my-data">How do I backup my data?<a class="headerlink" href="#how-do-i-backup-my-data" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Simply copy the .duckdb file</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>cp<span class="w"> </span>lab1_sales_performance/data/lab1_sales_performance.duckdb<span class="w"> </span>lab1_sales_performance/data/lab1_sales_performance.duckdb.backup
+</span></code></pre></div>
+<h3 id="how-large-can-databases-get">How large can databases get?<a class="headerlink" href="#how-large-can-databases-get" title="Permanent link">&para;</a></h3>
 <p>DuckDB on a single machine can handle multi-GB databases easily. For 100GB+, consider upgrading infrastructure.</p>
-<h3 id="can-i-read-external-data-in-dbt">Can I read external data in dbt?</h3>
+<h3 id="can-i-read-external-data-in-dbt">Can I read external data in dbt?<a class="headerlink" href="#can-i-read-external-data-in-dbt" title="Permanent link">&para;</a></h3>
 <p>Yes. dbt supports reading from CSVs, APIs, and other sources via Jinja2 macros.</p>
-<h3 id="how-do-i-connect-to-real-databases-not-duckdb">How do I connect to real databases (not DuckDB)?</h3>
+<h3 id="how-do-i-connect-to-real-databases-not-duckdb">How do I connect to real databases (not DuckDB)?<a class="headerlink" href="#how-do-i-connect-to-real-databases-not-duckdb" title="Permanent link">&para;</a></h3>
 <p>Future versions will support PostgreSQL, MySQL, etc. Currently limited to DuckDB.</p>
-<h2 id="git-questions">Git Questions</h2>
-<h3 id="can-i-commit-my-venv">Can I commit my venv?</h3>
+<h2 id="git-questions">Git Questions<a class="headerlink" href="#git-questions" title="Permanent link">&para;</a></h2>
+<h3 id="can-i-commit-my-venv">Can I commit my venv?<a class="headerlink" href="#can-i-commit-my-venv" title="Permanent link">&para;</a></h3>
 <p>No. It's huge and system-specific. Use <code>.gitignore</code> to exclude it.</p>
-<h3 id="can-i-commit-my-duckdb-files">Can I commit my .duckdb files?</h3>
+<h3 id="can-i-commit-my-duckdb-files">Can I commit my .duckdb files?<a class="headerlink" href="#can-i-commit-my-duckdb-files" title="Permanent link">&para;</a></h3>
 <p>For development: no (they change constantly).<br />
 For tracked data: yes (if you need version history).</p>
-<h3 id="how-do-i-prevent-accidental-commits">How do I prevent accidental commits?</h3>
+<h3 id="how-do-i-prevent-accidental-commits">How do I prevent accidental commits?<a class="headerlink" href="#how-do-i-prevent-accidental-commits" title="Permanent link">&para;</a></h3>
 <p><code>.gitignore</code> automatically excludes venv, .duckdb, and build artifacts.</p>
-<h3 id="what-should-i-commit">What should I commit?</h3>
+<h3 id="what-should-i-commit">What should I commit?<a class="headerlink" href="#what-should-i-commit" title="Permanent link">&para;</a></h3>
 <ul>
 <li>dbt models (.sql files)</li>
 <li>Python scripts (.py files)</li>
@@ -2696,7 +2594,7 @@ For tracked data: yes (if you need version history).</p>
 <li>Documentation (.md files)</li>
 <li>requirements.txt</li>
 </ul>
-<h3 id="what-shouldnt-i-commit">What shouldn't I commit?</h3>
+<h3 id="what-shouldnt-i-commit">What shouldn't I commit?<a class="headerlink" href="#what-shouldnt-i-commit" title="Permanent link">&para;</a></h3>
 <ul>
 <li>venv/ directories</li>
 <li>.duckdb files (unless intentional)</li>
@@ -2704,82 +2602,82 @@ For tracked data: yes (if you need version history).</p>
 <li>.DS_Store</li>
 <li>IDE settings</li>
 </ul>
-<h2 id="performance-questions">Performance Questions</h2>
-<h3 id="how-fast-does-dbt-run">How fast does dbt run?</h3>
+<h2 id="performance-questions">Performance Questions<a class="headerlink" href="#performance-questions" title="Permanent link">&para;</a></h2>
+<h3 id="how-fast-does-dbt-run">How fast does dbt run?<a class="headerlink" href="#how-fast-does-dbt-run" title="Permanent link">&para;</a></h3>
 <p>Depends on data size. With ~3K rows: 1-2 seconds. Scale linearly with data.</p>
-<h3 id="can-i-make-dbt-faster">Can I make dbt faster?</h3>
+<h3 id="can-i-make-dbt-faster">Can I make dbt faster?<a class="headerlink" href="#can-i-make-dbt-faster" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Incremental materialization (load only new data)</li>
 <li>Optimize SQL queries</li>
 <li>Add indexes (if using real databases)</li>
 </ul>
-<h3 id="will-my-laptop-slow-down-with-multiple-labs">Will my laptop slow down with multiple labs?</h3>
+<h3 id="will-my-laptop-slow-down-with-multiple-labs">Will my laptop slow down with multiple labs?<a class="headerlink" href="#will-my-laptop-slow-down-with-multiple-labs" title="Permanent link">&para;</a></h3>
 <p>Each lab runs independently. Multiple venvs take ~500MB each. Not a concern for 10 labs.</p>
-<h2 id="scaling-questions">Scaling Questions</h2>
-<h3 id="can-i-scale-to-50-labs">Can I scale to 50 labs?</h3>
+<h2 id="scaling-questions">Scaling Questions<a class="headerlink" href="#scaling-questions" title="Permanent link">&para;</a></h2>
+<h3 id="can-i-scale-to-50-labs">Can I scale to 50 labs?<a class="headerlink" href="#can-i-scale-to-50-labs" title="Permanent link">&para;</a></h3>
 <p>Yes. Structure supports unlimited labs. You'll just need:
 - Disk space (~1GB per lab average)
 - Orchestration tool (Airflow) to manage all runs</p>
-<h3 id="whats-the-limit">What's the limit?</h3>
+<h3 id="whats-the-limit">What's the limit?<a class="headerlink" href="#whats-the-limit" title="Permanent link">&para;</a></h3>
 <p>No hard limit. Practical limit depends on infrastructure.</p>
-<h3 id="can-i-migrate-to-cloud-later">Can I migrate to cloud later?</h3>
+<h3 id="can-i-migrate-to-cloud-later">Can I migrate to cloud later?<a class="headerlink" href="#can-i-migrate-to-cloud-later" title="Permanent link">&para;</a></h3>
 <p>Yes. The architecture is platform-agnostic. Move to Snowflake/BigQuery/etc. when needed.</p>
-<h2 id="phase-questions">Phase Questions</h2>
-<h3 id="whats-the-difference-between-phases">What's the difference between phases?</h3>
+<h2 id="phase-questions">Phase Questions<a class="headerlink" href="#phase-questions" title="Permanent link">&para;</a></h2>
+<h3 id="whats-the-difference-between-phases">What's the difference between phases?<a class="headerlink" href="#whats-the-difference-between-phases" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Phase 1:</strong> Shared utilities + configuration</li>
 <li><strong>Phase 2:</strong> Makefile + bootstrap (automation)</li>
 <li><strong>Phase 3+:</strong> Orchestration + monitoring</li>
 </ul>
-<h3 id="can-i-use-phase-1-without-phase-2">Can I use Phase 1 without Phase 2?</h3>
+<h3 id="can-i-use-phase-1-without-phase-2">Can I use Phase 1 without Phase 2?<a class="headerlink" href="#can-i-use-phase-1-without-phase-2" title="Permanent link">&para;</a></h3>
 <p>Yes. Phase 1 is standalone and functional.</p>
-<h3 id="when-should-i-use-phase-2">When should I use Phase 2?</h3>
+<h3 id="when-should-i-use-phase-2">When should I use Phase 2?<a class="headerlink" href="#when-should-i-use-phase-2" title="Permanent link">&para;</a></h3>
 <p>When you want <code>make</code> commands and automated lab creation. Highly recommended.</p>
-<h3 id="when-should-i-use-phase-3">When should I use Phase 3?</h3>
+<h3 id="when-should-i-use-phase-3">When should I use Phase 3?<a class="headerlink" href="#when-should-i-use-phase-3" title="Permanent link">&para;</a></h3>
 <p>When managing 3+ labs and want automated scheduling (Airflow).</p>
-<h2 id="team-questions">Team Questions</h2>
-<h3 id="can-multiple-people-work-on-same-lab">Can multiple people work on same lab?</h3>
+<h2 id="team-questions">Team Questions<a class="headerlink" href="#team-questions" title="Permanent link">&para;</a></h2>
+<h3 id="can-multiple-people-work-on-same-lab">Can multiple people work on same lab?<a class="headerlink" href="#can-multiple-people-work-on-same-lab" title="Permanent link">&para;</a></h3>
 <p>Yes. Use git branches for features.</p>
-<h3 id="can-different-people-own-different-labs">Can different people own different labs?</h3>
+<h3 id="can-different-people-own-different-labs">Can different people own different labs?<a class="headerlink" href="#can-different-people-own-different-labs" title="Permanent link">&para;</a></h3>
 <p>Yes. Each lab is independent.</p>
-<h3 id="how-do-we-prevent-conflicts">How do we prevent conflicts?</h3>
+<h3 id="how-do-we-prevent-conflicts">How do we prevent conflicts?<a class="headerlink" href="#how-do-we-prevent-conflicts" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Use git for coordination</li>
 <li>Clear lab ownership</li>
 <li>Communication on shared utilities</li>
 </ul>
-<h3 id="can-we-code-review-lab-changes">Can we code review lab changes?</h3>
+<h3 id="can-we-code-review-lab-changes">Can we code review lab changes?<a class="headerlink" href="#can-we-code-review-lab-changes" title="Permanent link">&para;</a></h3>
 <p>Yes. Pull requests work for both lab-specific and shared code.</p>
-<h2 id="troubleshooting-questions">Troubleshooting Questions</h2>
-<h3 id="my-database-is-corrupted">My database is corrupted</h3>
-<div class="highlight"><pre><span></span><code><span class="c1"># Delete it and recreate</span>
-rm<span class="w"> </span>lab1_sales_performance/data/lab1_sales_performance.duckdb
-<span class="nb">cd</span><span class="w"> </span>lab1_sales_performance/dbt
-dbt<span class="w"> </span>run<span class="w">  </span><span class="c1"># Recreates from source</span>
-</code></pre></div>
-<h3 id="i-accidentally-deleted-a-model">I accidentally deleted a model</h3>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>checkout<span class="w"> </span>&lt;file&gt;<span class="w">  </span><span class="c1"># Restore from git</span>
-<span class="nb">cd</span><span class="w"> </span>dbt
-dbt<span class="w"> </span>run<span class="w">  </span><span class="c1"># Recreate tables</span>
-</code></pre></div>
-<h3 id="everything-is-broken">Everything is broken</h3>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>status<span class="w">  </span><span class="c1"># See what changed</span>
-git<span class="w"> </span>diff<span class="w">   </span><span class="c1"># See details</span>
-git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w">  </span><span class="c1"># Go back to last commit</span>
-</code></pre></div>
-<h3 id="who-do-i-ask-for-help">Who do I ask for help?</h3>
+<h2 id="troubleshooting-questions">Troubleshooting Questions<a class="headerlink" href="#troubleshooting-questions" title="Permanent link">&para;</a></h2>
+<h3 id="my-database-is-corrupted">My database is corrupted<a class="headerlink" href="#my-database-is-corrupted" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Delete it and recreate</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>rm<span class="w"> </span>lab1_sales_performance/data/lab1_sales_performance.duckdb
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nb">cd</span><span class="w"> </span>lab1_sales_performance/dbt
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>dbt<span class="w"> </span>run<span class="w">  </span><span class="c1"># Recreates from source</span>
+</span></code></pre></div>
+<h3 id="i-accidentally-deleted-a-model">I accidentally deleted a model<a class="headerlink" href="#i-accidentally-deleted-a-model" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>checkout<span class="w"> </span>&lt;file&gt;<span class="w">  </span><span class="c1"># Restore from git</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nb">cd</span><span class="w"> </span>dbt
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>dbt<span class="w"> </span>run<span class="w">  </span><span class="c1"># Recreate tables</span>
+</span></code></pre></div>
+<h3 id="everything-is-broken">Everything is broken<a class="headerlink" href="#everything-is-broken" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>git<span class="w"> </span>status<span class="w">  </span><span class="c1"># See what changed</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git<span class="w"> </span>diff<span class="w">   </span><span class="c1"># See details</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w">  </span><span class="c1"># Go back to last commit</span>
+</span></code></pre></div>
+<h3 id="who-do-i-ask-for-help">Who do I ask for help?<a class="headerlink" href="#who-do-i-ask-for-help" title="Permanent link">&para;</a></h3>
 <p>See <a href="../troubleshooting/">Troubleshooting</a> guide or ask maintainer.</p>
-<h2 id="feature-questions">Feature Questions</h2>
-<h3 id="can-i-add-monitoringalerting">Can I add monitoring/alerting?</h3>
+<h2 id="feature-questions">Feature Questions<a class="headerlink" href="#feature-questions" title="Permanent link">&para;</a></h2>
+<h3 id="can-i-add-monitoringalerting">Can I add monitoring/alerting?<a class="headerlink" href="#can-i-add-monitoringalerting" title="Permanent link">&para;</a></h3>
 <p>Yes, in Phase 3+. Currently manual checks only.</p>
-<h3 id="can-i-use-python-notebooks">Can I use Python notebooks?</h3>
+<h3 id="can-i-use-python-notebooks">Can I use Python notebooks?<a class="headerlink" href="#can-i-use-python-notebooks" title="Permanent link">&para;</a></h3>
 <p>Yes. Put them in <code>lab/notebooks/</code>.</p>
-<h3 id="can-i-have-dashboards">Can I have dashboards?</h3>
+<h3 id="can-i-have-dashboards">Can I have dashboards?<a class="headerlink" href="#can-i-have-dashboards" title="Permanent link">&para;</a></h3>
 <p>Yes. Connect BI tools (Tableau/Looker) to lab databases.</p>
-<h3 id="can-i-do-ml">Can I do ML?</h3>
+<h3 id="can-i-do-ml">Can I do ML?<a class="headerlink" href="#can-i-do-ml" title="Permanent link">&para;</a></h3>
 <p>Yes. Add models to <code>lab/pipelines/</code> or use Jupyter.</p>
 <hr />
-<h2 id="still-have-questions">Still Have Questions?</h2>
+<h2 id="still-have-questions">Still Have Questions?<a class="headerlink" href="#still-have-questions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Check <a href="../getting-started/quick-start/">Getting Started</a></li>
 <li>Check <a href="../troubleshooting/">Troubleshooting</a></li>
@@ -2808,7 +2706,7 @@ git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w">  
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 20, 2025 03:25:49 UTC">October 20, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="October 20, 2025 03:25:49 UTC"><span class="timeago" datetime="2025-10-20T03:25:49+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="October 20, 2025 03:25:49 UTC">2025-10-20</span>
   </span>
 
     
@@ -2818,7 +2716,7 @@ git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w">  
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 20, 2025 03:25:49 UTC">October 20, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="October 20, 2025 03:25:49 UTC"><span class="timeago" datetime="2025-10-20T03:25:49+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="October 20, 2025 03:25:49 UTC">2025-10-20</span>
   </span>
 
     
@@ -2826,6 +2724,8 @@ git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w">  
     
   </aside>
 
+
+  
 
 
 
@@ -2880,6 +2780,17 @@ git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w">  
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.python.org" target="_blank" rel="noopener" title="www.python.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+    </a>
+  
 </div>
       
     </div>
@@ -2894,10 +2805,18 @@ git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w">  
     
     
       
-      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "navigation.instant", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.annotation", "content.code.copy", "content.tooltips"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../js/timeago.min.js"></script>
+      
+        <script src="../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
+      
+        <script src="../javascripts/mermaid-init.js"></script>
       
     
   </body>

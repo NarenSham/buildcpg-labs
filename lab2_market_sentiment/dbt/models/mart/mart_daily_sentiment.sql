@@ -1,8 +1,8 @@
 {{ config(
     materialized='incremental',
-    unique_id=['sentiment_date', 'brand'],
+    unique_key=['sentiment_date', 'brand'],
     on_schema_change='append_new_columns',
-    incremental_strategy='merge',
+    incremental_strategy='delete+insert',
     tags=['mart', 'daily'],
     description='Daily sentiment aggregates by brand'
 ) }}
@@ -41,7 +41,7 @@ WITH daily_metrics AS (
     
     {% if execute %}
         {% if this.exists %}
-            WHERE CAST(published_at AS DATE) > (SELECT MAX(sentiment_date) FROM {{ this }})
+            WHERE CAST(published_at AS DATE) >= (SELECT MAX(sentiment_date) FROM {{ this }}) - INTERVAL '1 day'
         {% endif %}
     {% endif %}
     

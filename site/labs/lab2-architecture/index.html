@@ -15,10 +15,6 @@
         <link rel="canonical" href="https://narensham.github.io/buildcpg-labs/labs/lab2-architecture/">
       
       
-        <link rel="prev" href="../lab2-overview/">
-      
-      
-        <link rel="next" href="../lab2-quick-reference/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +22,7 @@
     
     
       
-        <title>Architecture - BuildCPG Labs</title>
+        <title>Lab 2: Market Sentiment Architecture - BuildCPG Labs</title>
       
     
     
@@ -52,9 +48,23 @@
       
     
     
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config",""),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
 
     
     
@@ -100,8 +110,7 @@
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="BuildCPG Labs" class="md-header__button md-logo" aria-label="BuildCPG Labs" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../../images/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -118,7 +127,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Architecture
+              Lab 2: Market Sentiment Architecture
             
           </span>
         </div>
@@ -175,6 +184,11 @@
       </label>
       <nav class="md-search__options" aria-label="Search">
         
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
         <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
@@ -198,18 +212,6 @@
 </div>
       
     
-    
-      <div class="md-header__source">
-        <a href="https://github.com/NarenSham/buildcpg-labs" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
-  </div>
-  <div class="md-source__repository">
-    NarenSham/buildcpg-labs
-  </div>
-</a>
-      </div>
     
   </nav>
   
@@ -282,8 +284,6 @@
   
   
   
-    
-  
   
     
     
@@ -291,12 +291,10 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
+      <li class="md-tabs__item">
         <a href="../lab2-overview/" class="md-tabs__link">
           
   
@@ -325,26 +323,6 @@
   
   
   Phases
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../utilities/overview.md" class="md-tabs__link">
-          
-  
-  
-  Utilities
 
         </a>
       </li>
@@ -420,24 +398,11 @@
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="BuildCPG Labs" class="md-nav__button md-logo" aria-label="BuildCPG Labs" data-md-component="logo">
       
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <img src="../../images/logo.png" alt="logo">
 
     </a>
     BuildCPG Labs
   </label>
-  
-    <div class="md-nav__source">
-      <a href="https://github.com/NarenSham/buildcpg-labs" title="Go to repository" class="md-source" data-md-component="source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
-  </div>
-  <div class="md-source__repository">
-    NarenSham/buildcpg-labs
-  </div>
-</a>
-    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -709,31 +674,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -746,7 +708,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Labs
@@ -757,31 +719,28 @@
                 
   
   
-    
   
   
-  
     
     
     
     
       
       
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
         
           
-          
         
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_1" >
         
           
-          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
             
   
   
@@ -794,7 +753,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_1">
             <span class="md-nav__icon md-icon"></span>
             Lab 2 - Market Sentiment
@@ -828,143 +787,66 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    Architecture
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../lab2-setup/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Architecture
+    Setup Guide
     
   </span>
   
 
       </a>
-      
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+              
+            
+              
+                
   
   
   
+  
+    <li class="md-nav__item">
+      <a href="../lab2-data-models/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Models
     
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    <span class="md-ellipsis">
-      🔍 Overview
-    </span>
-  </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#high-level-data-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧭 High-Level Data Flow
-    </span>
-  </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture-summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧱 Architecture Summary
-    </span>
-  </a>
+    <li class="md-nav__item">
+      <a href="../lab2-troubleshooting/" class="md-nav__link">
+        
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#technology-stack" class="md-nav__link">
-    <span class="md-ellipsis">
-      ⚙️ Technology Stack
-    </span>
-  </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key-features" class="md-nav__link">
-    <span class="md-ellipsis">
-      💡 Key Features
-    </span>
-  </a>
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#data-quality-tests" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧪 Data Quality Tests
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example-model-flow" class="md-nav__link">
-    <span class="md-ellipsis">
-      🔄 Example Model Flow
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#current-status" class="md-nav__link">
-    <span class="md-ellipsis">
-      📈 Current Status
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#related-documentation" class="md-nav__link">
-    <span class="md-ellipsis">
-      📚 Related Documentation
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
+
+      </a>
     </li>
   
 
@@ -1089,127 +971,6 @@
   
   
   
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Utilities
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            Utilities
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../utilities/overview.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Overview
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../utilities/data-inspector.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Data Inspector
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../utilities/csv-monitor.md" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    CSV Monitor
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
     <li class="md-nav__item">
       <a href="../../troubleshooting/" class="md-nav__link">
         
@@ -1277,7 +1038,7 @@
         <li class="md-nav__item">
   <a href="#overview" class="md-nav__link">
     <span class="md-ellipsis">
-      🔍 Overview
+      Overview
     </span>
   </a>
   
@@ -1286,7 +1047,7 @@
         <li class="md-nav__item">
   <a href="#high-level-data-flow" class="md-nav__link">
     <span class="md-ellipsis">
-      🧭 High-Level Data Flow
+      High-Level Data Flow
     </span>
   </a>
   
@@ -1295,7 +1056,7 @@
         <li class="md-nav__item">
   <a href="#architecture-summary" class="md-nav__link">
     <span class="md-ellipsis">
-      🧱 Architecture Summary
+      Architecture Summary
     </span>
   </a>
   
@@ -1304,7 +1065,7 @@
         <li class="md-nav__item">
   <a href="#technology-stack" class="md-nav__link">
     <span class="md-ellipsis">
-      ⚙️ Technology Stack
+      Technology Stack
     </span>
   </a>
   
@@ -1313,7 +1074,7 @@
         <li class="md-nav__item">
   <a href="#key-features" class="md-nav__link">
     <span class="md-ellipsis">
-      💡 Key Features
+      Key Features
     </span>
   </a>
   
@@ -1322,7 +1083,7 @@
         <li class="md-nav__item">
   <a href="#data-quality-tests" class="md-nav__link">
     <span class="md-ellipsis">
-      🧪 Data Quality Tests
+      Data Quality Tests
     </span>
   </a>
   
@@ -1331,7 +1092,7 @@
         <li class="md-nav__item">
   <a href="#example-model-flow" class="md-nav__link">
     <span class="md-ellipsis">
-      🔄 Example Model Flow
+      Example Model Flow
     </span>
   </a>
   
@@ -1340,7 +1101,7 @@
         <li class="md-nav__item">
   <a href="#current-status" class="md-nav__link">
     <span class="md-ellipsis">
-      📈 Current Status
+      Current Status
     </span>
   </a>
   
@@ -1349,7 +1110,7 @@
         <li class="md-nav__item">
   <a href="#related-documentation" class="md-nav__link">
     <span class="md-ellipsis">
-      📚 Related Documentation
+      Related Documentation
     </span>
   </a>
   
@@ -1374,49 +1135,50 @@
   
 
 
-<h1 id="lab-2-market-sentiment-architecture">Lab 2: Market Sentiment Architecture</h1>
-<h2 id="overview">🔍 Overview</h2>
+<h1 id="lab-2-market-sentiment-architecture">Lab 2: Market Sentiment Architecture<a class="headerlink" href="#lab-2-market-sentiment-architecture" title="Permanent link">&para;</a></h1>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>The <strong>Market Sentiment Analysis Architecture</strong> enables near-real-time ingestion, transformation, and aggregation of public sentiment toward Consumer Packaged Goods (CPG) brands.</p>
 <p>It’s designed around the <strong>Medallion Architecture</strong> — Raw → Bronze → Silver → Gold — and optimized for <strong>local-first analytics</strong> using DuckDB and dbt.</p>
 <hr />
-<h2 id="high-level-data-flow">🧭 High-Level Data Flow</h2>
-<pre class="mermaid"><code>flowchart LR
+<h2 id="high-level-data-flow">High-Level Data Flow<a class="headerlink" href="#high-level-data-flow" title="Permanent link">&para;</a></h2>
+<p>```mermaid
+    flowchart LR
     %% Layer titles
     subgraph INGESTION["🔹 Ingestion Layer"]
-        A1[Reddit API]:::source --&gt; B[Python Ingestion&lt;br&gt;(pipelines/ingest_sentiment.py)]:::process
-        A2[News API]:::source --&gt; B
-    end
+        A1[Reddit API]:::source &rarr; B[Python Ingestion<br>(pipelines/ingest_sentiment.py)]:::process
+        A2[News API]:::source &rarr; B
+    end</p>
+<div class="language-text highlight"><pre><span></span><code>subgraph RAW[&quot;🗂️ Raw Data&quot;]
+    B --&gt; C[Raw CSV Files&lt;br&gt;(data/raw/)]:::storage
+end
 
-    subgraph RAW["🗂️ Raw Data"]
-        B --&gt; C[Raw CSV Files&lt;br&gt;(data/raw/)]:::storage
-    end
+subgraph BRONZE[&quot;🥉 Bronze Layer&quot;]
+    C --&gt; D[dbt Staging Models&lt;br&gt;(stg_reddit__*, stg_news__*)]:::bronze
+end
 
-    subgraph BRONZE["🥉 Bronze Layer"]
-        C --&gt; D[dbt Staging Models&lt;br&gt;(stg_reddit__*, stg_news__*)]:::bronze
-    end
+subgraph SILVER[&quot;🥈 Silver Layer&quot;]
+    D --&gt; E[dbt Intermediate Models&lt;br&gt;(int_sentiment_unified)]:::silver
+end
 
-    subgraph SILVER["🥈 Silver Layer"]
-        D --&gt; E[dbt Intermediate Models&lt;br&gt;(int_sentiment_unified)]:::silver
-    end
+subgraph GOLD[&quot;🥇 Gold Layer&quot;]
+    E --&gt; F[dbt Marts Models&lt;br&gt;(mart_daily_sentiment, fct_sentiment_events)]:::gold
+end
 
-    subgraph GOLD["🥇 Gold Layer"]
-        E --&gt; F[dbt Marts Models&lt;br&gt;(mart_daily_sentiment, fct_sentiment_events)]:::gold
-    end
+subgraph ANALYTICS[&quot;📊 Analytics Layer&quot;]
+    F --&gt; G[Streamlit / DuckDB Dashboards]:::viz
+end
 
-    subgraph ANALYTICS["📊 Analytics Layer"]
-        F --&gt; G[Streamlit / DuckDB Dashboards]:::viz
-    end
-
-    %% Styling for classes
-    classDef source fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#0d47a1,font-weight:bold;
-    classDef process fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#4e342e,font-weight:bold;
-    classDef storage fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,font-weight:bold;
-    classDef bronze fill:#fbe9e7,stroke:#bf360c,stroke-width:2px,color:#3e2723,font-weight:bold;
-    classDef silver fill:#eceff1,stroke:#607d8b,stroke-width:2px,color:#263238,font-weight:bold;
-    classDef gold fill:#fff8e1,stroke:#f9a825,stroke-width:2px,color:#5f370e,font-weight:bold;
-    classDef viz fill:#fce4ec,stroke:#ad1457,stroke-width:2px,color:#4a148c,font-weight:bold;</code></pre>
+%% Styling for classes
+classDef source fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#0d47a1,font-weight:bold;
+classDef process fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#4e342e,font-weight:bold;
+classDef storage fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#1b5e20,font-weight:bold;
+classDef bronze fill:#fbe9e7,stroke:#bf360c,stroke-width:2px,color:#3e2723,font-weight:bold;
+classDef silver fill:#eceff1,stroke:#607d8b,stroke-width:2px,color:#263238,font-weight:bold;
+classDef gold fill:#fff8e1,stroke:#f9a825,stroke-width:2px,color:#5f370e,font-weight:bold;
+classDef viz fill:#fce4ec,stroke:#ad1457,stroke-width:2px,color:#4a148c,font-weight:bold;
+</code></pre></div>
 <hr />
-<h2 id="architecture-summary">🧱 Architecture Summary</h2>
+<h2 id="architecture-summary">Architecture Summary<a class="headerlink" href="#architecture-summary" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1449,7 +1211,7 @@
 </tbody>
 </table>
 <hr />
-<h2 id="technology-stack">⚙️ Technology Stack</h2>
+<h2 id="technology-stack">Technology Stack<a class="headerlink" href="#technology-stack" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1492,7 +1254,7 @@
 </tbody>
 </table>
 <hr />
-<h2 id="key-features">💡 Key Features</h2>
+<h2 id="key-features">Key Features<a class="headerlink" href="#key-features" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Unified Sentiment Model:</strong> Combines Reddit and News sentiment in one schema.</li>
 <li><strong>Surrogate Keys:</strong> Ensures event-level uniqueness.</li>
@@ -1502,7 +1264,7 @@
 <li><strong>Comprehensive Testing:</strong> Uniqueness, nulls, ranges, and accepted values validated.</li>
 </ul>
 <hr />
-<h2 id="data-quality-tests">🧪 Data Quality Tests</h2>
+<h2 id="data-quality-tests">Data Quality Tests<a class="headerlink" href="#data-quality-tests" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1536,7 +1298,7 @@
 </table>
 <p>All core tests are <strong>passing</strong> as of the latest dbt run ✅</p>
 <hr />
-<h2 id="example-model-flow">🔄 Example Model Flow</h2>
+<h2 id="example-model-flow">Example Model Flow<a class="headerlink" href="#example-model-flow" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p><strong>Ingestion:</strong><br />
@@ -1552,7 +1314,7 @@
 </li>
 </ol>
 <hr />
-<h2 id="current-status">📈 Current Status</h2>
+<h2 id="current-status">Current Status<a class="headerlink" href="#current-status" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1590,11 +1352,11 @@
 </tbody>
 </table>
 <hr />
-<h2 id="related-documentation">📚 Related Documentation</h2>
+<h2 id="related-documentation">Related Documentation<a class="headerlink" href="#related-documentation" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="lab2-setup.md">Lab 2 Setup Guide</a></li>
-<li><a href="lab2-data-models.md">Lab 2 Data Models</a></li>
-<li><a href="lab2-troubleshooting.md">Lab 2 Troubleshooting</a></li>
+<li><a href="../lab2-setup/">Lab 2 Setup Guide</a></li>
+<li><a href="../lab2-data-models/">Lab 2 Data Models</a></li>
+<li><a href="../lab2-troubleshooting/">Lab 2 Troubleshooting</a></li>
 <li><a href="../../architecture/overview/">Architecture Overview</a></li>
 </ul>
 <hr />
@@ -1623,7 +1385,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 3, 2025 04:02:13 UTC">November 3, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="November 3, 2025 04:51:59 UTC"><span class="timeago" datetime="2025-11-03T04:51:59+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 3, 2025 04:51:59 UTC">2025-11-03</span>
   </span>
 
     
@@ -1633,7 +1395,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="November 3, 2025 04:02:13 UTC">November 3, 2025</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="November 3, 2025 04:51:59 UTC"><span class="timeago" datetime="2025-11-03T04:51:59+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 3, 2025 04:51:59 UTC">2025-11-03</span>
   </span>
 
     
@@ -1641,6 +1403,8 @@
     
   </aside>
 
+
+  
 
 
 
@@ -1695,6 +1459,17 @@
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.python.org" target="_blank" rel="noopener" title="www.python.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+    </a>
+  
 </div>
       
     </div>
@@ -1709,10 +1484,18 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "content.tabs.link", "content.code.annotation", "content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "navigation.instant", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.annotation", "content.code.copy", "content.tooltips"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10.6.1/dist/mermaid.min.js"></script>
+      
+        <script src="../../javascripts/mermaid-init.js"></script>
       
     
   </body>

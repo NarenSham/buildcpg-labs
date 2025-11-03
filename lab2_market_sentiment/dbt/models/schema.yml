@@ -218,3 +218,29 @@ models:
       - name: mart_load_date
         description: Date the mart was loaded
         data_type: timestamp with time zone
+
+  - name: dim_brands
+    description: Brand dimension table with metadata
+    columns:
+      - name: brand_key
+        description: Surrogate key for brand
+        tests:
+          - unique
+          - not_null
+      - name: brand
+        description: Brand name
+      - name: category
+        description: Product category
+      - name: parent_company
+        description: Parent company name
+
+  - name: dim_sources
+    description: Source dimension for data origins
+    columns:
+      - name: source_key
+        description: Surrogate key for source
+        tests:
+          - unique
+          - not_null
+      - name: source_name
+        description: Source platform name

@@ -3,12 +3,11 @@ site_description: Multi-lab data engineering platform using dbt, DuckDB, and Pyt
 site_author: narensham
 site_url: https://narensham.github.io/buildcpg-labs
 
-repo_name: NarenSham/buildcpg-labs
-repo_url: https://github.com/NarenSham/buildcpg-labs
 edit_uri: edit/main/docs/
 
 theme:
   name: material
+  logo: images/logo.png
   palette:
     # Light mode
     - media: "(prefers-color-scheme: light)"

@@ -1,0 +1,449 @@
+/* Extra CSS for BuildCPG Labs Documentation */
+/* Save this file as: docs/stylesheets/extra.css */
+
+/* ========================================
+   Mermaid Diagram Styling
+   ======================================== */
+
+/* Container for mermaid diagrams */
+.mermaid {
+    text-align: center;
+    margin: 2em 0;
+    padding: 1em;
+    background: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+  }
+  
+  /* Dark mode support for mermaid */
+  [data-md-color-scheme="slate"] .mermaid {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  
+  /* Mermaid diagram text */
+  .mermaid text {
+    font-family: 'Roboto', sans-serif !important;
+  }
+  
+  /* ========================================
+     Code Block Enhancements
+     ======================================== */
+  
+  /* Better code block styling */
+  .highlight {
+    margin: 1em 0;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  /* Code block titles */
+  .highlight pre {
+    margin: 0;
+    padding: 1em;
+  }
+  
+  /* Inline code */
+  code {
+    background: #f1f5f9;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+  
+  [data-md-color-scheme="slate"] code {
+    background: #1e293b;
+  }
+  
+  /* ========================================
+     Table Styling
+     ======================================== */
+  
+  /* Better table styling */
+  table {
+    width: 100%;
+    margin: 1.5em 0;
+    border-collapse: collapse;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  table thead {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+  }
+  
+  table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+  }
+  
+  table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  table tr:hover {
+    background: #f8fafc;
+  }
+  
+  [data-md-color-scheme="slate"] table tr:hover {
+    background: #1e293b;
+  }
+  
+  /* ========================================
+     Admonition (Callout) Enhancements
+     ======================================== */
+  
+  .admonition {
+    margin: 1.5em 0;
+    padding: 0;
+    border-left: 4px solid;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .admonition-title {
+    padding: 12px 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* Success/tip callouts */
+  .admonition.tip {
+    border-color: #10b981;
+  }
+  
+  .admonition.tip .admonition-title {
+    background: #dcfce7;
+    color: #065f46;
+  }
+  
+  /* Warning callouts */
+  .admonition.warning {
+    border-color: #f59e0b;
+  }
+  
+  .admonition.warning .admonition-title {
+    background: #fef3c7;
+    color: #92400e;
+  }
+  
+  /* Danger/error callouts */
+  .admonition.danger {
+    border-color: #ef4444;
+  }
+  
+  .admonition.danger .admonition-title {
+    background: #fee2e2;
+    color: #991b1b;
+  }
+  
+  /* Info callouts */
+  .admonition.info {
+    border-color: #3b82f6;
+  }
+  
+  .admonition.info .admonition-title {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+  
+  /* ========================================
+     Navigation Enhancements
+     ======================================== */
+  
+  /* Better breadcrumb styling */
+  .md-nav__item--nested > .md-nav__link {
+    font-weight: 600;
+    color: #3b82f6;
+  }
+  
+  /* Active navigation item */
+  .md-nav__item .md-nav__link--active {
+    color: #3b82f6;
+    font-weight: 600;
+  }
+  
+  /* ========================================
+     Content Enhancements
+     ======================================== */
+  
+  /* Better heading styling */
+  h1 {
+    color: #1e40af;
+    border-bottom: 3px solid #3b82f6;
+    padding-bottom: 0.5em;
+    margin-top: 1.5em;
+  }
+  
+  h2 {
+    color: #1e40af;
+    margin-top: 2em;
+    padding-bottom: 0.3em;
+    border-bottom: 2px solid #e2e8f0;
+  }
+  
+  h3 {
+    color: #3b82f6;
+    margin-top: 1.5em;
+  }
+  
+  /* Emoji in headings */
+  h1::before,
+  h2::before,
+  h3::before {
+    margin-right: 0.3em;
+  }
+  
+  /* ========================================
+     List Enhancements
+     ======================================== */
+  
+  /* Better list styling */
+  ul, ol {
+    line-height: 1.8;
+  }
+  
+  li {
+    margin: 0.5em 0;
+  }
+  
+  /* Checkbox lists */
+  ul.task-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  ul.task-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  
+  /* ========================================
+     Badge/Tag Styling
+     ======================================== */
+  
+  .badge {
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    font-size: 0.85em;
+    font-weight: 600;
+    line-height: 1;
+    color: white;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 12px;
+    margin: 0 0.25em;
+  }
+  
+  .badge-success {
+    background: #10b981;
+  }
+  
+  .badge-warning {
+    background: #f59e0b;
+  }
+  
+  .badge-error {
+    background: #ef4444;
+  }
+  
+  .badge-info {
+    background: #3b82f6;
+  }
+  
+  /* ========================================
+     Quick Reference Cards
+     ======================================== */
+  
+  .quick-ref-card {
+    background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+    border: 2px solid #3b82f6;
+    border-radius: 12px;
+    padding: 1.5em;
+    margin: 1em 0;
+    box-shadow: 0 4px 6px rgba(59, 130, 246, 0.1);
+  }
+  
+  .quick-ref-card h3 {
+    margin-top: 0;
+    color: #1e40af;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 0.5em;
+  }
+  
+  /* ========================================
+     Status Indicators
+     ======================================== */
+  
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    padding: 0.4em 0.8em;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9em;
+    margin: 0.5em;
+  }
+  
+  .status-active {
+    background: #dcfce7;
+    color: #166534;
+    border: 2px solid #22c55e;
+  }
+  
+  .status-planned {
+    background: #fef3c7;
+    color: #92400e;
+    border: 2px solid #f59e0b;
+  }
+  
+  .status-deprecated {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 2px solid #ef4444;
+  }
+  
+  /* ========================================
+     Keyboard Shortcuts
+     ======================================== */
+  
+  kbd {
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    font-size: 0.85em;
+    font-family: 'Roboto Mono', monospace;
+    line-height: 1;
+    color: #1f2937;
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* ========================================
+     Responsive Adjustments
+     ======================================== */
+  
+  @media screen and (max-width: 768px) {
+    .mermaid {
+      overflow-x: auto;
+    }
+    
+    table {
+      font-size: 0.9em;
+    }
+    
+    .quick-ref-card {
+      padding: 1em;
+    }
+  }
+  
+  /* ========================================
+     Print Styles
+     ======================================== */
+  
+  @media print {
+    .mermaid {
+      page-break-inside: avoid;
+    }
+    
+    .admonition {
+      page-break-inside: avoid;
+    }
+    
+    table {
+      page-break-inside: avoid;
+    }
+    
+    h1, h2, h3 {
+      page-break-after: avoid;
+    }
+  }
+  
+  /* ========================================
+     Scrollbar Styling (WebKit)
+     ======================================== */
+  
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+  
+  [data-md-color-scheme="slate"] ::-webkit-scrollbar-track {
+    background: #1e293b;
+  }
+  
+  [data-md-color-scheme="slate"] ::-webkit-scrollbar-thumb {
+    background: #475569;
+  }
+  
+  /* ========================================
+     Animation Classes
+     ======================================== */
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  /* ========================================
+     Utility Classes
+     ======================================== */
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .mt-2 {
+    margin-top: 2em;
+  }
+  
+  .mb-2 {
+    margin-bottom: 2em;
+  }
+  
+  .p-2 {
+    padding: 2em;
+  }
+  
+  .rounded {
+    border-radius: 8px;
+  }
+  
+  .shadow {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
