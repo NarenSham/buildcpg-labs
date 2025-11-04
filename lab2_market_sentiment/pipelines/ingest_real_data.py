@@ -1,200 +1,184 @@
 """
-Market Sentiment Dashboard - Lab 02
-📊 Focused on storytelling: brand sentiment trend, top posts, source breakdown
+Real data ingestion from Reddit and News API with sentiment analysis.
 """
-
-import streamlit as st
+import praw
+from newsapi import NewsApiClient
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 import pandas as pd
-import duckdb
-import plotly.express as px
 from pathlib import Path
 from datetime import datetime, timedelta
+import logging
+import os
+from dotenv import load_dotenv
 
-# ===========================
-# Page configuration
-# ===========================
-st.set_page_config(
-    page_title="Market Sentiment | Lab 02",
-    page_icon="📊",
-    layout="wide"
-)
+# Load environment variables
+load_dotenv()
 
-# ===========================
-# Database path and connection
-# ===========================
-DB_PATH = Path(__file__).parent.parent / "data" / "lab2_market_sentiment.duckdb"
+# Setup logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-@st.cache_resource
-def get_db_connection():
-    return duckdb.connect(str(DB_PATH), read_only=True)
+# Paths
+LAB_ROOT = Path(__file__).parent.parent
+DATA_DIR = LAB_ROOT / "data"
+RAW_DIR = DATA_DIR / "raw"
 
-@st.cache_data(ttl=300)
-def load_data():
-    conn = get_db_connection()
+# Brands to track
+BRANDS = ["Coca-Cola", "PepsiCo", "Unilever", "Procter & Gamble", "Nestlé"]
+
+# Initialize sentiment analyzer
+sentiment_analyzer = SentimentIntensityAnalyzer()
+
+
+def analyze_sentiment(text: str) -> float:
+    """
+    Analyze sentiment using VADER.
+    Returns compound score between -1 and 1.
+    """
+    if not text:
+        return 0.0
+    scores = sentiment_analyzer.polarity_scores(text)
+    return scores['compound']
+
+
+def ingest_reddit_data(limit_per_brand=20):
+    """
+    Fetch real Reddit posts mentioning CPG brands.
+    """
+    try:
+        logger.info("🔄 Fetching Reddit data...")
+        
+        # Initialize Reddit API
+        reddit = praw.Reddit(
+            client_id=os.getenv('REDDIT_CLIENT_ID'),
+            client_secret=os.getenv('REDDIT_CLIENT_SECRET'),
+            user_agent=os.getenv('REDDIT_USER_AGENT')
+        )
+        
+        all_posts = []
+        
+        for brand in BRANDS:
+            logger.info(f"  Searching for: {brand}")
+            
+            # Search across multiple subreddits
+            subreddits = reddit.subreddit('all')
+            
+            for post in subreddits.search(brand, limit=limit_per_brand, time_filter='month'):
+                # Combine title and selftext for sentiment
+                full_text = f"{post.title} {post.selftext}"
+                
+                post_data = {
+                    'post_id': post.id,
+                    'author': str(post.author) if post.author else 'deleted',
+                    'brand': brand,
+                    'title': post.title,
+                    'body': post.selftext if post.selftext else post.title,
+                    'upvotes': post.score,
+                    'comments_count': post.num_comments,
+                    'created_at': datetime.fromtimestamp(post.created_utc).isoformat(),
+                    'sentiment_score': analyze_sentiment(full_text),
+                    'source': 'reddit',
+                    'ingested_at': datetime.utcnow().isoformat(),
+                    'url': f"https://reddit.com{post.permalink}"
+                }
+                all_posts.append(post_data)
+        
+        df = pd.DataFrame(all_posts)
+        
+        # Save to CSV
+        reddit_path = RAW_DIR / "reddit_real.csv"
+        df.to_csv(reddit_path, index=False)
+        
+        logger.info(f"✅ Reddit data ingested: {len(df)} posts → {reddit_path}")
+        return {"source": "reddit", "records": len(df), "status": "success"}
+        
+    except Exception as e:
+        logger.error(f"❌ Reddit ingestion failed: {str(e)}")
+        return {"source": "reddit", "records": 0, "status": "failed", "error": str(e)}
+
+
+def ingest_news_data(days_back=7):
+    """
+    Fetch real news articles mentioning CPG brands.
+    """
+    try:
+        logger.info("🔄 Fetching news data...")
+        
+        # Initialize News API
+        newsapi = NewsApiClient(api_key=os.getenv('NEWS_API_KEY'))
+        
+        all_articles = []
+        from_date = (datetime.utcnow() - timedelta(days=days_back)).strftime('%Y-%m-%d')
+        
+        for brand in BRANDS:
+            logger.info(f"  Searching for: {brand}")
+            
+            # Search for articles
+            response = newsapi.get_everything(
+                q=brand,
+                from_param=from_date,
+                language='en',
+                sort_by='relevancy',
+                page_size=20  # Free tier limit
+            )
+            
+            for article in response.get('articles', []):
+                # Combine title and description for sentiment
+                full_text = f"{article.get('title', '')} {article.get('description', '')}"
+                
+                article_data = {
+                    'article_id': article.get('url', '').split('/')[-1][:50],  # Use URL slug as ID
+                    'publication': article.get('source', {}).get('name', 'Unknown'),
+                    'brand': brand,
+                    'headline': article.get('title', ''),
+                    'body': article.get('description', '') or article.get('content', ''),
+                    'url': article.get('url', ''),
+                    'published_at': article.get('publishedAt', datetime.utcnow().isoformat()),
+                    'sentiment_score': analyze_sentiment(full_text),
+                    'source': 'news',
+                    'ingested_at': datetime.utcnow().isoformat()
+                }
+                all_articles.append(article_data)
+        
+        df = pd.DataFrame(all_articles)
+        
+        # Remove duplicates based on URL
+        df = df.drop_duplicates(subset=['url'], keep='first')
+        
+        # Save to CSV
+        news_path = RAW_DIR / "news_real.csv"
+        df.to_csv(news_path, index=False)
+        
+        logger.info(f"✅ News data ingested: {len(df)} articles → {news_path}")
+        return {"source": "news", "records": len(df), "status": "success"}
+        
+    except Exception as e:
+        logger.error(f"❌ News ingestion failed: {str(e)}")
+        return {"source": "news", "records": 0, "status": "failed", "error": str(e)}
+
+
+def ensure_directories():
+    """Create all required directories."""
+    for d in [RAW_DIR, DATA_DIR / "bronze", DATA_DIR / "silver", DATA_DIR / "gold"]:
+        d.mkdir(parents=True, exist_ok=True)
+    logger.info(f"📁 Directories created at {DATA_DIR}")
+
+
+def main():
+    """Main ingestion flow."""
+    ensure_directories()
     
-    # Load daily sentiment (weekly aggregated for smoother trend)
-    df_daily = conn.execute("""
-        SELECT 
-            brand,
-            DATE_TRUNC('week', published_at) AS week_start,
-            ROUND(AVG(sentiment_score), 3) AS avg_sentiment,
-            SUM(engagement_count) AS total_engagement
-        FROM main.mart_daily_sentiment
-        GROUP BY brand, DATE_TRUNC('week', published_at)
-        ORDER BY week_start ASC
-    """).df()
+    results = []
+    results.append(ingest_reddit_data(limit_per_brand=20))
+    results.append(ingest_news_data(days_back=7))
     
-    # Load raw sentiment events
-    df_events = conn.execute("""
-        SELECT
-            brand,
-            headline,
-            body_text,
-            sentiment_score,
-            source,
-            published_at,
-            url
-        FROM main.fct_sentiment_events
-        ORDER BY published_at DESC
-        LIMIT 2000
-    """).df()
+    logger.info(f"\n📊 Ingestion Summary:")
+    for result in results:
+        status_emoji = "✅" if result['status'] == 'success' else "❌"
+        logger.info(f"  {status_emoji} {result['source']}: {result['records']} records")
     
-    return df_daily, df_events
+    return results
 
-# ===========================
-# Load data
-# ===========================
-try:
-    df_daily, df_events = load_data()
-    
-    if df_events.empty:
-        st.warning("No data available. Run the ingestion pipeline first.")
-        st.stop()
-    
-except Exception as e:
-    st.error(f"❌ Error loading data: {e}")
-    st.info("Run the ingestion and dbt build first:")
-    st.code("python pipelines/ingest_sentiment.py && cd dbt && dbt build --profiles-dir .")
-    st.stop()
 
-# ===========================
-# Header
-# ===========================
-st.title("Market Sentiment Dashboard")
-st.markdown(
-    "*Tracking real-time sentiment trends for CPG brands across Reddit and news sources*"
-)
-
-# ===========================
-# Top KPIs
-# ===========================
-st.subheader("📌 Key Metrics")
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    st.metric("Total Posts/Articles", len(df_events))
-
-with col2:
-    st.metric("Total Brands", df_events['brand'].nunique())
-
-with col3:
-    avg_sentiment = df_events['sentiment_score'].mean()
-    st.metric("Avg Sentiment Score", f"{avg_sentiment:.2f}")
-
-with col4:
-    st.metric("Total Sources", df_events['source'].nunique())
-
-# ===========================
-# Filters
-# ===========================
-st.subheader("🔍 Filter Data")
-col1, col2 = st.columns(2)
-with col1:
-    brands_filter = st.multiselect(
-        "Select Brands",
-        options=df_events['brand'].unique(),
-        default=df_events['brand'].unique()
-    )
-with col2:
-    sources_filter = st.multiselect(
-        "Select Sources",
-        options=df_events['source'].unique(),
-        default=df_events['source'].unique()
-    )
-
-df_filtered = df_events[
-    (df_events['brand'].isin(brands_filter)) &
-    (df_events['source'].isin(sources_filter))
-]
-
-df_trend_filtered = df_daily[df_daily['brand'].isin(brands_filter)]
-
-# ===========================
-# Sentiment Trend Over Time
-# ===========================
-st.subheader("📈 Weekly Sentiment Trend")
-fig_trend = px.line(
-    df_trend_filtered,
-    x='week_start',
-    y='avg_sentiment',
-    color='brand',
-    markers=True,
-    title='Weekly Average Sentiment by Brand',
-    labels={'week_start': 'Week Start', 'avg_sentiment': 'Avg Sentiment'}
-)
-fig_trend.update_layout(height=400, legend_title_text='Brand', yaxis_range=[-1, 1])
-st.plotly_chart(fig_trend, use_container_width=True)
-
-# ===========================
-# Source Distribution
-# ===========================
-st.subheader("📊 Source Distribution")
-source_counts = df_filtered['source'].value_counts()
-fig_source = px.bar(
-    x=source_counts.index,
-    y=source_counts.values,
-    labels={'x': 'Source', 'y': 'Count'},
-    title='Posts/Articles by Source',
-    text=source_counts.values
-)
-fig_source.update_layout(height=300)
-st.plotly_chart(fig_source, use_container_width=True)
-
-# ===========================
-# Top Posts Driving Sentiment
-# ===========================
-st.subheader("📝 Top Posts Driving Sentiment")
-
-# Sort by sentiment score
-top_positive = df_filtered.sort_values('sentiment_score', ascending=False).head(5)
-top_negative = df_filtered.sort_values('sentiment_score', ascending=True).head(5)
-
-def render_posts(df_posts, title_emoji=""):
-    for _, row in df_posts.iterrows():
-        st.markdown(f"**{title_emoji} Brand:** {row['brand']} | **Score:** {row['sentiment_score']:.2f} | **Source:** {row['source']}")
-        st.markdown(f"**Headline:** {row['headline']}")
-        st.markdown(f"**Content:** {row['body_text'][:300]}{'...' if len(row['body_text']) > 300 else ''}")
-        st.markdown(f"[🔗 Link]({row['url']})")
-        st.markdown("---")
-
-st.markdown("#### Top Positive Posts")
-render_posts(top_positive, "👍")
-
-st.markdown("#### Top Negative Posts")
-render_posts(top_negative, "👎")
-
-# ===========================
-# Raw Data Explorer
-# ===========================
-st.subheader("🔍 Raw Data Table")
-st.dataframe(
-    df_filtered[['brand', 'headline', 'body_text', 'sentiment_score', 'source', 'published_at', 'url']],
-    use_container_width=True,
-    height=400
-)
-
-# ===========================
-# Footer
-# ===========================
-st.markdown("---")
-st.caption(f"Last updated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M UTC')} | Records displayed: {len(df_filtered)}")
+if __name__ == "__main__":
+    main()

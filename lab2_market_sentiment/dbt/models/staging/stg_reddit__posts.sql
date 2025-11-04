@@ -8,7 +8,7 @@ WITH source AS (
     SELECT
         post_id,
         author,
-        brand,
+        UPPER(nfc_normalize(brand)) AS brand,
         title,
         body,
         upvotes,

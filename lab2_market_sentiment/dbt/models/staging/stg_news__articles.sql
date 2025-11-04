@@ -7,7 +7,7 @@
 SELECT
     article_id,
     publication,
-    brand,
+    UPPER(nfc_normalize(brand)) AS brand,
     headline,
     body,
     url,

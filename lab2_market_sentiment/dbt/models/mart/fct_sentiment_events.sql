@@ -1,6 +1,7 @@
 {{ config(
   materialized='incremental',
   unique_key='sentiment_event_id',
+  alias='fct_sentiment_events',
   tags=['mart', 'facts'],
   description='Fact table: One row per sentiment event',
   incremental_strategy='delete+insert'
