@@ -94,7 +94,7 @@ models:
         description: Time when the data was ingested
 
       - name: published_at
-        data_type: timestamp
+        data_type: timestamp with time zone
         description: Original publish timestamp
 
       - name: published_day_of_week
@@ -124,6 +124,18 @@ models:
       - name: source_key
         data_type: integer
         description: Foreign key to source dimension
+
+      - name: parent_company        
+        description: Parent company owning the brand
+        data_type: varchar
+        
+      - name: brand_category       
+        description: Product category (e.g., Beverages, Personal Care)
+        data_type: varchar
+        
+      - name: subreddit         
+        description: Reddit subreddit where post was found (null for news)
+        data_type: varchar
 
   - name: mart_daily_sentiment
     description: |
@@ -244,3 +256,276 @@ models:
           - not_null
       - name: source_name
         description: Source platform name
+
+  - name: mart_brand_competitive_analysis
+    description: |
+      **Mart: Brand Competitive Analysis**
+      Grain: One row per brand
+      
+      Competitive intelligence including share of voice, sentiment benchmarks,
+      engagement metrics, and competitive positioning.
+      
+      **Key Metrics:**
+      - Share of Voice: % of total mentions
+      - Net Sentiment Score: (Positive % - Negative %)
+      - Competitive Position: MARKET_LEADER, NICHE_FAVORITE, AT_RISK, etc.
+      
+      **Used By:**
+      - Competitive dashboard
+      - Executive reports
+      - Brand strategy analysis
+
+    tests:
+      - dbt_expectations.expect_compound_columns_to_be_unique:
+          column_list: ["brand", "parent_company"]
+
+    columns:
+      - name: brand
+        description: Consumer brand name
+        data_type: varchar
+        tests:
+          - not_null
+
+      - name: parent_company
+        description: Parent company owning the brand
+        data_type: varchar
+        tests:
+          - not_null
+
+      - name: brand_category
+        description: Product category
+        data_type: varchar
+
+      - name: total_mentions
+        description: Total mentions across all sources
+        data_type: bigint
+        tests:
+          - not_null
+
+      - name: share_of_voice_pct
+        description: Share of voice as percentage of total mentions
+        data_type: double
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 0
+              max_value: 100
+
+      - name: avg_sentiment
+        description: Average sentiment score for the brand
+        data_type: double
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: -1
+              max_value: 1
+
+      - name: net_sentiment_score
+        description: Positive % minus Negative %
+        data_type: double
+
+      - name: competitive_position
+        description: Competitive positioning classification
+        data_type: varchar
+        tests:
+          - accepted_values:
+              values: ['MARKET_LEADER', 'NICHE_FAVORITE', 'AT_RISK', 'LOW_VISIBILITY', 'MIDDLE_PACK']
+
+      - name: sentiment_vs_category
+        description: Performance vs category average
+        data_type: varchar
+        tests:
+          - accepted_values:
+              values: ['OUTPERFORMING', 'UNDERPERFORMING', 'AT_PAR']
+
+      - name: sentiment_rank_in_category
+        description: Sentiment rank within product category
+        data_type: bigint
+
+      - name: volume_rank_in_category
+        description: Volume rank within product category
+        data_type: bigint
+
+      - name: engagement_rate
+        description: Average engagement per Reddit mention
+        data_type: double
+
+      - name: momentum_pct
+        description: 7d vs 30d growth momentum percentage
+        data_type: double
+
+      - name: reddit_mentions
+        description: Count of Reddit mentions
+        data_type: bigint
+
+      - name: news_mentions
+        description: Count of news mentions
+        data_type: bigint
+
+      - name: positive_mentions
+        description: Count of positive sentiment mentions
+        data_type: bigint
+
+      - name: negative_mentions
+        description: Count of negative sentiment mentions
+        data_type: bigint
+
+      - name: neutral_mentions
+        description: Count of neutral sentiment mentions
+        data_type: bigint
+
+      - name: _created_at
+        description: Timestamp when record was created
+        data_type: timestamp with time zone
+
+      - name: _dbt_run_timestamp
+        description: dbt run timestamp
+        data_type: varchar
+
+
+  - name: mart_trending_topics
+    description: |
+      **Mart: Trending Topics**
+      Grain: One row per (brand, topic) combination
+      
+      Identifies trending discussion topics and themes by brand.
+      Uses keyword extraction and trending score calculation.
+      
+      **Topics Tracked:**
+      - Product Launch
+      - Pricing
+      - Quality Issues
+      - Sustainability
+      - Health & Nutrition
+      - Marketing & Advertising
+      - Brand Comparison
+      - Taste & Flavor
+      
+      **Trending Score:**
+      Combines recency, volume growth, and engagement
+      
+      **Used By:**
+      - Topic analysis dashboard
+      - Brand monitoring alerts
+      - Content strategy planning
+
+    tests:
+      - dbt_expectations.expect_compound_columns_to_be_unique:
+          column_list: ["brand", "topic"]
+
+    columns:
+      - name: brand
+        description: Consumer brand name
+        data_type: varchar
+        tests:
+          - not_null
+
+      - name: parent_company
+        description: Parent company owning the brand
+        data_type: varchar
+
+      - name: topic
+        description: Discussion topic/theme
+        data_type: varchar
+        tests:
+          - not_null
+          - accepted_values:
+              values: 
+                - 'Product Launch'
+                - 'Pricing'
+                - 'Quality Issues'
+                - 'Sustainability'
+                - 'Health & Nutrition'
+                - 'Marketing & Advertising'
+                - 'Brand Comparison'
+                - 'Taste & Flavor'
+
+      - name: mention_count
+        description: Total mentions of this topic for the brand
+        data_type: bigint
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: 3  # Filtered in model
+
+      - name: trending_score
+        description: Calculated trending score (recency + growth + engagement)
+        data_type: double
+        tests:
+          - not_null
+
+      - name: trend_status
+        description: Trending classification
+        data_type: varchar
+        tests:
+          - accepted_values:
+              values: ['HOT', 'TRENDING', 'STABLE', 'EMERGING']
+
+      - name: sentiment_tone
+        description: Overall sentiment about this topic
+        data_type: varchar
+        tests:
+          - accepted_values:
+              values: ['POSITIVE_BUZZ', 'NEGATIVE_BUZZ', 'NEUTRAL_DISCUSSION']
+
+      - name: avg_sentiment
+        description: Average sentiment score for topic mentions
+        data_type: double
+        tests:
+          - dbt_expectations.expect_column_values_to_be_between:
+              min_value: -1
+              max_value: 1
+
+      - name: positive_mentions
+        description: Count of positive mentions
+        data_type: bigint
+
+      - name: negative_mentions
+        description: Count of negative mentions
+        data_type: bigint
+
+      - name: positive_pct
+        description: Percentage of positive mentions
+        data_type: double
+
+      - name: reddit_mentions
+        description: Reddit mentions for this topic
+        data_type: bigint
+
+      - name: news_mentions
+        description: News mentions for this topic
+        data_type: bigint
+
+      - name: mentions_last_7d
+        description: Mentions in last 7 days
+        data_type: bigint
+
+      - name: mentions_last_14d
+        description: Mentions in last 14 days
+        data_type: bigint
+
+      - name: avg_engagement
+        description: Average engagement (Reddit only)
+        data_type: bigint
+
+      - name: max_engagement
+        description: Maximum engagement seen
+        data_type: bigint
+
+      - name: latest_mention
+        description: Timestamp of most recent mention
+        data_type: timestamp
+
+      - name: topic_rank_for_brand
+        description: Rank of this topic within the brand
+        data_type: bigint
+
+      - name: topic_total_mentions
+        description: Total mentions of this topic across all brands
+        data_type: bigint
+
+      - name: _created_at
+        description: Timestamp when record was created
+        data_type: timestamp with time zone
+
+      - name: _dbt_run_timestamp
+        description: dbt run timestamp
+        data_type: varchar

@@ -9,12 +9,15 @@ WITH reddit_refined AS (
         post_id as content_id,
         author as creator,
         brand,
+        parent_company,                   
+        brand_category,                    
         title as headline,
         body as body_text,
         upvotes as engagement_count,
         sentiment_score,
         created_at as published_at,
         'reddit' as source,
+        subreddit,
         ingested_at,
         {{ generate_surrogate_key(['post_id', 'created_at']) }} as content_hash
     FROM {{ ref('stg_reddit__posts') }}
@@ -25,12 +28,15 @@ news_refined AS (
         article_id as content_id,
         publication as creator,
         brand,
+        parent_company,                   
+        brand_category,                    
         headline,
         body as body_text,
         0 as engagement_count,
         sentiment_score,
         published_at,
         'news' as source,
+        NULL as subreddit, 
         ingested_at,
         {{ generate_surrogate_key(['article_id', 'published_at']) }} as content_hash
     FROM {{ ref('stg_news__articles') }}

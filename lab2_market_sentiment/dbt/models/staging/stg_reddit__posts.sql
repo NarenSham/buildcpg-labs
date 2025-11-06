@@ -9,6 +9,8 @@ WITH source AS (
         post_id,
         author,
         UPPER(nfc_normalize(brand)) AS brand,
+        parent_company,
+        brand_category, 
         title,
         body,
         upvotes,
@@ -16,9 +18,10 @@ WITH source AS (
         created_at,
         sentiment_score,
         source,
+        subreddit,                         
         ingested_at,
         get_current_timestamp() as _loaded_at
-    FROM read_csv_auto('../data/raw/reddit_real.csv')
+    FROM read_csv_auto('../data/raw/reddit_brands.csv')
 ),
 
 -- Quality checks
@@ -55,6 +58,8 @@ cleaned AS (
         post_id,
         author,
         UPPER(TRIM(brand)) as brand,
+        UPPER(TRIM(parent_company)) as parent_company,     -- ✅ NEW
+        UPPER(TRIM(brand_category)) as brand_category,     -- ✅ NEW
         REGEXP_REPLACE(TRIM(title), '\s+', ' ') as title,
         body,
         upvotes,
@@ -73,6 +78,7 @@ cleaned AS (
         ) as sentiment_score,
         
         'reddit' as source,
+        subreddit,
         ingested_at,
         _loaded_at
     FROM deduplicated

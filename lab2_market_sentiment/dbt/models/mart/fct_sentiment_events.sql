@@ -16,6 +16,8 @@ WITH base_data AS (
         content_id,
         creator,
         brand,
+        parent_company, 
+        brand_category,  
         headline,
         body_text,
         engagement_count,
@@ -23,6 +25,7 @@ WITH base_data AS (
         sentiment_category,
         published_at,
         source,
+        subreddit,
         ingested_at,
 
         -- Quality tracking
@@ -61,6 +64,8 @@ SELECT
     content_id,
     creator,
     brand,
+    parent_company, 
+    brand_category,  
     headline,
     body_text,
     CAST(engagement_count AS BIGINT) AS engagement_count,
@@ -68,6 +73,7 @@ SELECT
     sentiment_category,
     published_at,
     source,
+    subreddit,
     ingested_at,
 
     -- Date components

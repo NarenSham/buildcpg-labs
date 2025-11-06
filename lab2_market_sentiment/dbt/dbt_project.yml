@@ -27,6 +27,11 @@ models:
       +materialized: table
       +tags: ['intermediate', 'daily']
       +on_schema_change: fail
+
+    dimensions:                                
+      +materialized: table
+      +tags: ['dimension']
+      +on_schema_change: append_new_columns
     
     mart:
       +materialized: table
@@ -34,7 +39,9 @@ models:
       
       fct_sentiment_events:
         +materialized: incremental
-        +incremental_strategy: 'merge'
+        +incremental_strategy: 'delete+insert'  
+        +unique_key: 'sentiment_event_id'       
+        +on_schema_change: 'append_new_columns' 
         +unique_id: 'sentiment_event_id'
         +on_schema_change: fail
         +contract:
@@ -42,10 +49,23 @@ models:
       
       mart_daily_sentiment:
         +materialized: incremental
-        +incremental_strategy: 'merge'
-        +unique_id: ['sentiment_date', 'brand']
+        +incremental_strategy: 'delete+insert'  
+        +unique_key: ['sentiment_date', 'brand']  
         +on_schema_change: fail
+
+      mart_brand_competitive_analysis:
+        +materialized: table
+        +tags: ['mart', 'competitive', 'analytics']
+        +on_schema_change: append_new_columns
+
+      mart_trending_topics:
+        +materialized: table
+        +tags: ['mart', 'topics', 'analytics']
+        +on_schema_change: append_new_columns
+
+    
 
 tests:
   lab2_market_sentiment:
     +store_failures: true
+    +schema: dbt_test__audit
