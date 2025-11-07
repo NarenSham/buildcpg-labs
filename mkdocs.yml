@@ -155,6 +155,7 @@ nav:
         - Data Models: labs/lab2-data-models.md
         - Troubleshooting: labs/lab2-troubleshooting.md
         - Quick Reference: labs/lab2-quick-reference.md
+        - API Integration: labs/lab2-api-integration.md
 
   - Phases:
       - Phase 1 - Foundation: phases/phase1-foundation.md
