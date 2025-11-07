@@ -2,66 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://narensham.github.io/buildcpg-labs/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-07</lastmod>
     </url>
     <url>
          <loc>https://narensham.github.io/buildcpg-labs/faq/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-07</lastmod>
     </url>
     <url>
          <loc>https://narensham.github.io/buildcpg-labs/troubleshooting/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-07</lastmod>
     </url>
     <url>
          <loc>https://narensham.github.io/buildcpg-labs/architecture/medallion-architecture/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-07</lastmod>
     </url>
     <url>
          <loc>https://narensham.github.io/buildcpg-labs/architecture/multi-lab-design/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-07</lastmod>
     </url>
     <url>
          <loc>https://narensham.github.io/buildcpg-labs/architecture/overview/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-07</lastmod>
     </url>
     <url>
          <loc>https://narensham.github.io/buildcpg-labs/architecture/shared-vs-lab-specific/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-07</lastmod>
     </url>
     <url>
          <loc>https://narensham.github.io/buildcpg-labs/getting-started/installation/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-07</lastmod>
     </url>
     <url>
          <loc>https://narensham.github.io/buildcpg-labs/getting-started/quick-start/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-07</lastmod>
+    </url>
+    <url>
+         <loc>https://narensham.github.io/buildcpg-labs/labs/lab2-api-integration/</loc>
+         <lastmod>2025-11-07</lastmod>
     </url>
     <url>
          <loc>https://narensham.github.io/buildcpg-labs/labs/lab2-architecture/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-07</lastmod>
     </url>
     <url>
          <loc>https://narensham.github.io/buildcpg-labs/labs/lab2-data-models/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-07</lastmod>
     </url>
     <url>
          <loc>https://narensham.github.io/buildcpg-labs/labs/lab2-overview/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-07</lastmod>
     </url>
     <url>
          <loc>https://narensham.github.io/buildcpg-labs/labs/lab2-quick-reference/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-07</lastmod>
     </url>
     <url>
          <loc>https://narensham.github.io/buildcpg-labs/labs/lab2-setup/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-07</lastmod>
     </url>
     <url>
          <loc>https://narensham.github.io/buildcpg-labs/labs/lab2-troubleshooting/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-07</lastmod>
     </url>
     <url>
          <loc>https://narensham.github.io/buildcpg-labs/phases/phase1-foundation/</loc>
-         <lastmod>2025-11-03</lastmod>
+         <lastmod>2025-11-07</lastmod>
     </url>
 </urlset>
