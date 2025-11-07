@@ -1,13 +1,35 @@
+# Core dependencies
+
 pandas
+
+# Database
+
 duckdb
 jinja2
-pyyaml
 requests
 openpyxl
+
+# dbt
+
 dbt-duckdb
+
+# Dashboards
+
 streamlit
 gradio
 plotly
 markdown
 ydata-profiling
 rich
+
+# APIs
+praw==7.7.0  # Reddit API
+newsapi-python==0.2.7  # News API
+requests==2.31.0
+
+# Sentiment Analysis
+vaderSentiment==3.3.2
+
+# Utilities
+python-dotenv==1.0.0
+pyyaml==6.0.1

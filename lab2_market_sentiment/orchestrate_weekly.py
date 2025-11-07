@@ -1,10 +1,11 @@
 """
 Weekly orchestration pipeline for brand sentiment analysis.
 Runs every Sunday at 2 AM to refresh dashboard data.
+
+This script is designed to work with GitHub Actions orchestration.
+No additional orchestration framework (like Prefect) is needed.
 """
 
-from prefect import flow, task
-from prefect.task_runners import SequentialTaskRunner
 from pathlib import Path
 import subprocess
 import logging
@@ -12,7 +13,10 @@ from datetime import datetime
 import sys
 
 # Setup logging
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 logger = logging.getLogger(__name__)
 
 # Paths
@@ -21,13 +25,11 @@ DBT_DIR = LAB_ROOT / "dbt"
 DATA_DIR = LAB_ROOT / "data"
 
 
-@task(name="Check Prerequisites", retries=0)
 def check_prerequisites():
     """Verify all required files exist."""
     logger.info("Checking prerequisites...")
     
     checks = {
-        ".env file": LAB_ROOT / ".env",
         "dbt project": DBT_DIR / "dbt_project.yml",
         "Ingestion script": LAB_ROOT / "pipelines" / "ingest_real_data.py"
     }
@@ -43,13 +45,15 @@ def check_prerequisites():
     if failed_checks:
         raise FileNotFoundError(f"Prerequisites failed: {', '.join(failed_checks)}")
     
+    logger.info("✅ Prerequisites check passed")
     return True
 
 
-@task(name="Ingest Data", retries=2, retry_delay_seconds=300)
 def ingest_data():
     """Run data ingestion from Reddit and News APIs."""
-    logger.info("Starting data ingestion...")
+    logger.info("=" * 60)
+    logger.info("STEP 1: DATA INGESTION")
+    logger.info("=" * 60)
     
     try:
         result = subprocess.run(
@@ -61,26 +65,28 @@ def ingest_data():
         )
         
         if result.returncode != 0:
-            logger.error(f"Ingestion failed: {result.stderr}")
+            logger.error(f"❌ Ingestion failed with return code {result.returncode}")
+            logger.error(f"STDERR: {result.stderr}")
             raise RuntimeError(f"Ingestion failed with code {result.returncode}")
         
-        logger.info("✅ Data ingestion completed")
-        logger.info(result.stdout)
+        logger.info("✅ Data ingestion completed successfully")
+        logger.info(f"STDOUT:\n{result.stdout}")
         
         return {"status": "success", "output": result.stdout}
         
     except subprocess.TimeoutExpired:
-        logger.error("Ingestion timed out after 30 minutes")
+        logger.error("❌ Ingestion timed out after 30 minutes")
         raise
     except Exception as e:
-        logger.error(f"Ingestion error: {e}")
+        logger.error(f"❌ Ingestion error: {e}")
         raise
 
 
-@task(name="Run dbt Models", retries=1)
 def run_dbt_models():
     """Execute dbt transformation pipeline."""
-    logger.info("Running dbt models...")
+    logger.info("=" * 60)
+    logger.info("STEP 2: DBT TRANSFORMATIONS")
+    logger.info("=" * 60)
     
     try:
         result = subprocess.run(
@@ -92,32 +98,38 @@ def run_dbt_models():
         )
         
         if result.returncode != 0:
-            logger.error(f"dbt build failed: {result.stderr}")
+            logger.error(f"❌ dbt build failed with return code {result.returncode}")
+            logger.error(f"STDERR: {result.stderr}")
             raise RuntimeError(f"dbt failed with code {result.returncode}")
         
-        logger.info("✅ dbt models completed")
-        logger.info(result.stdout)
+        logger.info("✅ dbt models completed successfully")
+        logger.info(f"STDOUT:\n{result.stdout}")
         
         return {"status": "success", "output": result.stdout}
         
     except subprocess.TimeoutExpired:
-        logger.error("dbt timed out after 10 minutes")
+        logger.error("❌ dbt timed out after 10 minutes")
         raise
     except Exception as e:
-        logger.error(f"dbt error: {e}")
+        logger.error(f"❌ dbt error: {e}")
         raise
 
 
-@task(name="Generate Report", retries=0)
 def generate_data_quality_report():
     """Generate summary report of data quality."""
-    logger.info("Generating data quality report...")
+    logger.info("=" * 60)
+    logger.info("STEP 3: DATA QUALITY REPORT")
+    logger.info("=" * 60)
     
     try:
         import duckdb
-        import pandas as pd
         
         db_path = DATA_DIR / "lab2_market_sentiment.duckdb"
+        
+        if not db_path.exists():
+            logger.warning(f"⚠️ Database not found at {db_path}")
+            return {"status": "warning", "message": "Database not found"}
+        
         conn = duckdb.connect(str(db_path), read_only=True)
         
         # Get summary stats
@@ -144,9 +156,11 @@ def generate_data_quality_report():
         stats['positive_count'] = sent[1]
         stats['negative_count'] = sent[2]
         
-        logger.info("\n" + "="*60)
+        conn.close()
+        
+        # Print formatted report
         logger.info("📊 DATA QUALITY REPORT")
-        logger.info("="*60)
+        logger.info("=" * 60)
         logger.info(f"Timestamp: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}")
         logger.info(f"\nRecord Counts:")
         logger.info(f"  Sentiment Events: {stats['fct_sentiment_events']:,}")
@@ -160,24 +174,24 @@ def generate_data_quality_report():
         logger.info(f"  Average Score: {stats['avg_sentiment']}")
         logger.info(f"  Positive: {stats['positive_count']:,}")
         logger.info(f"  Negative: {stats['negative_count']:,}")
-        logger.info("="*60)
+        logger.info("=" * 60)
         
         return stats
         
     except Exception as e:
-        logger.error(f"Report generation error: {e}")
+        logger.error(f"❌ Report generation error: {e}")
         return {"status": "error", "error": str(e)}
 
 
-@flow(
-    name="Brand Sentiment Pipeline",
-    description="Weekly brand sentiment analysis pipeline",
-    task_runner=SequentialTaskRunner()
-)
-def sentiment_pipeline():
-    """Main orchestration flow."""
+def main():
+    """Main orchestration function."""
     start_time = datetime.utcnow()
-    logger.info(f"🚀 Starting Brand Sentiment Pipeline at {start_time}")
+    
+    logger.info("\n" + "=" * 60)
+    logger.info("🚀 BRAND SENTIMENT PIPELINE")
+    logger.info("=" * 60)
+    logger.info(f"Started at: {start_time.strftime('%Y-%m-%d %H:%M:%S UTC')}")
+    logger.info("=" * 60 + "\n")
     
     try:
         # Step 1: Prerequisites
@@ -195,19 +209,30 @@ def sentiment_pipeline():
         end_time = datetime.utcnow()
         duration = (end_time - start_time).total_seconds()
         
-        logger.info(f"\n✅ Pipeline completed successfully in {duration:.0f} seconds")
-        logger.info(f"Dashboard ready at: streamlit run app/streamlit_app.py")
+        logger.info("\n" + "=" * 60)
+        logger.info("✅ PIPELINE COMPLETED SUCCESSFULLY")
+        logger.info("=" * 60)
+        logger.info(f"Duration: {duration:.0f} seconds ({duration/60:.1f} minutes)")
+        logger.info(f"Completed at: {end_time.strftime('%Y-%m-%d %H:%M:%S UTC')}")
+        logger.info("=" * 60)
         
-        return {
-            "status": "success",
-            "duration_seconds": duration,
-            "timestamp": end_time.isoformat()
-        }
+        return 0  # Success exit code
         
     except Exception as e:
-        logger.error(f"❌ Pipeline failed: {e}")
-        raise
+        end_time = datetime.utcnow()
+        duration = (end_time - start_time).total_seconds()
+        
+        logger.error("\n" + "=" * 60)
+        logger.error("❌ PIPELINE FAILED")
+        logger.error("=" * 60)
+        logger.error(f"Error: {str(e)}")
+        logger.error(f"Duration before failure: {duration:.0f} seconds")
+        logger.error(f"Failed at: {end_time.strftime('%Y-%m-%d %H:%M:%S UTC')}")
+        logger.error("=" * 60)
+        
+        return 1  # Error exit code
 
 
 if __name__ == "__main__":
-    sentiment_pipeline()
+    exit_code = main()
+    sys.exit(exit_code)
