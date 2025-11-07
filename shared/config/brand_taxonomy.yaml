@@ -1,0 +1,207 @@
+# Brand Taxonomy: Consumer Brands → Parent Companies
+# This drives both API searches and dimensional modeling
+
+beverages:
+  coca_cola_company:
+    parent: "The Coca-Cola Company"
+    ticker: "KO"
+    brands:
+      - name: "Coca-Cola"
+        aliases: ["Coke", "Coca Cola", "CocaCola"]
+        category: "Carbonated Soft Drinks"
+      - name: "Diet Coke"
+        aliases: ["Diet Coca-Cola", "Coke Zero"]
+        category: "Carbonated Soft Drinks"
+      - name: "Sprite"
+        aliases: []
+        category: "Carbonated Soft Drinks"
+      - name: "Fanta"
+        aliases: []
+        category: "Carbonated Soft Drinks"
+      - name: "Dasani"
+        aliases: []
+        category: "Water"
+      - name: "Powerade"
+        aliases: []
+        category: "Sports Drinks"
+      - name: "Minute Maid"
+        aliases: []
+        category: "Juice"
+      - name: "smartwater"
+        aliases: ["Smart Water"]
+        category: "Water"
+
+  pepsico:
+    parent: "PepsiCo Inc."
+    ticker: "PEP"
+    brands:
+      - name: "Pepsi"
+        aliases: ["Pepsi-Cola"]
+        category: "Carbonated Soft Drinks"
+      - name: "Mountain Dew"
+        aliases: ["Mtn Dew"]
+        category: "Carbonated Soft Drinks"
+      - name: "Gatorade"
+        aliases: []
+        category: "Sports Drinks"
+      - name: "Tropicana"
+        aliases: []
+        category: "Juice"
+      - name: "Aquafina"
+        aliases: []
+        category: "Water"
+      - name: "Lay's"
+        aliases: ["Lays"]
+        category: "Snacks"
+      - name: "Doritos"
+        aliases: []
+        category: "Snacks"
+      - name: "Cheetos"
+        aliases: []
+        category: "Snacks"
+      - name: "Quaker"
+        aliases: ["Quaker Oats"]
+        category: "Breakfast"
+
+personal_care:
+  unilever:
+    parent: "Unilever PLC"
+    ticker: "UL"
+    brands:
+      - name: "Dove"
+        aliases: []
+        category: "Personal Care"
+      - name: "Axe"
+        aliases: ["Lynx"]
+        category: "Personal Care"
+      - name: "Vaseline"
+        aliases: []
+        category: "Personal Care"
+      - name: "Degree"
+        aliases: ["Rexona"]
+        category: "Deodorant"
+      - name: "TRESemmé"
+        aliases: ["Tresemme"]
+        category: "Hair Care"
+      - name: "Dove Men+Care"
+        aliases: ["Dove Men"]
+        category: "Personal Care"
+      - name: "Ben & Jerry's"
+        aliases: ["Ben and Jerrys"]
+        category: "Ice Cream"
+      - name: "Hellmann's"
+        aliases: ["Hellmans", "Best Foods"]
+        category: "Condiments"
+      - name: "Knorr"
+        aliases: []
+        category: "Food"
+
+  procter_gamble:
+    parent: "The Procter & Gamble Company"
+    ticker: "PG"
+    brands:
+      - name: "Tide"
+        aliases: []
+        category: "Laundry"
+      - name: "Gillette"
+        aliases: []
+        category: "Shaving"
+      - name: "Pampers"
+        aliases: []
+        category: "Baby Care"
+      - name: "Crest"
+        aliases: []
+        category: "Oral Care"
+      - name: "Olay"
+        aliases: []
+        category: "Skin Care"
+      - name: "Head & Shoulders"
+        aliases: ["Head and Shoulders"]
+        category: "Hair Care"
+      - name: "Pantene"
+        aliases: []
+        category: "Hair Care"
+      - name: "Charmin"
+        aliases: []
+        category: "Paper Products"
+      - name: "Bounty"
+        aliases: []
+        category: "Paper Products"
+      - name: "Febreze"
+        aliases: []
+        category: "Air Care"
+      - name: "Dawn"
+        aliases: []
+        category: "Dish Care"
+      - name: "Old Spice"
+        aliases: []
+        category: "Personal Care"
+
+food:
+  nestle:
+    parent: "Nestlé S.A."
+    ticker: "NSRGY"
+    brands:
+      - name: "KitKat"
+        aliases: ["Kit Kat"]
+        category: "Chocolate"
+      - name: "Nescafé"
+        aliases: ["Nescafe"]
+        category: "Coffee"
+      - name: "Nesquik"
+        aliases: []
+        category: "Beverages"
+      - name: "Purina"
+        aliases: ["Purina Pro Plan", "Purina One"]
+        category: "Pet Food"
+      - name: "Stouffer's"
+        aliases: ["Stouffers"]
+        category: "Frozen Foods"
+      - name: "DiGiorno"
+        aliases: ["Digiorno"]
+        category: "Frozen Pizza"
+      - name: "Hot Pockets"
+        aliases: []
+        category: "Frozen Foods"
+      - name: "Häagen-Dazs"
+        aliases: ["Haagen Dazs", "Haagen-Dazs"]
+        category: "Ice Cream"
+      - name: "Gerber"
+        aliases: []
+        category: "Baby Food"
+      - name: "Poland Spring"
+        aliases: []
+        category: "Water"
+      - name: "Perrier"
+        aliases: []
+        category: "Water"
+      - name: "San Pellegrino"
+        aliases: []
+        category: "Water"
+
+# Configuration for data collection
+collection_config:
+  reddit:
+    posts_per_brand: 30
+    time_filter: "month"  # week, month, year
+    subreddits:
+      - "all"
+      - "food"
+      - "snacks"
+      - "beverages"
+      - "beauty"
+      - "skincare"
+      - "frugal"
+      - "buyitforlife"
+    
+  news:
+    articles_per_brand: 20
+    days_back: 14
+    sources:
+      - "business"
+      - "consumer"
+      - "food"
+      
+  refresh_schedule:
+    cron: "0 2 * * 0"  # Every Sunday at 2 AM
+    timezone: "America/New_York"
