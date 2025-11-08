@@ -94,7 +94,7 @@ models:
         description: Time when the data was ingested
 
       - name: published_at
-        data_type: timestamp with time zone
+        data_type: timestamp
         description: Original publish timestamp
 
       - name: published_day_of_week
