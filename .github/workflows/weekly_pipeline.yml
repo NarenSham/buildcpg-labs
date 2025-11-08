@@ -27,10 +27,6 @@ jobs:
           cd lab2_market_sentiment/dbt
           dbt deps --profiles-dir .
 
-      - name: Debug dbt setup
-        run: |
-          cd lab2_market_sentiment/dbt
-          dbt debug --profiles-dir .
       
       - name: Run pipeline
         env:
