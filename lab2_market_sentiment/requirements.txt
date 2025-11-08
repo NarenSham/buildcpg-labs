@@ -1,26 +1,27 @@
-# Install these in order to avoid pyarrow issues
-# This is specifically for Intel Mac + macOS 11+
-
-# First: Pre-built packages
-numpy==1.24.3
+# Core dependencies
 pandas==2.1.3
+numpy==1.24.3
 
-# DuckDB (usually works fine)
+# Database
 duckdb==0.9.1
 
-# dbt (doesn't need compilation)
+# dbt
 dbt-core==1.7.0
 dbt-duckdb==1.7.0
 
-# Streamlit + deps
+# APIs
+praw==7.7.0  # Reddit API
+newsapi-python==0.2.7  # News API
+requests==2.31.0
+
+# Sentiment Analysis
+vaderSentiment==3.3.2
+
+# Dashboards
 streamlit==1.28.1
 plotly==5.17.0
-pyarrow==13.0.0  # Specific version, more likely to have pre-built wheel
-
-# Optional: For real data
-praw==7.7.0
-requests==2.31.0
 
 # Utilities
 python-dotenv==1.0.0
 pyyaml==6.0.1
+pyarrow==13.0.0
