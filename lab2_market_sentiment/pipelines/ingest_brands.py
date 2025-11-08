@@ -312,11 +312,17 @@ def main():
     """Main ingestion flow."""
     ensure_directories()
     
+    # Verify API credentials
+    required_env = ['REDDIT_CLIENT_ID', 'REDDIT_CLIENT_SECRET', 'REDDIT_USER_AGENT', 'NEWS_API_KEY']
+    missing = [var for var in required_env if not os.getenv(var)]
+    if missing:
+        logger.error(f"❌ Missing environment variables: {', '.join(missing)}")
+        raise EnvironmentError(f"Missing required env vars: {missing}")
+    
     # Load taxonomy
     if not CONFIG_PATH.exists():
         logger.error(f"❌ Brand taxonomy not found at {CONFIG_PATH}")
-        logger.info("Please create config/brand_taxonomy.yaml")
-        return
+        raise FileNotFoundError("brand_taxonomy.yaml not found")
     
     taxonomy = load_brand_taxonomy()
     brands_list = get_all_brands(taxonomy)
@@ -327,6 +333,12 @@ def main():
     results = []
     results.append(ingest_reddit_data(brands_list, taxonomy))
     results.append(ingest_news_data(brands_list, taxonomy))
+    
+    # Verify we got data
+    total_records = sum(r.get('records', 0) for r in results)
+    if total_records == 0:
+        logger.error("❌ No data ingested! Check API credentials and network connectivity.")
+        raise RuntimeError("Ingestion produced no data")
     
     # Generate metrics
     generate_brand_metrics_report(brands_list)
