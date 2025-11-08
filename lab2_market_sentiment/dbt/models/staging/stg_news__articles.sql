@@ -18,5 +18,5 @@ SELECT
     source,
     ingested_at,
     get_current_timestamp() as _loaded_at
-FROM read_csv_auto('../../data/raw/news_brands.csv')
+FROM read_csv_auto('../data/raw/news_brands.csv')
 WHERE article_id IS NOT NULL
