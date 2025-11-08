@@ -28,10 +28,16 @@ DATA_DIR = LAB_ROOT / "data"
 def check_prerequisites():
     """Verify all required files exist."""
     logger.info("Checking prerequisites...")
+
+    # Create necessary directories
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    (DBT_DIR / "target").mkdir(parents=True, exist_ok=True)
+    (DBT_DIR / "logs").mkdir(parents=True, exist_ok=True)
+
     
     checks = {
         "dbt project": DBT_DIR / "dbt_project.yml",
-        "Ingestion script": LAB_ROOT / "pipelines" / "ingest_real_data.py"
+        "Ingestion script": LAB_ROOT / "pipelines" / "ingest_brands.py"
     }
     
     failed_checks = []
@@ -90,12 +96,15 @@ def run_dbt_models():
     
     try:
         result = subprocess.run(
-            ["dbt", "build", "--profiles-dir", "."],
+            ["dbt", "build", "--profiles-dir", ".","--target", "prod"],
             cwd=DBT_DIR,
-            capture_output=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,  # Merge stderr into stdout
             text=True,
             timeout=600  # 10 minute timeout
         )
+
+        logger.info(f"dbt output:\n{result.stdout}")
         
         if result.returncode != 0:
             logger.error(f"❌ dbt build failed with return code {result.returncode}")

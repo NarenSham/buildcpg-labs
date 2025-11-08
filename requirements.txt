@@ -33,3 +33,9 @@ vaderSentiment==3.3.2
 # Utilities
 python-dotenv==1.0.0
 pyyaml==6.0.1
+
+#Documentation
+
+mkdocs
+mkdocs-material
+mkdocs-git-revision-date-localized-plugin

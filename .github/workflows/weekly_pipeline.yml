@@ -19,12 +19,18 @@ jobs:
       
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt
+          pip install -r lab2_market_sentiment/requirements.txt
+
 
       - name: Install dbt packages
         run: |
           cd lab2_market_sentiment/dbt
-          dbt deps
+          dbt deps --profiles-dir .
+
+      - name: Debug dbt setup
+        run: |
+          cd lab2_market_sentiment/dbt
+          dbt debug --profiles-dir .
       
       - name: Run pipeline
         env:
@@ -40,3 +46,10 @@ jobs:
         with:
           name: duckdb-database
           path: data/lab2_market_sentiment.duckdb
+
+      - name: Upload logs
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dbt-logs
+          path: lab2_market_sentiment/dbt/logs/

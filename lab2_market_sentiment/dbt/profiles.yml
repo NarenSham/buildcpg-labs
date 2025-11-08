@@ -1,9 +1,9 @@
 lab2_market_sentiment:
   outputs:
-    dev:
+    prod:
       type: duckdb
       path: '../data/lab2_market_sentiment.duckdb'
       threads: 4
       timeout_seconds: 300
   
-  target: dev
+  target: prod
