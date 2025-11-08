@@ -63,7 +63,7 @@ def ingest_data():
     
     try:
         result = subprocess.run(
-            [sys.executable, "pipelines/ingest_real_data.py"],
+            [sys.executable, "pipelines/ingest_brands.py"],
             cwd=LAB_ROOT,
             capture_output=True,
             text=True,
