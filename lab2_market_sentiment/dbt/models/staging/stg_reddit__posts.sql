@@ -21,7 +21,7 @@ WITH source AS (
         subreddit,                         
         ingested_at,
         get_current_timestamp() as _loaded_at
-    FROM read_csv_auto('../data/raw/reddit_brands.csv')
+    FROM read_csv_auto('../../data/raw/reddit_brands.csv')
 ),
 
 -- Quality checks
