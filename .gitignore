@@ -19,22 +19,19 @@ __pycache__/
 *.duckdb.wal
 *.duckdb.tmp
 
-# CRITICAL: Allow lab2 data directory FIRST (before any blocking patterns)
-!lab2_market_sentiment/data/
-!lab2_market_sentiment/data/**
+# Ignore specific duckdb patterns (but NOT lab2's production DB)
+# Block duckdb files in specific locations
+/data/*.duckdb
+lab1_*/data/*.duckdb
+lab3_*/data/*.duckdb
+**/target/*.duckdb
+**/logs/*.duckdb
 
-# NOW block .duckdb files globally
-*.duckdb
-
-# EXCEPT allow the specific production database
-!lab2_market_sentiment/data/lab2_market_sentiment.duckdb
-
-# But still ignore raw data files in lab2
+# Ignore raw data files in lab2
 lab2_market_sentiment/data/raw/
 lab2_market_sentiment/data/*.csv
 
 # Ignore other lab data directories and root data/
-# (lab2 is already excepted above)
 /data/
 lab1_*/data/
 lab3_*/data/
