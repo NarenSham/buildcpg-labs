@@ -14,10 +14,24 @@ __pycache__/
 .pytest_cache/
 *.egg-info/
 
-# Data
-*.duckdb
+# Data - General exclusions
 *.csv.bak
+*.duckdb
+*.duckdb.wal
+*.duckdb.tmp
+
+# EXCEPT: Production database for lab2
+!lab2_market_sentiment/data/
+!lab2_market_sentiment/data/lab2_market_sentiment.duckdb
+
+# But ignore raw data files in lab2
+lab2_market_sentiment/data/raw/
+lab2_market_sentiment/data/*.csv
+
+# Ignore other lab data directories completely
 data/
+lab1_*/data/
+lab3_*/data/
 
 # Environment files
 .env

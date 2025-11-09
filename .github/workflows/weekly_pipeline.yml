@@ -8,9 +8,13 @@ on:
 jobs:
   run-pipeline:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Allow pushing to repo
     
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Get full history
       
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -21,12 +25,22 @@ jobs:
         run: |
           pip install -r lab2_market_sentiment/requirements.txt
 
-
       - name: Install dbt packages
         run: |
           cd lab2_market_sentiment/dbt
           dbt deps --profiles-dir .
-
+      
+      - name: Check for existing database
+        run: |
+          if [ -f lab2_market_sentiment/data/lab2_market_sentiment.duckdb ]; then
+            echo "✅ Found existing database"
+            ls -lh lab2_market_sentiment/data/lab2_market_sentiment.duckdb
+            echo "DATABASE_EXISTS=true" >> $GITHUB_ENV
+          else
+            echo "📦 No existing database - creating new one"
+            mkdir -p lab2_market_sentiment/data
+            echo "DATABASE_EXISTS=false" >> $GITHUB_ENV
+          fi
       
       - name: Run pipeline
         env:
@@ -37,11 +51,62 @@ jobs:
         run: |
           python lab2_market_sentiment/orchestrate_weekly.py
       
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+      - name: Prune old data (keep last 90 days)
+        run: |
+          python lab2_market_sentiment/prune_old_data.py
+      
+      - name: Verify database
+        run: |
+          if [ -f lab2_market_sentiment/data/lab2_market_sentiment.duckdb ]; then
+            echo "✅ Database file exists"
+            DB_SIZE=$(du -h lab2_market_sentiment/data/lab2_market_sentiment.duckdb | cut -f1)
+            echo "Database size: $DB_SIZE"
+            
+            # Check if approaching GitHub's 100MB limit
+            DB_SIZE_MB=$(du -m lab2_market_sentiment/data/lab2_market_sentiment.duckdb | cut -f1)
+            echo "Database size: ${DB_SIZE_MB}MB"
+            
+            if [ $DB_SIZE_MB -gt 90 ]; then
+              echo "⚠️ WARNING: Database is ${DB_SIZE_MB}MB - approaching 100MB GitHub limit!"
+            fi
+          else
+            echo "❌ ERROR: Database not found!"
+            exit 1
+          fi
+      
+      - name: Commit updated database
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Check if database changed
+          if git diff --quiet lab2_market_sentiment/data/lab2_market_sentiment.duckdb; then
+            echo "No changes to database"
+          else
+            # Get stats for commit message
+            DB_SIZE=$(du -h lab2_market_sentiment/data/lab2_market_sentiment.duckdb | cut -f1)
+            
+            git add lab2_market_sentiment/data/lab2_market_sentiment.duckdb
+            git commit -m "📊 Weekly data update - $(date +'%Y-%m-%d')
+
+            - Database size: $DB_SIZE
+            - Pipeline run: ${{ github.run_number }}
+            - Triggered by: ${{ github.event_name }}" || echo "No changes to commit"
+          fi
+      
+      - name: Push changes
+        uses: ad-m/github-push-action@master
         with:
-          name: duckdb-database
-          path: data/lab2_market_sentiment.duckdb
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+      
+      - name: Upload artifacts (backup)
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: duckdb-database-backup
+          path: lab2_market_sentiment/data/lab2_market_sentiment.duckdb
+          retention-days: 90
 
       - name: Upload logs
         uses: actions/upload-artifact@v4

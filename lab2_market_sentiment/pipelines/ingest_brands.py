@@ -312,22 +312,24 @@ def main():
     """Main ingestion flow."""
     ensure_directories()
     
-    # Verify API credentials
+    # Verify API credentials FIRST
     required_env = ['REDDIT_CLIENT_ID', 'REDDIT_CLIENT_SECRET', 'REDDIT_USER_AGENT', 'NEWS_API_KEY']
     missing = [var for var in required_env if not os.getenv(var)]
     if missing:
         logger.error(f"❌ Missing environment variables: {', '.join(missing)}")
-        raise EnvironmentError(f"Missing required env vars: {missing}")
+        logger.error("Set these in GitHub Secrets!")
+        raise EnvironmentError(f"Missing: {missing}")
+    
+    logger.info("✅ All API credentials found")
     
     # Load taxonomy
-    if not CONFIG_PATH.exists():
-        logger.error(f"❌ Brand taxonomy not found at {CONFIG_PATH}")
-        raise FileNotFoundError("brand_taxonomy.yaml not found")
-    
     taxonomy = load_brand_taxonomy()
     brands_list = get_all_brands(taxonomy)
     
     logger.info(f"📋 Loaded {len(brands_list)} brands from taxonomy")
+    
+    if len(brands_list) == 0:
+        raise ValueError("No brands found in taxonomy!")
     
     # Ingest data
     results = []
@@ -337,8 +339,12 @@ def main():
     # Verify we got data
     total_records = sum(r.get('records', 0) for r in results)
     if total_records == 0:
-        logger.error("❌ No data ingested! Check API credentials and network connectivity.")
-        raise RuntimeError("Ingestion produced no data")
+        logger.error("❌ CRITICAL: No data ingested from any source!")
+        logger.error("Check:")
+        logger.error("  1. API credentials are correct")
+        logger.error("  2. Brand names exist and are searchable")
+        logger.error("  3. No rate limiting")
+        raise RuntimeError("Zero records ingested - pipeline cannot continue")
     
     # Generate metrics
     generate_brand_metrics_report(brands_list)
@@ -351,6 +357,9 @@ def main():
         brands_count = result.get('brands', 0)
         logger.info(f"  {status_emoji} {result['source']}: {result['records']} records, {brands_count} brands")
     logger.info("="*50)
+    
+    if total_records < 10:
+        logger.warning(f"⚠️ Only {total_records} records ingested - this seems low!")
     
     return results
 
