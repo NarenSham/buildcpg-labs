@@ -10,9 +10,9 @@ requests==2.31.0  # Move up to avoid duplicate
 openpyxl
 
 # Dashboards
-streamlit
+streamlit==1.28.1
 gradio
-plotly
+plotly==5.17.0
 markdown
 ydata-profiling
 rich
