@@ -2,7 +2,7 @@ name: Weekly Sentiment Pipeline
 
 on:
   schedule:
-    - cron: '0 2 * * 0'  # Every Sunday at 2 AM UTC
+    - cron: '0 17 * * 0'  # Every Sunday at 5 PM UTC
   workflow_dispatch:  # Manual trigger
 
 jobs:
