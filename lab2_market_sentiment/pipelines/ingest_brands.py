@@ -194,6 +194,13 @@ def ingest_reddit_data(brands_list: list, config: dict):
 
 def ingest_news_data(brands_list: list, config: dict):
     """Fetch news articles mentioning consumer brands."""
+
+    # CHECK FOR EXISTING FILE FIRST
+    news_path = RAW_DIR / "news_brands.csv"
+    if news_path.exists():
+        df = pd.read_csv(news_path)
+        logger.info(f"✅ Using existing news data: {len(df)} articles from {news_path}")
+        return {"source": "news", "records": len(df), "brands": df['brand'].nunique(), "status": "success"}
     try:
         logger.info("🔄 Fetching news data...")
         
