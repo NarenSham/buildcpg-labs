@@ -14,8 +14,28 @@ st.set_page_config(
     page_title="CPG Market Sentiment",
     page_icon="📊",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': None,
+        'Report a bug': None,
+        'About': None
+    }
 )
+
+# Force light theme
+st.markdown("""
+    <style>
+        /* Force light theme colors */
+        .stApp {
+            background-color: white;
+            color: black;
+        }
+        [data-testid="stSidebar"] {
+            background-color: #f0f2f6;
+        }
+    </style>
+""", unsafe_allow_html=True)
+
 
 # Database path - POINTING TO DATA FOLDER
 DB_PATH = Path(__file__).parent.parent / "data" / "lab2_market_sentiment.duckdb"
@@ -103,7 +123,11 @@ try:
         start_date = end_date = date_range[0]
     
     # Brand filter
-    all_brands = sorted(df_events['brand'].unique())
+    brand_counts = df_events['brand'].value_counts()
+    st.sidebar.write("**Debug: Top 5 brands by count:**")
+    st.sidebar.dataframe(brand_counts.head(5))
+    all_brands = brand_counts.index.tolist()  # Already sorted by count (descending)
+    st.sidebar.write(f"**First brand in list:** {all_brands[0]}")
     selected_brands = st.sidebar.multiselect(
         "Select Brands",
         options=all_brands,

@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.23">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
     
     
       
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#lab-2-setup-guide" class="md-skip">
+        <a href="#lab-2-setup-deployment-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -854,28 +854,64 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       Prerequisites
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Prerequisites">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-configure-github-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Configure GitHub Repository
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Configure GitHub Repository">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#system-requirements" class="md-nav__link">
+  <a href="#11-update-gitignore" class="md-nav__link">
     <span class="md-ellipsis">
-      System Requirements
+      1.1 Update .gitignore
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#api-keys-required" class="md-nav__link">
+  <a href="#12-commit-database-structure" class="md-nav__link">
     <span class="md-ellipsis">
-      API Keys Required
+      1.2 Commit Database Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-set-github-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Set GitHub Secrets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-enable-github-actions-write-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Enable GitHub Actions Write Permissions
     </span>
   </a>
   
@@ -887,46 +923,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-1-clone-the-repository" class="md-nav__link">
+  <a href="#step-2-set-up-github-actions-workflow" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1: Clone the Repository
+      Step 2: Set Up GitHub Actions Workflow
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-set-up-python-environment" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 2: Set Up Python Environment
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Step 2: Set Up Python Environment">
+    <nav class="md-nav" aria-label="Step 2: Set Up GitHub Actions Workflow">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#option-a-using-venv-recommended" class="md-nav__link">
+  <a href="#21-verify-workflow-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Option A: Using venv (Recommended)
+      2.1 Verify Workflow File
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#option-b-using-conda" class="md-nav__link">
+  <a href="#22-create-pruning-script" class="md-nav__link">
     <span class="md-ellipsis">
-      Option B: Using conda
+      2.2 Create Pruning Script
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#verify-installation" class="md-nav__link">
+  <a href="#23-test-workflow-locally" class="md-nav__link">
     <span class="md-ellipsis">
-      Verify Installation
+      2.3 Test Workflow Locally
     </span>
   </a>
   
@@ -938,28 +965,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-obtain-api-keys" class="md-nav__link">
+  <a href="#step-3-test-github-actions" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 3: Obtain API Keys
+      Step 3: Test GitHub Actions
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 3: Obtain API Keys">
+    <nav class="md-nav" aria-label="Step 3: Test GitHub Actions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#reddit-api-setup" class="md-nav__link">
+  <a href="#31-trigger-manual-run" class="md-nav__link">
     <span class="md-ellipsis">
-      Reddit API Setup
+      3.1 Trigger Manual Run
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#news-api-setup" class="md-nav__link">
+  <a href="#32-monitor-execution" class="md-nav__link">
     <span class="md-ellipsis">
-      News API Setup
+      3.2 Monitor Execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-verify-success" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Verify Success
     </span>
   </a>
   
@@ -971,28 +1007,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-configure-environment-variables" class="md-nav__link">
+  <a href="#step-4-deploy-to-streamlit-cloud" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 4: Configure Environment Variables
+      Step 4: Deploy to Streamlit Cloud
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 4: Configure Environment Variables">
+    <nav class="md-nav" aria-label="Step 4: Deploy to Streamlit Cloud">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create-env-file" class="md-nav__link">
+  <a href="#41-sign-up-for-streamlit-cloud" class="md-nav__link">
     <span class="md-ellipsis">
-      Create .env File
+      4.1 Sign Up for Streamlit Cloud
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#verify-configuration" class="md-nav__link">
+  <a href="#42-create-new-app" class="md-nav__link">
     <span class="md-ellipsis">
-      Verify Configuration
+      4.2 Create New App
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-configure-advanced-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Configure Advanced Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-enable-auto-redeploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Enable Auto-Redeploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-test-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5 Test Dashboard
     </span>
   </a>
   
@@ -1004,28 +1067,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-5-set-up-shared-brand-taxonomy" class="md-nav__link">
+  <a href="#step-5-verify-end-to-end-flow" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 5: Set Up Shared Brand Taxonomy
+      Step 5: Verify End-to-End Flow
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 5: Set Up Shared Brand Taxonomy">
+    <nav class="md-nav" aria-label="Step 5: Verify End-to-End Flow">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#verify-shared-config-exists" class="md-nav__link">
+  <a href="#51-complete-update-cycle" class="md-nav__link">
     <span class="md-ellipsis">
-      Verify Shared Config Exists
+      5.1 Complete Update Cycle
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#optional-create-lab-specific-overrides" class="md-nav__link">
+  <a href="#52-verification-checklist" class="md-nav__link">
     <span class="md-ellipsis">
-      Optional: Create Lab-Specific Overrides
+      5.2 Verification Checklist
     </span>
   </a>
   
@@ -1037,37 +1100,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-6-initialize-duckdb-database" class="md-nav__link">
+  <a href="#step-6-monitor-maintain" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 6: Initialize DuckDB Database
+      Step 6: Monitor &amp; Maintain
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 6: Initialize DuckDB Database">
+    <nav class="md-nav" aria-label="Step 6: Monitor &amp; Maintain">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create-data-directories" class="md-nav__link">
+  <a href="#61-set-up-monitoring" class="md-nav__link">
     <span class="md-ellipsis">
-      Create Data Directories
+      6.1 Set Up Monitoring
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#initialize-dbt" class="md-nav__link">
+  <a href="#62-database-size-management" class="md-nav__link">
     <span class="md-ellipsis">
-      Initialize dbt
+      6.2 Database Size Management
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#verify-database-creation" class="md-nav__link">
+  <a href="#63-weekly-maintenance-tasks" class="md-nav__link">
     <span class="md-ellipsis">
-      Verify Database Creation
+      6.3 Weekly Maintenance Tasks
     </span>
   </a>
   
@@ -1079,46 +1142,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-7-run-initial-data-ingestion" class="md-nav__link">
+  <a href="#troubleshooting-deployment" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 7: Run Initial Data Ingestion
+      Troubleshooting Deployment
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 7: Run Initial Data Ingestion">
+    <nav class="md-nav" aria-label="Troubleshooting Deployment">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#test-api-connections" class="md-nav__link">
+  <a href="#issue-workflow-fails-on-database-commit" class="md-nav__link">
     <span class="md-ellipsis">
-      Test API Connections
+      Issue: Workflow fails on database commit
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#run-full-ingestion" class="md-nav__link">
+  <a href="#issue-database-not-tracked-in-git" class="md-nav__link">
     <span class="md-ellipsis">
-      Run Full Ingestion
+      Issue: Database not tracked in git
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#run-dbt-transformations" class="md-nav__link">
+  <a href="#issue-streamlit-not-redeploying" class="md-nav__link">
     <span class="md-ellipsis">
-      Run dbt Transformations
+      Issue: Streamlit not redeploying
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#verify-data" class="md-nav__link">
+  <a href="#issue-database-too-large-100mb" class="md-nav__link">
     <span class="md-ellipsis">
-      Verify Data
+      Issue: Database too large (&gt;100MB)
     </span>
   </a>
   
@@ -1130,28 +1193,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-8-launch-streamlit-dashboard" class="md-nav__link">
+  <a href="#production-best-practices" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 8: Launch Streamlit Dashboard
+      Production Best Practices
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 8: Launch Streamlit Dashboard">
+    <nav class="md-nav" aria-label="Production Best Practices">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#start-the-dashboard" class="md-nav__link">
+  <a href="#security" class="md-nav__link">
     <span class="md-ellipsis">
-      Start the Dashboard
+      Security
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#test-dashboard-features" class="md-nav__link">
+  <a href="#performance" class="md-nav__link">
     <span class="md-ellipsis">
-      Test Dashboard Features
+      Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reliability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reliability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cost-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cost Management
     </span>
   </a>
   
@@ -1163,55 +1244,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-9-set-up-github-actions-optional" class="md-nav__link">
+  <a href="#scaling-beyond-free-tier" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 9: Set Up GitHub Actions (Optional)
+      Scaling Beyond Free Tier
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 9: Set Up GitHub Actions (Optional)">
+    <nav class="md-nav" aria-label="Scaling Beyond Free Tier">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prerequisites_1" class="md-nav__link">
+  <a href="#when-to-upgrade" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      When to Upgrade
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#add-github-secrets" class="md-nav__link">
+  <a href="#migration-to-cloud-storage" class="md-nav__link">
     <span class="md-ellipsis">
-      Add GitHub Secrets
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#push-workflow-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Push Workflow File
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#test-manual-trigger" class="md-nav__link">
-    <span class="md-ellipsis">
-      Test Manual Trigger
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#schedule-verification" class="md-nav__link">
-    <span class="md-ellipsis">
-      Schedule Verification
+      Migration to Cloud Storage
     </span>
   </a>
   
@@ -1223,120 +1277,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-10-optional-enhancements" class="md-nav__link">
+  <a href="#deployment-checklist" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 10: Optional Enhancements
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Step 10: Optional Enhancements">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#set-up-prefect-cloud-for-better-observability" class="md-nav__link">
-    <span class="md-ellipsis">
-      Set Up Prefect Cloud (For Better Observability)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configure-email-alerts" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configure Email Alerts
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#add-more-brands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Add More Brands
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#issue-api-rate-limits" class="md-nav__link">
-    <span class="md-ellipsis">
-      Issue: API Rate Limits
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#issue-duckdb-file-locked" class="md-nav__link">
-    <span class="md-ellipsis">
-      Issue: DuckDB File Locked
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#issue-dbt-models-fail" class="md-nav__link">
-    <span class="md-ellipsis">
-      Issue: dbt Models Fail
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#issue-streamlit-port-already-in-use" class="md-nav__link">
-    <span class="md-ellipsis">
-      Issue: Streamlit Port Already in Use
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#issue-no-data-in-dashboard" class="md-nav__link">
-    <span class="md-ellipsis">
-      Issue: No Data in Dashboard
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#verification-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      Verification Checklist
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Next Steps
+      Deployment Checklist
     </span>
   </a>
   
@@ -1613,28 +1556,64 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
       Prerequisites
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Prerequisites">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-configure-github-repository" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Configure GitHub Repository
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 1: Configure GitHub Repository">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#system-requirements" class="md-nav__link">
+  <a href="#11-update-gitignore" class="md-nav__link">
     <span class="md-ellipsis">
-      System Requirements
+      1.1 Update .gitignore
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#api-keys-required" class="md-nav__link">
+  <a href="#12-commit-database-structure" class="md-nav__link">
     <span class="md-ellipsis">
-      API Keys Required
+      1.2 Commit Database Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-set-github-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Set GitHub Secrets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-enable-github-actions-write-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Enable GitHub Actions Write Permissions
     </span>
   </a>
   
@@ -1646,46 +1625,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-1-clone-the-repository" class="md-nav__link">
+  <a href="#step-2-set-up-github-actions-workflow" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1: Clone the Repository
+      Step 2: Set Up GitHub Actions Workflow
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-set-up-python-environment" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 2: Set Up Python Environment
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Step 2: Set Up Python Environment">
+    <nav class="md-nav" aria-label="Step 2: Set Up GitHub Actions Workflow">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#option-a-using-venv-recommended" class="md-nav__link">
+  <a href="#21-verify-workflow-file" class="md-nav__link">
     <span class="md-ellipsis">
-      Option A: Using venv (Recommended)
+      2.1 Verify Workflow File
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#option-b-using-conda" class="md-nav__link">
+  <a href="#22-create-pruning-script" class="md-nav__link">
     <span class="md-ellipsis">
-      Option B: Using conda
+      2.2 Create Pruning Script
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#verify-installation" class="md-nav__link">
+  <a href="#23-test-workflow-locally" class="md-nav__link">
     <span class="md-ellipsis">
-      Verify Installation
+      2.3 Test Workflow Locally
     </span>
   </a>
   
@@ -1697,28 +1667,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-obtain-api-keys" class="md-nav__link">
+  <a href="#step-3-test-github-actions" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 3: Obtain API Keys
+      Step 3: Test GitHub Actions
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 3: Obtain API Keys">
+    <nav class="md-nav" aria-label="Step 3: Test GitHub Actions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#reddit-api-setup" class="md-nav__link">
+  <a href="#31-trigger-manual-run" class="md-nav__link">
     <span class="md-ellipsis">
-      Reddit API Setup
+      3.1 Trigger Manual Run
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#news-api-setup" class="md-nav__link">
+  <a href="#32-monitor-execution" class="md-nav__link">
     <span class="md-ellipsis">
-      News API Setup
+      3.2 Monitor Execution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-verify-success" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Verify Success
     </span>
   </a>
   
@@ -1730,28 +1709,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-configure-environment-variables" class="md-nav__link">
+  <a href="#step-4-deploy-to-streamlit-cloud" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 4: Configure Environment Variables
+      Step 4: Deploy to Streamlit Cloud
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 4: Configure Environment Variables">
+    <nav class="md-nav" aria-label="Step 4: Deploy to Streamlit Cloud">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create-env-file" class="md-nav__link">
+  <a href="#41-sign-up-for-streamlit-cloud" class="md-nav__link">
     <span class="md-ellipsis">
-      Create .env File
+      4.1 Sign Up for Streamlit Cloud
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#verify-configuration" class="md-nav__link">
+  <a href="#42-create-new-app" class="md-nav__link">
     <span class="md-ellipsis">
-      Verify Configuration
+      4.2 Create New App
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-configure-advanced-settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Configure Advanced Settings
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-enable-auto-redeploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4 Enable Auto-Redeploy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-test-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5 Test Dashboard
     </span>
   </a>
   
@@ -1763,28 +1769,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-5-set-up-shared-brand-taxonomy" class="md-nav__link">
+  <a href="#step-5-verify-end-to-end-flow" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 5: Set Up Shared Brand Taxonomy
+      Step 5: Verify End-to-End Flow
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 5: Set Up Shared Brand Taxonomy">
+    <nav class="md-nav" aria-label="Step 5: Verify End-to-End Flow">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#verify-shared-config-exists" class="md-nav__link">
+  <a href="#51-complete-update-cycle" class="md-nav__link">
     <span class="md-ellipsis">
-      Verify Shared Config Exists
+      5.1 Complete Update Cycle
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#optional-create-lab-specific-overrides" class="md-nav__link">
+  <a href="#52-verification-checklist" class="md-nav__link">
     <span class="md-ellipsis">
-      Optional: Create Lab-Specific Overrides
+      5.2 Verification Checklist
     </span>
   </a>
   
@@ -1796,37 +1802,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-6-initialize-duckdb-database" class="md-nav__link">
+  <a href="#step-6-monitor-maintain" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 6: Initialize DuckDB Database
+      Step 6: Monitor &amp; Maintain
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 6: Initialize DuckDB Database">
+    <nav class="md-nav" aria-label="Step 6: Monitor &amp; Maintain">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#create-data-directories" class="md-nav__link">
+  <a href="#61-set-up-monitoring" class="md-nav__link">
     <span class="md-ellipsis">
-      Create Data Directories
+      6.1 Set Up Monitoring
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#initialize-dbt" class="md-nav__link">
+  <a href="#62-database-size-management" class="md-nav__link">
     <span class="md-ellipsis">
-      Initialize dbt
+      6.2 Database Size Management
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#verify-database-creation" class="md-nav__link">
+  <a href="#63-weekly-maintenance-tasks" class="md-nav__link">
     <span class="md-ellipsis">
-      Verify Database Creation
+      6.3 Weekly Maintenance Tasks
     </span>
   </a>
   
@@ -1838,46 +1844,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-7-run-initial-data-ingestion" class="md-nav__link">
+  <a href="#troubleshooting-deployment" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 7: Run Initial Data Ingestion
+      Troubleshooting Deployment
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 7: Run Initial Data Ingestion">
+    <nav class="md-nav" aria-label="Troubleshooting Deployment">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#test-api-connections" class="md-nav__link">
+  <a href="#issue-workflow-fails-on-database-commit" class="md-nav__link">
     <span class="md-ellipsis">
-      Test API Connections
+      Issue: Workflow fails on database commit
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#run-full-ingestion" class="md-nav__link">
+  <a href="#issue-database-not-tracked-in-git" class="md-nav__link">
     <span class="md-ellipsis">
-      Run Full Ingestion
+      Issue: Database not tracked in git
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#run-dbt-transformations" class="md-nav__link">
+  <a href="#issue-streamlit-not-redeploying" class="md-nav__link">
     <span class="md-ellipsis">
-      Run dbt Transformations
+      Issue: Streamlit not redeploying
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#verify-data" class="md-nav__link">
+  <a href="#issue-database-too-large-100mb" class="md-nav__link">
     <span class="md-ellipsis">
-      Verify Data
+      Issue: Database too large (&gt;100MB)
     </span>
   </a>
   
@@ -1889,28 +1895,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-8-launch-streamlit-dashboard" class="md-nav__link">
+  <a href="#production-best-practices" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 8: Launch Streamlit Dashboard
+      Production Best Practices
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 8: Launch Streamlit Dashboard">
+    <nav class="md-nav" aria-label="Production Best Practices">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#start-the-dashboard" class="md-nav__link">
+  <a href="#security" class="md-nav__link">
     <span class="md-ellipsis">
-      Start the Dashboard
+      Security
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#test-dashboard-features" class="md-nav__link">
+  <a href="#performance" class="md-nav__link">
     <span class="md-ellipsis">
-      Test Dashboard Features
+      Performance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reliability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reliability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cost-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cost Management
     </span>
   </a>
   
@@ -1922,55 +1946,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-9-set-up-github-actions-optional" class="md-nav__link">
+  <a href="#scaling-beyond-free-tier" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 9: Set Up GitHub Actions (Optional)
+      Scaling Beyond Free Tier
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 9: Set Up GitHub Actions (Optional)">
+    <nav class="md-nav" aria-label="Scaling Beyond Free Tier">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#prerequisites_1" class="md-nav__link">
+  <a href="#when-to-upgrade" class="md-nav__link">
     <span class="md-ellipsis">
-      Prerequisites
+      When to Upgrade
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#add-github-secrets" class="md-nav__link">
+  <a href="#migration-to-cloud-storage" class="md-nav__link">
     <span class="md-ellipsis">
-      Add GitHub Secrets
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#push-workflow-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      Push Workflow File
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#test-manual-trigger" class="md-nav__link">
-    <span class="md-ellipsis">
-      Test Manual Trigger
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#schedule-verification" class="md-nav__link">
-    <span class="md-ellipsis">
-      Schedule Verification
+      Migration to Cloud Storage
     </span>
   </a>
   
@@ -1982,120 +1979,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-10-optional-enhancements" class="md-nav__link">
+  <a href="#deployment-checklist" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 10: Optional Enhancements
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Step 10: Optional Enhancements">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#set-up-prefect-cloud-for-better-observability" class="md-nav__link">
-    <span class="md-ellipsis">
-      Set Up Prefect Cloud (For Better Observability)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#configure-email-alerts" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configure Email Alerts
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#add-more-brands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Add More Brands
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#troubleshooting" class="md-nav__link">
-    <span class="md-ellipsis">
-      Troubleshooting
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Troubleshooting">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#issue-api-rate-limits" class="md-nav__link">
-    <span class="md-ellipsis">
-      Issue: API Rate Limits
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#issue-duckdb-file-locked" class="md-nav__link">
-    <span class="md-ellipsis">
-      Issue: DuckDB File Locked
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#issue-dbt-models-fail" class="md-nav__link">
-    <span class="md-ellipsis">
-      Issue: dbt Models Fail
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#issue-streamlit-port-already-in-use" class="md-nav__link">
-    <span class="md-ellipsis">
-      Issue: Streamlit Port Already in Use
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#issue-no-data-in-dashboard" class="md-nav__link">
-    <span class="md-ellipsis">
-      Issue: No Data in Dashboard
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#verification-checklist" class="md-nav__link">
-    <span class="md-ellipsis">
-      Verification Checklist
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#next-steps" class="md-nav__link">
-    <span class="md-ellipsis">
-      Next Steps
+      Deployment Checklist
     </span>
   </a>
   
@@ -2129,405 +2015,391 @@
   
 
 
-<h1 id="lab-2-setup-guide">Lab 2: Setup Guide<a class="headerlink" href="#lab-2-setup-guide" title="Permanent link">&para;</a></h1>
-<p>This guide will help you set up the Market Sentiment Analysis pipeline from scratch.</p>
-<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
-<h3 id="system-requirements">System Requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Python</strong>: 3.11 or higher</li>
-<li><strong>Git</strong>: For cloning the repository</li>
-<li><strong>GitHub Account</strong>: For Actions automation (optional but recommended)</li>
-<li><strong>4GB RAM minimum</strong>: For DuckDB operations</li>
-</ul>
-<h3 id="api-keys-required">API Keys Required<a class="headerlink" href="#api-keys-required" title="Permanent link">&para;</a></h3>
-<p>You'll need to obtain API keys from the following services:</p>
-<ol>
-<li><strong>Reddit API</strong> (free)</li>
-<li><strong>News API</strong> (free tier available)</li>
-</ol>
-<h2 id="step-1-clone-the-repository">Step 1: Clone the Repository<a class="headerlink" href="#step-1-clone-the-repository" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Clone the main repository</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourusername/buildcpg-labs.git
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">cd</span><span class="w"> </span>buildcpg-labs/lab2_market_sentiment
-</span></code></pre></div>
-<h2 id="step-2-set-up-python-environment">Step 2: Set Up Python Environment<a class="headerlink" href="#step-2-set-up-python-environment" title="Permanent link">&para;</a></h2>
-<h3 id="option-a-using-venv-recommended">Option A: Using venv (Recommended)<a class="headerlink" href="#option-a-using-venv-recommended" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Create virtual environment</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>python3.11<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Activate it</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># On macOS/Linux:</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="nb">source</span><span class="w"> </span>venv/bin/activate
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># On Windows:</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># venv\Scripts\activate</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Install dependencies</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-</span></code></pre></div>
-<h3 id="option-b-using-conda">Option B: Using conda<a class="headerlink" href="#option-b-using-conda" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Create conda environment</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>lab2<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.11
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>conda<span class="w"> </span>activate<span class="w"> </span>lab2
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># Install dependencies</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-</span></code></pre></div>
-<h3 id="verify-installation">Verify Installation<a class="headerlink" href="#verify-installation" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Check installations</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import duckdb; print(f&#39;DuckDB: {duckdb.__version__}&#39;)&quot;</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import streamlit; print(f&#39;Streamlit: {streamlit.__version__}&#39;)&quot;</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>dbt<span class="w"> </span>--version
-</span></code></pre></div>
-<p>Expected output:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>DuckDB: 0.9.1
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Streamlit: 1.28.1
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>Core:
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  - installed: 1.7.0
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>  - latest:    X.X.X
-</span></code></pre></div></p>
-<h2 id="step-3-obtain-api-keys">Step 3: Obtain API Keys<a class="headerlink" href="#step-3-obtain-api-keys" title="Permanent link">&para;</a></h2>
-<h3 id="reddit-api-setup">Reddit API Setup<a class="headerlink" href="#reddit-api-setup" title="Permanent link">&para;</a></h3>
-<ol>
-<li><strong>Go to</strong>: <a href="https://www.reddit.com/prefs/apps">https://www.reddit.com/prefs/apps</a></li>
-<li><strong>Click</strong>: "Create App" or "Create Another App"</li>
-<li><strong>Fill in</strong>:</li>
-<li>Name: <code>CPG Sentiment Tracker</code></li>
-<li>App type: Choose "script"</li>
-<li>Description: <code>Market sentiment analysis for CPG brands</code></li>
-<li>About URL: (leave blank)</li>
-<li>Redirect URI: <code>http://localhost:8080</code></li>
-<li><strong>Click</strong>: "Create app"</li>
-<li><strong>Save</strong>:</li>
-<li><strong>Client ID</strong>: The string under "personal use script"</li>
-<li><strong>Client Secret</strong>: The "secret" value</li>
-</ol>
-<h3 id="news-api-setup">News API Setup<a class="headerlink" href="#news-api-setup" title="Permanent link">&para;</a></h3>
-<ol>
-<li><strong>Go to</strong>: <a href="https://newsapi.org/register">https://newsapi.org/register</a></li>
-<li><strong>Register</strong> for a free account</li>
-<li><strong>Verify</strong> your email</li>
-<li><strong>Copy</strong> your API key from the dashboard</li>
-</ol>
-<p><strong>Free Tier Limits</strong>:
-- 100 requests per day
-- Up to 100 results per request
-- Historical data: Last 30 days</p>
-<h2 id="step-4-configure-environment-variables">Step 4: Configure Environment Variables<a class="headerlink" href="#step-4-configure-environment-variables" title="Permanent link">&para;</a></h2>
-<h3 id="create-env-file">Create <code>.env</code> File<a class="headerlink" href="#create-env-file" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Create .env file in lab2_market_sentiment directory</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>.env<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="s"># Reddit API Credentials</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="s">REDDIT_CLIENT_ID=your_reddit_client_id_here</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="s">REDDIT_CLIENT_SECRET=your_reddit_client_secret_here</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="s">REDDIT_USER_AGENT=&quot;CPG Sentiment Tracker v1.0 by /u/yourusername&quot;</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="s"># News API Credentials</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="s">NEWS_API_KEY=your_newsapi_key_here</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="s">EOF</span>
-</span></code></pre></div>
-<h3 id="verify-configuration">Verify Configuration<a class="headerlink" href="#verify-configuration" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Test that environment variables load correctly</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;from dotenv import load_dotenv; import os; load_dotenv(); print(&#39;Reddit ID:&#39;, os.getenv(&#39;REDDIT_CLIENT_ID&#39;)[:8] + &#39;...&#39;)&quot;</span>
-</span></code></pre></div>
-<h2 id="step-5-set-up-shared-brand-taxonomy">Step 5: Set Up Shared Brand Taxonomy<a class="headerlink" href="#step-5-set-up-shared-brand-taxonomy" title="Permanent link">&para;</a></h2>
-<p>The brand taxonomy is shared across all labs in <code>buildcpg-labs/shared/config/</code>.</p>
-<h3 id="verify-shared-config-exists">Verify Shared Config Exists<a class="headerlink" href="#verify-shared-config-exists" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Check if shared config exists</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>ls<span class="w"> </span>-la<span class="w"> </span>../shared/config/brand_taxonomy.yaml
-</span></code></pre></div>
-<h3 id="optional-create-lab-specific-overrides">Optional: Create Lab-Specific Overrides<a class="headerlink" href="#optional-create-lab-specific-overrides" title="Permanent link">&para;</a></h3>
-<p>If you want to add lab-specific brands without modifying the shared config:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Create lab-specific config directory</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>config
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="c1"># Create override file</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>cat<span class="w"> </span>&gt;<span class="w"> </span>config/brand_taxonomy.yaml<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="s"># Lab 2 specific brand additions</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="s">beverages:</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="s">  local_brewery:</span>
-</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="s">    parent: &quot;Local Craft Brewery&quot;</span>
-</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="s">    brands:</span>
-</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="s">      - name: &quot;Local IPA&quot;</span>
-</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="s">        category: &quot;Craft Beer&quot;</span>
-</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a><span class="s">EOF</span>
-</span></code></pre></div>
-<p>The ingestion script will automatically:
-1. Load shared config first
-2. Merge with lab-specific overrides (if they exist)</p>
-<h2 id="step-6-initialize-duckdb-database">Step 6: Initialize DuckDB Database<a class="headerlink" href="#step-6-initialize-duckdb-database" title="Permanent link">&para;</a></h2>
-<h3 id="create-data-directories">Create Data Directories<a class="headerlink" href="#create-data-directories" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Create all required directories</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>data/raw<span class="w"> </span>data/bronze<span class="w"> </span>data/silver<span class="w"> </span>data/gold
-</span></code></pre></div>
-<h3 id="initialize-dbt">Initialize dbt<a class="headerlink" href="#initialize-dbt" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Navigate to dbt directory</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nb">cd</span><span class="w"> </span>dbt
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
-</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="c1"># Install dbt packages (dbt_expectations)</span>
-</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>dbt<span class="w"> </span>deps
-</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
-</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="c1"># Run initial build (will create database and all tables)</span>
-</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>dbt<span class="w"> </span>build<span class="w"> </span>--profiles-dir<span class="w"> </span>.
-</span></code></pre></div>
-<p>Expected output:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Completed successfully
-</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
-</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>Done. PASS=25 WARN=0 ERROR=0 SKIP=0 TOTAL=25
-</span></code></pre></div></p>
-<h3 id="verify-database-creation">Verify Database Creation<a class="headerlink" href="#verify-database-creation" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># Check if database was created</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>ls<span class="w"> </span>-lh<span class="w"> </span>../data/lab2_market_sentiment.duckdb
-</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Should show file size (typically 100KB-1MB empty)</span>
-</span></code></pre></div>
-<h2 id="step-7-run-initial-data-ingestion">Step 7: Run Initial Data Ingestion<a class="headerlink" href="#step-7-run-initial-data-ingestion" title="Permanent link">&para;</a></h2>
-<h3 id="test-api-connections">Test API Connections<a class="headerlink" href="#test-api-connections" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># Return to lab root directory</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nb">cd</span><span class="w"> </span>..
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1"># Test Reddit API</span>
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
-</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="s2">import praw, os</span>
-</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="s2">from dotenv import load_dotenv</span>
-</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="s2">load_dotenv()</span>
-</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="s2">reddit = praw.Reddit(</span>
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="s2">    client_id=os.getenv(&#39;REDDIT_CLIENT_ID&#39;),</span>
-</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="s2">    client_secret=os.getenv(&#39;REDDIT_CLIENT_SECRET&#39;),</span>
-</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a><span class="s2">    user_agent=os.getenv(&#39;REDDIT_USER_AGENT&#39;)</span>
-</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="s2">)</span>
-</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="s2">print(&#39;✅ Reddit API connected&#39;)</span>
-</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a><span class="s2">print(f&#39;User: {reddit.read_only}&#39;)</span>
-</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="s2">&quot;</span>
-</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>
-</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="c1"># Test News API</span>
-</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span>
-</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="s2">from newsapi import NewsApiClient</span>
-</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a><span class="s2">import os</span>
-</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a><span class="s2">from dotenv import load_dotenv</span>
-</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a><span class="s2">load_dotenv()</span>
-</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a><span class="s2">api = NewsApiClient(api_key=os.getenv(&#39;NEWS_API_KEY&#39;))</span>
-</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a><span class="s2">response = api.get_top_headlines(language=&#39;en&#39;, page_size=1)</span>
-</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a><span class="s2">print(&#39;✅ News API connected&#39;)</span>
-</span><span id="__span-13-27"><a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a><span class="s2">print(f&#39;Status: {response.get(\&quot;status\&quot;)}&#39;)</span>
-</span><span id="__span-13-28"><a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a><span class="s2">&quot;</span>
-</span></code></pre></div>
-<h3 id="run-full-ingestion">Run Full Ingestion<a class="headerlink" href="#run-full-ingestion" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1"># Run the ingestion pipeline</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>python<span class="w"> </span>pipelines/ingest_real_data.py
-</span></code></pre></div>
-<p>Expected output:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>INFO - 🔄 Fetching Reddit data...
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>INFO -   Searching for: Coca-Cola
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>INFO -   Searching for: PepsiCo
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>...
-</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>INFO - ✅ Reddit data ingested: 500 posts → data/raw/reddit_brands.csv
-</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>INFO - 🔄 Fetching news data...
-</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>INFO - ✅ News data ingested: 300 articles → data/raw/news_brands.csv
-</span></code></pre></div></p>
-<h3 id="run-dbt-transformations">Run dbt Transformations<a class="headerlink" href="#run-dbt-transformations" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="c1"># Navigate to dbt directory</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nb">cd</span><span class="w"> </span>dbt
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="c1"># Run full build (incremental models will process new data)</span>
-</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>dbt<span class="w"> </span>build<span class="w"> </span>--profiles-dir<span class="w"> </span>.
-</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>
-</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="c1"># Check results</span>
-</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>dbt<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--profiles-dir<span class="w"> </span>.
-</span></code></pre></div>
-<h3 id="verify-data">Verify Data<a class="headerlink" href="#verify-data" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># Quick data check using Python</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nb">cd</span><span class="w"> </span>..
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>python<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39;</span>
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="s">import duckdb</span>
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="s">conn = duckdb.connect(&#39;data/lab2_market_sentiment.duckdb&#39;)</span>
-</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>
-</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="s"># Check record counts</span>
-</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="s">tables = {</span>
-</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="s">    &#39;fct_sentiment_events&#39;: &#39;SELECT COUNT(*) FROM fct_sentiment_events&#39;,</span>
-</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="s">    &#39;mart_daily_sentiment&#39;: &#39;SELECT COUNT(*) FROM mart_daily_sentiment&#39;,</span>
-</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="s">    &#39;mart_brand_competitive_analysis&#39;: &#39;SELECT COUNT(*) FROM mart_brand_competitive_analysis&#39;,</span>
-</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="s">    &#39;mart_trending_topics&#39;: &#39;SELECT COUNT(*) FROM mart_trending_topics&#39;</span>
-</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="s">}</span>
-</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>
-</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="s">print(&quot;\n📊 Data Summary:&quot;)</span>
-</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="s">for table, query in tables.items():</span>
-</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="s">    count = conn.execute(query).fetchone()[0]</span>
-</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="s">    print(f&quot;  {table}: {count:,} rows&quot;)</span>
-</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>
-</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a><span class="s"># Check brands</span>
-</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a><span class="s">brands = conn.execute(&quot;SELECT COUNT(DISTINCT brand) FROM fct_sentiment_events&quot;).fetchone()[0]</span>
-</span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a><span class="s">print(f&quot;\n  Unique brands: {brands}&quot;)</span>
-</span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>
-</span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a><span class="s">conn.close()</span>
-</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a><span class="s">EOF</span>
-</span></code></pre></div>
-<p>Expected output:
-<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>📊 Data Summary:
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>  fct_sentiment_events: 800 rows
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>  mart_daily_sentiment: 75 rows
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>  mart_brand_competitive_analysis: 5 rows
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>  mart_trending_topics: 40 rows
-</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
-</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>  Unique brands: 5
-</span></code></pre></div></p>
-<h2 id="step-8-launch-streamlit-dashboard">Step 8: Launch Streamlit Dashboard<a class="headerlink" href="#step-8-launch-streamlit-dashboard" title="Permanent link">&para;</a></h2>
-<h3 id="start-the-dashboard">Start the Dashboard<a class="headerlink" href="#start-the-dashboard" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1"># From lab root directory</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>streamlit<span class="w"> </span>run<span class="w"> </span>app/streamlit_app.py
-</span></code></pre></div>
-<p>The dashboard will open in your browser at <code>http://localhost:8501</code></p>
-<h3 id="test-dashboard-features">Test Dashboard Features<a class="headerlink" href="#test-dashboard-features" title="Permanent link">&para;</a></h3>
-<ol>
-<li>✅ <strong>Main Dashboard</strong>: Check KPIs, charts load correctly</li>
-<li>✅ <strong>Filters</strong>: Try filtering by date, brand, source</li>
-<li>✅ <strong>Competitive Intelligence Page</strong>: Navigate via sidebar</li>
-<li>✅ <strong>Data Refresh</strong>: Modify filters and verify updates</li>
-</ol>
-<h2 id="step-9-set-up-github-actions-optional">Step 9: Set Up GitHub Actions (Optional)<a class="headerlink" href="#step-9-set-up-github-actions-optional" title="Permanent link">&para;</a></h2>
-<h3 id="prerequisites_1">Prerequisites<a class="headerlink" href="#prerequisites_1" title="Permanent link">&para;</a></h3>
-<ul>
-<li>GitHub repository for your project</li>
-<li>Repository secrets configured</li>
-</ul>
-<h3 id="add-github-secrets">Add GitHub Secrets<a class="headerlink" href="#add-github-secrets" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Go to your repository on GitHub</li>
-<li>Navigate to: <strong>Settings</strong> → <strong>Secrets and variables</strong> → <strong>Actions</strong></li>
-<li>Click <strong>New repository secret</strong> for each:</li>
-<li><code>REDDIT_CLIENT_ID</code></li>
-<li><code>REDDIT_CLIENT_SECRET</code></li>
-<li><code>REDDIT_USER_AGENT</code></li>
-<li><code>NEWS_API_KEY</code></li>
-</ol>
-<h3 id="push-workflow-file">Push Workflow File<a class="headerlink" href="#push-workflow-file" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># Ensure workflow file is in correct location</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>ls<span class="w"> </span>-la<span class="w"> </span>.github/workflows/weekly_pipeline.yml
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
-</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="c1"># Commit and push</span>
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>git<span class="w"> </span>add<span class="w"> </span>.github/workflows/weekly_pipeline.yml
-</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add weekly sentiment pipeline workflow&quot;</span>
-</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
-</span></code></pre></div>
-<h3 id="test-manual-trigger">Test Manual Trigger<a class="headerlink" href="#test-manual-trigger" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Go to your repository → <strong>Actions</strong> tab</li>
-<li>Select <strong>Weekly Sentiment Pipeline</strong></li>
-<li>Click <strong>Run workflow</strong> dropdown</li>
-<li>Click green <strong>Run workflow</strong> button</li>
-</ol>
-<p>Monitor the run in real-time. If successful, you'll see:
-- ✅ All steps completed
-- Artifact available for download (DuckDB database)</p>
-<h3 id="schedule-verification">Schedule Verification<a class="headerlink" href="#schedule-verification" title="Permanent link">&para;</a></h3>
-<p>The workflow will now run automatically every Sunday at 2 AM UTC.</p>
-<h2 id="step-10-optional-enhancements">Step 10: Optional Enhancements<a class="headerlink" href="#step-10-optional-enhancements" title="Permanent link">&para;</a></h2>
-<h3 id="set-up-prefect-cloud-for-better-observability">Set Up Prefect Cloud (For Better Observability)<a class="headerlink" href="#set-up-prefect-cloud-for-better-observability" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1"># Install Prefect</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>pip<span class="w"> </span>install<span class="w"> </span>prefect
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># Login to Prefect Cloud (free tier)</span>
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>prefect<span class="w"> </span>cloud<span class="w"> </span>login
-</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
-</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="c1"># Deploy flow</span>
-</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>python<span class="w"> </span>orchestrate_weekly.py
-</span></code></pre></div>
-<h3 id="configure-email-alerts">Configure Email Alerts<a class="headerlink" href="#configure-email-alerts" title="Permanent link">&para;</a></h3>
-<p>Add to <code>orchestrate_weekly.py</code>:</p>
-<div class="language-python highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">prefect.blocks.notifications.email</span><span class="w"> </span><span class="kn">import</span> <span class="n">EmailServerBlock</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="c1"># In your flow, add error handling:</span>
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="k">try</span><span class="p">:</span>
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>    <span class="n">sentiment_pipeline</span><span class="p">()</span>
-</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>    <span class="n">email_block</span> <span class="o">=</span> <span class="n">EmailServerBlock</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;email-alerts&quot;</span><span class="p">)</span>
-</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>    <span class="n">email_block</span><span class="o">.</span><span class="n">notify</span><span class="p">(</span>
-</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>        <span class="n">subject</span><span class="o">=</span><span class="s2">&quot;❌ Sentiment Pipeline Failed&quot;</span><span class="p">,</span>
-</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>        <span class="n">body</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
-</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>    <span class="p">)</span>
-</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>    <span class="k">raise</span>
-</span></code></pre></div>
-<h3 id="add-more-brands">Add More Brands<a class="headerlink" href="#add-more-brands" title="Permanent link">&para;</a></h3>
-<p>Edit <code>shared/config/brand_taxonomy.yaml</code>:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nt">beverages</span><span class="p">:</span>
-</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">  </span><span class="nt">starbucks</span><span class="p">:</span>
-</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span><span class="nt">parent</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Starbucks</span><span class="nv"> </span><span class="s">Corporation&quot;</span>
-</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">    </span><span class="nt">ticker</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;SBUX&quot;</span>
-</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">    </span><span class="nt">brands</span><span class="p">:</span>
-</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Starbucks&quot;</span>
-</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">        </span><span class="nt">aliases</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;Starbucks</span><span class="nv"> </span><span class="s">Coffee&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;SBUX&quot;</span><span class="p p-Indicator">]</span>
-</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="w">        </span><span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Coffee&quot;</span>
-</span></code></pre></div>
-<p>Then re-run ingestion.</p>
-<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
-<h3 id="issue-api-rate-limits">Issue: API Rate Limits<a class="headerlink" href="#issue-api-rate-limits" title="Permanent link">&para;</a></h3>
-<p><strong>Error</strong>: <code>429 Too Many Requests</code></p>
-<p><strong>Solution</strong>:
-<div class="language-python highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># Reduce posts_per_brand in ingest_real_data.py</span>
-</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">limit_per_brand</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Instead of 20</span>
-</span></code></pre></div></p>
-<h3 id="issue-duckdb-file-locked">Issue: DuckDB File Locked<a class="headerlink" href="#issue-duckdb-file-locked" title="Permanent link">&para;</a></h3>
-<p><strong>Error</strong>: <code>IO Error: Could not set lock on file</code></p>
-<p><strong>Solution</strong>:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># Close all connections, then:</span>
-</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>rm<span class="w"> </span>data/lab2_market_sentiment.duckdb.wal
-</span></code></pre></div></p>
-<h3 id="issue-dbt-models-fail">Issue: dbt Models Fail<a class="headerlink" href="#issue-dbt-models-fail" title="Permanent link">&para;</a></h3>
-<p><strong>Error</strong>: <code>Compilation Error</code></p>
-<p><strong>Solution</strong>:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Clean and rebuild</span>
-</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="nb">cd</span><span class="w"> </span>dbt
-</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>dbt<span class="w"> </span>clean
-</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>dbt<span class="w"> </span>deps
-</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>dbt<span class="w"> </span>build<span class="w"> </span>--profiles-dir<span class="w"> </span>.<span class="w"> </span>--full-refresh
-</span></code></pre></div></p>
-<h3 id="issue-streamlit-port-already-in-use">Issue: Streamlit Port Already in Use<a class="headerlink" href="#issue-streamlit-port-already-in-use" title="Permanent link">&para;</a></h3>
-<p><strong>Error</strong>: <code>Address already in use</code></p>
-<p><strong>Solution</strong>:
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># Use different port</span>
-</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>streamlit<span class="w"> </span>run<span class="w"> </span>app/streamlit_app.py<span class="w"> </span>--server.port<span class="w"> </span><span class="m">8502</span>
-</span></code></pre></div></p>
-<h3 id="issue-no-data-in-dashboard">Issue: No Data in Dashboard<a class="headerlink" href="#issue-no-data-in-dashboard" title="Permanent link">&para;</a></h3>
-<p><strong>Symptoms</strong>: Empty charts, "No data" messages</p>
-<p><strong>Solution</strong>:
-1. Check if ingestion ran: <code>ls -la data/raw/</code>
-2. Check if dbt ran: <code>duckdb data/lab2_market_sentiment.duckdb "SELECT COUNT(*) FROM fct_sentiment_events"</code>
-3. Check Streamlit logs for errors</p>
-<h2 id="verification-checklist">Verification Checklist<a class="headerlink" href="#verification-checklist" title="Permanent link">&para;</a></h2>
-<p>Before considering setup complete, verify:</p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ✅ Python 3.11+ installed</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ✅ All dependencies installed (<code>pip list</code>)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ✅ API keys configured in <code>.env</code></li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ✅ Reddit and News API connections tested</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ✅ dbt models built successfully</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ✅ All dbt tests passing (20/20)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ✅ Data ingested (800+ sentiment events)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ✅ Streamlit dashboard loads</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ✅ Both pages accessible (Main + Competitive Intelligence)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ✅ Filters work correctly</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ✅ GitHub Actions workflow configured (optional)</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ✅ Manual workflow run successful (optional)</li>
-</ul>
-<h2 id="next-steps">Next Steps<a class="headerlink" href="#next-steps" title="Permanent link">&para;</a></h2>
-<p>Once setup is complete:</p>
-<ol>
-<li>📖 Read <a href="../lab2-overview/">Lab 2 Overview</a> for architecture details</li>
-<li>🔍 Explore <a href="../lab2-dbt-docs/">dbt Model Documentation</a></li>
-<li>📊 Customize dashboards in <code>app/</code> directory</li>
-<li>🔧 Add more brands to taxonomy</li>
-<li>🚀 Deploy to production (e.g., Streamlit Cloud)</li>
-</ol>
-<h2 id="support">Support<a class="headerlink" href="#support" title="Permanent link">&para;</a></h2>
-<p>If you encounter issues not covered here:</p>
-<ol>
-<li>Check <a href="../lab2-troubleshooting/">Lab 2 Troubleshooting Guide</a></li>
-<li>Review GitHub Issues</li>
-<li>Contact: narensham@example.com</li>
-</ol>
+<h1 id="lab-2-setup-deployment-guide">Lab 2: Setup &amp; Deployment Guide<a class="headerlink" href="#lab-2-setup-deployment-guide" title="Permanent link">&para;</a></h1>
+<p>Complete guide for deploying the Market Sentiment Analysis pipeline to production with GitHub + Streamlit Cloud.</p>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>Lab 2 uses a <strong>serverless, git-based architecture</strong> with:
+- ✅ <strong>GitHub</strong> for code, database storage, and orchestration (via Actions)
+- ✅ <strong>Streamlit Cloud</strong> for dashboard hosting (free tier)
+- ✅ <strong>DuckDB</strong> for embedded analytics database
+- ✅ <strong>No traditional cloud infrastructure</strong> required (AWS/GCP/Azure)</p>
+<p><strong>Total Cost</strong>: <strong>$0/month</strong> (using only free tiers)</p>
 <hr />
-<p><strong>Setup Time</strong>: ~30 minutes<br />
-<strong>Difficulty</strong>: Intermediate<br />
-<strong>Last Updated</strong>: November 2025</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>Before deployment, ensure you have:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> GitHub account with repository access</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Streamlit Cloud account (sign up at <a href="https://share.streamlit.io">share.streamlit.io</a>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Reddit API credentials (<a href="https://www.reddit.com/prefs/apps">apply here</a>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> News API key (<a href="https://newsapi.org/register">register here</a>)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Local environment tested and working</li>
+</ul>
+<hr />
+<h2 id="step-1-configure-github-repository">Step 1: Configure GitHub Repository<a class="headerlink" href="#step-1-configure-github-repository" title="Permanent link">&para;</a></h2>
+<h3 id="11-update-gitignore">1.1 Update <code>.gitignore</code><a class="headerlink" href="#11-update-gitignore" title="Permanent link">&para;</a></h3>
+<p>Ensure database is <strong>allowed</strong> but raw CSVs are <strong>blocked</strong>:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a># Data - General exclusions
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>*.csv.bak
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>*.duckdb.wal
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>*.duckdb.tmp
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a># CRITICAL: Allow lab2 data directory FIRST
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>!lab2_market_sentiment/data/
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>!lab2_market_sentiment/data/**
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a># NOW block .duckdb files globally
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>*.duckdb
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a># EXCEPT allow the specific production database
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>!lab2_market_sentiment/data/lab2_market_sentiment.duckdb
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a># But still ignore raw data files in lab2
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>lab2_market_sentiment/data/raw/
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>lab2_market_sentiment/data/*.csv
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a># Ignore other lab data directories
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>/data/
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>lab1_*/data/
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>lab3_*/data/
+</span></code></pre></div></p>
+<h3 id="12-commit-database-structure">1.2 Commit Database Structure<a class="headerlink" href="#12-commit-database-structure" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Create directory with placeholder</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>mkdir<span class="w"> </span>-p<span class="w"> </span>lab2_market_sentiment/data
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>touch<span class="w"> </span>lab2_market_sentiment/data/.gitkeep
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># Commit structure</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>git<span class="w"> </span>add<span class="w"> </span>lab2_market_sentiment/data/.gitkeep
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Add lab2 data directory structure&quot;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>git<span class="w"> </span>push
+</span></code></pre></div>
+<h3 id="13-set-github-secrets">1.3 Set GitHub Secrets<a class="headerlink" href="#13-set-github-secrets" title="Permanent link">&para;</a></h3>
+<p>Go to: <strong>Settings → Secrets and variables → Actions</strong></p>
+<p>Click <strong>"New repository secret"</strong> for each:</p>
+<table>
+<thead>
+<tr>
+<th>Secret Name</th>
+<th>Value</th>
+<th>Where to Get It</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>REDDIT_CLIENT_ID</code></td>
+<td>Your Reddit app client ID</td>
+<td><a href="https://www.reddit.com/prefs/apps">reddit.com/prefs/apps</a></td>
+</tr>
+<tr>
+<td><code>REDDIT_CLIENT_SECRET</code></td>
+<td>Your Reddit app secret</td>
+<td>Same as above</td>
+</tr>
+<tr>
+<td><code>REDDIT_USER_AGENT</code></td>
+<td><code>"CPG Sentiment v1.0 by /u/yourname"</code></td>
+<td>Create your own string</td>
+</tr>
+<tr>
+<td><code>NEWS_API_KEY</code></td>
+<td>Your NewsAPI key</td>
+<td><a href="https://newsapi.org">newsapi.org</a></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Important</strong>: 
+- No quotes around values when adding to GitHub
+- No trailing spaces
+- Double-check for typos</p>
+<h3 id="14-enable-github-actions-write-permissions">1.4 Enable GitHub Actions Write Permissions<a class="headerlink" href="#14-enable-github-actions-write-permissions" title="Permanent link">&para;</a></h3>
+<p>Go to: <strong>Settings → Actions → General</strong></p>
+<p>Under <strong>Workflow permissions</strong>:
+- ✅ Select <strong>"Read and write permissions"</strong>
+- ✅ Check <strong>"Allow GitHub Actions to create and approve pull requests"</strong>
+- Click <strong>Save</strong></p>
+<p>This allows the workflow to commit the updated database back to the repo.</p>
+<hr />
+<h2 id="step-2-set-up-github-actions-workflow">Step 2: Set Up GitHub Actions Workflow<a class="headerlink" href="#step-2-set-up-github-actions-workflow" title="Permanent link">&para;</a></h2>
+<h3 id="21-verify-workflow-file">2.1 Verify Workflow File<a class="headerlink" href="#21-verify-workflow-file" title="Permanent link">&para;</a></h3>
+<p>Ensure <code>.github/workflows/weekly_pipeline.yml</code> exists with the complete configuration including database commit and pruning steps.</p>
+<h3 id="22-create-pruning-script">2.2 Create Pruning Script<a class="headerlink" href="#22-create-pruning-script" title="Permanent link">&para;</a></h3>
+<p>The <code>lab2_market_sentiment/prune_old_data.py</code> script should exist to manage database size.</p>
+<h3 id="23-test-workflow-locally">2.3 Test Workflow Locally<a class="headerlink" href="#23-test-workflow-locally" title="Permanent link">&para;</a></h3>
+<p>Before pushing, test the workflow steps locally:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Test database creation</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>python<span class="w"> </span>lab2_market_sentiment/orchestrate_weekly.py
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Test pruning</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>python<span class="w"> </span>lab2_market_sentiment/prune_old_data.py
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># Verify database size</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>du<span class="w"> </span>-h<span class="w"> </span>lab2_market_sentiment/data/lab2_market_sentiment.duckdb
+</span></code></pre></div></p>
+<hr />
+<h2 id="step-3-test-github-actions">Step 3: Test GitHub Actions<a class="headerlink" href="#step-3-test-github-actions" title="Permanent link">&para;</a></h2>
+<h3 id="31-trigger-manual-run">3.1 Trigger Manual Run<a class="headerlink" href="#31-trigger-manual-run" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Go to your GitHub repository</li>
+<li>Click <strong>"Actions"</strong> tab</li>
+<li>Select <strong>"Weekly Sentiment Pipeline"</strong> from the left sidebar</li>
+<li>Click <strong>"Run workflow"</strong> dropdown (top right)</li>
+<li>Select branch: <code>main</code></li>
+<li>Click green <strong>"Run workflow"</strong> button</li>
+</ol>
+<h3 id="32-monitor-execution">3.2 Monitor Execution<a class="headerlink" href="#32-monitor-execution" title="Permanent link">&para;</a></h3>
+<p>Watch the workflow run in real-time:</p>
+<ul>
+<li>✅ <strong>Set up Python</strong> (~30s)</li>
+<li>✅ <strong>Install dependencies</strong> (~2 min)</li>
+<li>✅ <strong>Run pipeline</strong> (~10 min)</li>
+<li>Data ingestion from APIs</li>
+<li>dbt transformations</li>
+<li>Data quality tests</li>
+<li>✅ <strong>Prune old data</strong> (~30s)</li>
+<li>✅ <strong>Commit updated database</strong> (~10s)</li>
+<li>✅ <strong>Upload artifacts</strong> (~30s)</li>
+</ul>
+<p><strong>Total time</strong>: ~15 minutes</p>
+<h3 id="33-verify-success">3.3 Verify Success<a class="headerlink" href="#33-verify-success" title="Permanent link">&para;</a></h3>
+<p>After workflow completes:</p>
+<p><strong>1. Check commit history:</strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>pull
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>-5<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;Weekly data update&quot;</span>
+</span></code></pre></div></p>
+<p><strong>2. Verify database exists:</strong>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ls<span class="w"> </span>-lh<span class="w"> </span>lab2_market_sentiment/data/lab2_market_sentiment.duckdb
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># Should show file with size (e.g., 15MB)</span>
+</span></code></pre></div></p>
+<p><strong>3. Download artifact (backup):</strong>
+- Go to Actions → Completed run
+- Scroll to <strong>"Artifacts"</strong> section
+- Download <code>duckdb-database-backup</code></p>
+<hr />
+<h2 id="step-4-deploy-to-streamlit-cloud">Step 4: Deploy to Streamlit Cloud<a class="headerlink" href="#step-4-deploy-to-streamlit-cloud" title="Permanent link">&para;</a></h2>
+<h3 id="41-sign-up-for-streamlit-cloud">4.1 Sign Up for Streamlit Cloud<a class="headerlink" href="#41-sign-up-for-streamlit-cloud" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Go to <a href="https://share.streamlit.io">share.streamlit.io</a></li>
+<li>Click <strong>"Sign up"</strong></li>
+<li>Choose <strong>"Continue with GitHub"</strong></li>
+<li>Authorize Streamlit Cloud to access your repositories</li>
+</ol>
+<h3 id="42-create-new-app">4.2 Create New App<a class="headerlink" href="#42-create-new-app" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Click <strong>"New app"</strong> button</li>
+<li><strong>Repository</strong>: Select <code>yourusername/buildcpg-labs</code></li>
+<li><strong>Branch</strong>: <code>main</code></li>
+<li><strong>Main file path</strong>: <code>lab2_market_sentiment/app/streamlit_app.py</code></li>
+<li><strong>App URL</strong>: Choose a custom URL (e.g., <code>buildcpg-labs-sentiment</code>)</li>
+<li>Click <strong>"Deploy"</strong></li>
+</ol>
+<h3 id="43-configure-advanced-settings">4.3 Configure Advanced Settings<a class="headerlink" href="#43-configure-advanced-settings" title="Permanent link">&para;</a></h3>
+<p>Click <strong>"Advanced settings"</strong> before deploying:</p>
+<p><strong>Python version</strong>: <code>3.11</code></p>
+<p><strong>Requirements file</strong>: <code>lab2_market_sentiment/requirements.txt</code></p>
+<p>Click <strong>"Deploy"</strong></p>
+<h3 id="44-enable-auto-redeploy">4.4 Enable Auto-Redeploy<a class="headerlink" href="#44-enable-auto-redeploy" title="Permanent link">&para;</a></h3>
+<p>After deployment:</p>
+<ol>
+<li>Go to app settings (⚙️ icon)</li>
+<li>Under <strong>"GitHub"</strong> section</li>
+<li>✅ Enable <strong>"Auto-deploy on commit"</strong></li>
+<li>Click <strong>"Save"</strong></li>
+</ol>
+<p>Now, whenever GitHub Actions commits the updated database, Streamlit will automatically redeploy (~30 seconds).</p>
+<h3 id="45-test-dashboard">4.5 Test Dashboard<a class="headerlink" href="#45-test-dashboard" title="Permanent link">&para;</a></h3>
+<p>Visit your app URL: <code>https://your-app-name.streamlit.app/</code></p>
+<p><strong>Expected behavior</strong>:
+- ✅ Dashboard loads successfully
+- ✅ Shows data freshness badge
+- ✅ All charts render
+- ✅ Filters work correctly
+- ✅ Competitive Intelligence page accessible</p>
+<hr />
+<h2 id="step-5-verify-end-to-end-flow">Step 5: Verify End-to-End Flow<a class="headerlink" href="#step-5-verify-end-to-end-flow" title="Permanent link">&para;</a></h2>
+<h3 id="51-complete-update-cycle">5.1 Complete Update Cycle<a class="headerlink" href="#51-complete-update-cycle" title="Permanent link">&para;</a></h3>
+<p>Test the full pipeline:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>GitHub Actions Runs (Sunday 2 AM UTC or manual)
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    ↓
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>Fetches data from Reddit + News APIs
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    ↓
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Runs dbt transformations
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    ↓
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>Prunes old data (&gt;90 days)
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    ↓
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>Commits updated database to GitHub
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    ↓
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>Streamlit Cloud detects commit
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    ↓
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>Auto-redeploys app (~30s)
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    ↓
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>Users see fresh data ✨
+</span></code></pre></div></p>
+<h3 id="52-verification-checklist">5.2 Verification Checklist<a class="headerlink" href="#52-verification-checklist" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> GitHub Actions workflow runs successfully</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Database file committed to repo</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Database size &lt; 90MB</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Streamlit app auto-redeploys</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Dashboard shows fresh data</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Data freshness badge updates</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> All charts and filters work</li>
+</ul>
+<hr />
+<h2 id="step-6-monitor-maintain">Step 6: Monitor &amp; Maintain<a class="headerlink" href="#step-6-monitor-maintain" title="Permanent link">&para;</a></h2>
+<h3 id="61-set-up-monitoring">6.1 Set Up Monitoring<a class="headerlink" href="#61-set-up-monitoring" title="Permanent link">&para;</a></h3>
+<p><strong>GitHub Actions Notifications:</strong>
+1. Go to Settings → Notifications
+2. Enable email notifications for failed workflows</p>
+<p><strong>Streamlit Health Check:</strong>
+- Bookmark: <code>https://your-app.streamlit.app/</code>
+- Check weekly that data is updating</p>
+<h3 id="62-database-size-management">6.2 Database Size Management<a class="headerlink" href="#62-database-size-management" title="Permanent link">&para;</a></h3>
+<p>Monitor database size in workflow logs:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># In GitHub Actions output, look for:</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Database<span class="w"> </span>size:<span class="w"> </span><span class="m">45</span>.2<span class="w"> </span>MB<span class="w">  </span>✅<span class="w"> </span>Good
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Database<span class="w"> </span>size:<span class="w"> </span><span class="m">92</span>.1<span class="w"> </span>MB<span class="w">  </span>⚠️<span class="w"> </span>Warning<span class="w"> </span>-<span class="w"> </span>approaching<span class="w"> </span>limit
+</span></code></pre></div></p>
+<p><strong>If approaching 100MB limit:</strong>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Edit lab2_market_sentiment/prune_old_data.py</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">RETENTION_DAYS</span> <span class="o">=</span> <span class="mi">60</span>  <span class="c1"># Reduce from 90</span>
+</span></code></pre></div></p>
+<h3 id="63-weekly-maintenance-tasks">6.3 Weekly Maintenance Tasks<a class="headerlink" href="#63-weekly-maintenance-tasks" title="Permanent link">&para;</a></h3>
+<p><strong>Every Sunday after pipeline runs:</strong>
+1. ✅ Check Actions tab for green checkmark
+2. ✅ Verify dashboard shows updated data
+3. ✅ Review any anomalies detected
+4. ✅ Check database size in logs</p>
+<p><strong>Monthly:</strong>
+1. Review brand taxonomy for new brands
+2. Check API usage and costs
+3. Update dependencies if needed</p>
+<hr />
+<h2 id="troubleshooting-deployment">Troubleshooting Deployment<a class="headerlink" href="#troubleshooting-deployment" title="Permanent link">&para;</a></h2>
+<h3 id="issue-workflow-fails-on-database-commit">Issue: Workflow fails on database commit<a class="headerlink" href="#issue-workflow-fails-on-database-commit" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: <code>permission denied</code> or <code>refusing to allow a GitHub App</code></p>
+<p><strong>Solution</strong>:
+1. Settings → Actions → General
+2. Workflow permissions → "Read and write permissions"
+3. Re-run workflow</p>
+<h3 id="issue-database-not-tracked-in-git">Issue: Database not tracked in git<a class="headerlink" href="#issue-database-not-tracked-in-git" title="Permanent link">&para;</a></h3>
+<p><strong>Error</strong>: <code>.gitignore</code> blocking database</p>
+<p><strong>Solution</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Force add database once</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>git<span class="w"> </span>add<span class="w"> </span>-f<span class="w"> </span>lab2_market_sentiment/data/lab2_market_sentiment.duckdb
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Force add production database&quot;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>git<span class="w"> </span>push
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1"># Future updates will work automatically</span>
+</span></code></pre></div></p>
+<h3 id="issue-streamlit-not-redeploying">Issue: Streamlit not redeploying<a class="headerlink" href="#issue-streamlit-not-redeploying" title="Permanent link">&para;</a></h3>
+<p><strong>Solution</strong>:
+1. Streamlit Cloud → App settings
+2. Check "Auto-deploy" is enabled
+3. Manually reboot app
+4. Check deployment logs for errors</p>
+<h3 id="issue-database-too-large-100mb">Issue: Database too large (&gt;100MB)<a class="headerlink" href="#issue-database-too-large-100mb" title="Permanent link">&para;</a></h3>
+<p><strong>Solution</strong>:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Reduce retention period</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># Edit prune_old_data.py: RETENTION_DAYS = 30</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># Run manually to test</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>python<span class="w"> </span>lab2_market_sentiment/prune_old_data.py
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="c1"># Commit and push</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>git<span class="w"> </span>add<span class="w"> </span>lab2_market_sentiment/prune_old_data.py
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Reduce data retention to 30 days&quot;</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>git<span class="w"> </span>push
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="c1"># Wait for next workflow run</span>
+</span></code></pre></div></p>
+<hr />
+<h2 id="production-best-practices">Production Best Practices<a class="headerlink" href="#production-best-practices" title="Permanent link">&para;</a></h2>
+<h3 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h3>
+<p>✅ <strong>Never commit API keys</strong> to repository
+✅ <strong>Use GitHub Secrets</strong> for all credentials
+✅ <strong>Rotate API keys</strong> every 90 days
+✅ <strong>Monitor workflow logs</strong> for exposed secrets</p>
+<h3 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h3>
+<p>✅ <strong>Keep database &lt; 90MB</strong> for GitHub
+✅ <strong>Prune old data</strong> automatically
+✅ <strong>Cache Streamlit data</strong> (TTL: 5-10 min)
+✅ <strong>Use aggregated marts</strong> for dashboards</p>
+<h3 id="reliability">Reliability<a class="headerlink" href="#reliability" title="Permanent link">&para;</a></h3>
+<p>✅ <strong>Enable workflow notifications</strong>
+✅ <strong>Keep artifacts</strong> as backup (90 days)
+✅ <strong>Monitor data freshness</strong>
+✅ <strong>Test manual triggers</strong> monthly</p>
+<h3 id="cost-management">Cost Management<a class="headerlink" href="#cost-management" title="Permanent link">&para;</a></h3>
+<p>✅ <strong>Stay within free tiers</strong>:
+- GitHub Actions: 2,000 min/month
+- Streamlit Cloud: 1 app free
+- Reddit API: Free
+- News API: 100 req/day free</p>
+<hr />
+<h2 id="scaling-beyond-free-tier">Scaling Beyond Free Tier<a class="headerlink" href="#scaling-beyond-free-tier" title="Permanent link">&para;</a></h2>
+<h3 id="when-to-upgrade">When to Upgrade<a class="headerlink" href="#when-to-upgrade" title="Permanent link">&para;</a></h3>
+<p><strong>GitHub Actions</strong> ($0.008/min):
+- Running pipeline daily instead of weekly
+- Processing more brands (&gt;20)
+- Longer ingestion times</p>
+<p><strong>Streamlit Cloud</strong> ($20/month):
+- Multiple apps needed
+- Need more resources
+- Custom domain required</p>
+<p><strong>News API</strong> ($449/month):
+- Need more than 100 requests/day
+- Historical data beyond 30 days
+- Real-time news required</p>
+<h3 id="migration-to-cloud-storage">Migration to Cloud Storage<a class="headerlink" href="#migration-to-cloud-storage" title="Permanent link">&para;</a></h3>
+<p>If database exceeds 100MB:</p>
+<p><strong>Option 1: AWS S3 + DuckDB</strong>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># Install: pip install s3fs duckdb</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSTALL httpfs&quot;</span><span class="p">)</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;LOAD httpfs&quot;</span><span class="p">)</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SET s3_region=&#39;us-east-1&#39;&quot;</span><span class="p">)</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="c1"># Read from S3</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="n">df</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM &#39;s3://bucket/data.parquet&#39;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">df</span><span class="p">()</span>
+</span></code></pre></div></p>
+<p><strong>Option 2: Google Cloud Storage</strong>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">google.cloud</span><span class="w"> </span><span class="kn">import</span> <span class="n">storage</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">duckdb</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># Download from GCS</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="n">client</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">Client</span><span class="p">()</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="n">bucket</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">bucket</span><span class="p">(</span><span class="s1">&#39;your-bucket&#39;</span><span class="p">)</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="n">blob</span> <span class="o">=</span> <span class="n">bucket</span><span class="o">.</span><span class="n">blob</span><span class="p">(</span><span class="s1">&#39;lab2_market_sentiment.duckdb&#39;</span><span class="p">)</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="n">blob</span><span class="o">.</span><span class="n">download_to_filename</span><span class="p">(</span><span class="s1">&#39;local.duckdb&#39;</span><span class="p">)</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">duckdb</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;local.duckdb&#39;</span><span class="p">)</span>
+</span></code></pre></div></p>
+<hr />
+<h2 id="deployment-checklist">Deployment Checklist<a class="headerlink" href="#deployment-checklist" title="Permanent link">&para;</a></h2>
+<p>Before going live:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>.gitignore</code> configured correctly</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> GitHub Secrets added (all 4)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Write permissions enabled</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Workflow file committed</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Pruning script created</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Manual workflow run successful</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Database committed to repo</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Streamlit Cloud app deployed</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Auto-redeploy enabled</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> End-to-end test completed</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Monitoring configured</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Documentation updated</li>
+</ul>
+<hr />
+<h2 id="support">Support<a class="headerlink" href="#support" title="Permanent link">&para;</a></h2>
+<p><strong>Issues</strong>: <a href="https://github.com/yourusername/buildcpg-labs/issues">GitHub Issues</a><br />
+<strong>Email</strong>: narensham@example.com<br />
+<strong>Documentation</strong>: <a href="../lab2-overview/">Lab 2 Overview</a></p>
+<hr />
+<p><strong>Deployment Time</strong>: ~2 hours<br />
+<strong>Last Updated</strong>: November 2025<br />
+<strong>Maintainer</strong>: narensham</p>
 
 
 
@@ -2550,7 +2422,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="November 7, 2025 06:20:40 UTC"><span class="timeago" datetime="2025-11-07T06:20:40+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 7, 2025 06:20:40 UTC">2025-11-07</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="November 9, 2025 04:38:40 UTC"><span class="timeago" datetime="2025-11-09T04:38:40+00:00" locale="en"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="November 9, 2025 04:38:40 UTC">2025-11-09</span>
   </span>
 
     
