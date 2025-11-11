@@ -127,7 +127,7 @@ try:
     st.sidebar.write("**Debug: Top 5 brands by count:**")
     st.sidebar.dataframe(brand_counts.head(5))
     all_brands = brand_counts.index.tolist()  # Already sorted by count (descending)
-    st.sidebar.write(f"**First brand in list:** {all_brands[0]}")
+    st.sidebar.write(f"**First brand in list:** {all_brands[2]}")
     selected_brands = st.sidebar.multiselect(
         "Select Brands",
         options=all_brands,

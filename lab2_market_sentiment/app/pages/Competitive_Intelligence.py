@@ -247,11 +247,12 @@ try:
         st.error("Database not found")
     
     # ============= BRAND SELECTION (CHANGED: Parent Company → Brand) =============
+    # ============= BRAND SELECTION (CHANGED: Parent Company → Brand) =============
     st.markdown("---")
     st.markdown("### Select Brand to Analyze")
-    
+
     col1, col2, col3 = st.columns([2, 2, 1])
-    
+
     with col1:
         # Get unique parent companies
         parent_companies = sorted(df_events['parent_company'].dropna().unique())
@@ -261,13 +262,24 @@ try:
             index=0,
             help="Select the parent company (e.g., PepsiCo, Unilever)"
         )
-    
+
     with col2:
-        # Filter brands by selected parent company
+        # Filter brands by selected parent company, sorted by mention count
         if selected_parent == 'All Companies':
-            brand_info = df_events[['brand', 'parent_company', 'brand_category']].drop_duplicates().sort_values(['parent_company', 'brand'])
+            filtered_events = df_events
         else:
-            brand_info = df_events[df_events['parent_company'] == selected_parent][['brand', 'parent_company', 'brand_category']].drop_duplicates().sort_values('brand')
+            filtered_events = df_events[df_events['parent_company'] == selected_parent]
+        
+        # Count mentions per brand and sort by count (descending)
+        brand_counts = filtered_events['brand'].value_counts()
+        
+        # Get brand info for brands with mentions, in order of mention count
+        brand_info_list = []
+        for brand_name in brand_counts.index:
+            brand_row = filtered_events[filtered_events['brand'] == brand_name][['brand', 'parent_company', 'brand_category']].iloc[0]
+            brand_info_list.append(brand_row)
+        
+        brand_info = pd.DataFrame(brand_info_list)
         
         brand_options = [f"{row['brand']} ({row['brand_category']})" for _, row in brand_info.iterrows()]
         brand_map = {f"{row['brand']} ({row['brand_category']})": row['brand'] for _, row in brand_info.iterrows()}
@@ -279,7 +291,7 @@ try:
             help="Select the specific brand to analyze"
         )
         selected_brand = brand_map[selected_brand_display]
-    
+
     with col3:
         analysis_period = st.selectbox(
             "Time Period",
