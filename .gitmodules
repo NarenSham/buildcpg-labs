@@ -1,0 +1,3 @@
+[submodule "lab3_hiring_signals"]
+	path = lab3_hiring_signals
+	url = https://github.com/NarenSham/buildcpg-lab3-hiring-signals.git
